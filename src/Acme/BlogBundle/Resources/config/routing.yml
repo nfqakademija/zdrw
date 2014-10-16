@@ -1,0 +1,7 @@
+users:
+    path:     /users/{id}
+    defaults: { _controller: AcmeBlogBundle:Blog:show}
+list:
+    path:     /list
+    defaults: { _controller: AcmeBlogBundle:Blog:list}
+    
