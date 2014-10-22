@@ -1,0 +1,3 @@
+main_offers_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MainOffersBundle:Default:index }
