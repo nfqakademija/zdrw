@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Offer
 {
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reward", mappedBy="offer")
+     */
+    protected $rewards;
+
+
     /**
      * @var integer
      *
@@ -80,9 +87,10 @@ class Offer
     /**
      * @var integer
      *
-     * @ORM\Column(name="accept_id", type="integer")
+     * @ORM\Column(name="participant_id", type="integer")
      */
-    private $acceptId;
+    private $participantId;
+
 
 
     /**
@@ -280,25 +288,65 @@ class Offer
     }
 
     /**
-     * Set acceptId
+     * Set participantId
      *
-     * @param integer $acceptId
+     * @param integer $participantId
      * @return Offer
      */
-    public function setAcceptId($acceptId)
+    public function setParticipanttId($participantId)
     {
-        $this->acceptId = $acceptId;
+        $this->participantId = $participantId;
 
         return $this;
     }
 
     /**
-     * Get acceptId
+     * Get participantId
      *
      * @return integer 
      */
-    public function getAcceptId()
+    public function getParticipantId()
     {
-        return $this->acceptId;
+        return $this->participantId;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add rewards
+     *
+     * @param \Zdrw\OffersBundle\Entity\Reward $rewards
+     * @return Offer
+     */
+    public function addReward(\Zdrw\OffersBundle\Entity\Reward $rewards)
+    {
+        $this->rewards[] = $rewards;
+
+        return $this;
+    }
+
+    /**
+     * Remove rewards
+     *
+     * @param \Zdrw\OffersBundle\Entity\Reward $rewards
+     */
+    public function removeReward(\Zdrw\OffersBundle\Entity\Reward $rewards)
+    {
+        $this->rewards->removeElement($rewards);
+    }
+
+    /**
+     * Get rewards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRewards()
+    {
+        return $this->rewards;
     }
 }
