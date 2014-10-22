@@ -1,7 +1,3 @@
-main_offers:
-    resource: "@MainOffersBundle/Resources/config/routing.yml"
+zdrw_offers:
+    resource: "@ZdrwOffersBundle/Resources/config/routing.yml"
     prefix:   /
-acme_post:
-            resource: "@AcmeBlogBundle/Controller/"
-            type: annotation
-            prefix: /

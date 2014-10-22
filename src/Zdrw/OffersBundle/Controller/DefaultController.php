@@ -1,6 +1,6 @@
 <?php
 
-namespace Main\OffersBundle\Controller;
+namespace Zdrw\OffersBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('MainOffersBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('ZdrwOffersBundle:Default:index.html.twig', array('name' => $name));
     }
 }

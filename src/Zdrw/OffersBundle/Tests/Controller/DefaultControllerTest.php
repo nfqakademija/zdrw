@@ -1,6 +1,6 @@
 <?php
 
-namespace Main\OffersBundle\Tests\Controller;
+namespace Zdrw\OffersBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

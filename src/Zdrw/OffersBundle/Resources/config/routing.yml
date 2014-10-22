@@ -1,0 +1,3 @@
+zdrw_offers_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ZdrwOffersBundle:Default:index }

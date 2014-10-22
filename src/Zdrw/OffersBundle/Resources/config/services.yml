@@ -1,4 +1,4 @@
 services:
-#    main_offers.example:
-#        class: Main\OffersBundle\Example
+#    zdrw_offers.example:
+#        class: Zdrw\OffersBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
