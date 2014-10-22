@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reward
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="id")
+     **/
+
+    protected $offer;
+
     /**
      * @var integer
      *
