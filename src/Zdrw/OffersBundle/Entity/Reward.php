@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reward
  *
- * @ORM\Table()
+ * @ORM\Table(name="rewards")
  * @ORM\Entity(repositoryClass="Zdrw\OffersBundle\Entity\RewardRepository")
  */
 class Reward
