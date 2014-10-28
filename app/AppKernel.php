@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Zdrw\OffersBundle\ZdrwOffersBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Zdrw\UserBundle\ZdrwUserBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
