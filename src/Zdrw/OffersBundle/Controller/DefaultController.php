@@ -15,8 +15,10 @@ class DefaultController extends Controller
      * @param string
      * @return object
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('ZdrwOffersBundle:Default:index.html.twig', array('name' => $name));
+        $name = $this->getUser()->getUsername();
+        $email = $this->getUser()->getEmail();
+        return $this->render('ZdrwOffersBundle:Default:index.html.twig', array('name' => $name,'email' => $email));
     }
 }
