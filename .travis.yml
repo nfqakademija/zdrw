@@ -1,0 +1,13 @@
+language: php
+
+php:
+    - 5.5
+
+before_install:
+    - sudo chmod 0777 -R app/logs/ app/cache/
+
+install:
+    - composer install -n --prefer-source
+
+script:
+    - bin/phpunit -c app

@@ -12,8 +12,7 @@ class DefaultController extends Controller
     /**
      * Function rendering the main project page
      *
-     * @param string
-     * @return object
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
