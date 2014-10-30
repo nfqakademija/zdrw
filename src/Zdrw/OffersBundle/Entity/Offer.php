@@ -293,7 +293,7 @@ class Offer
      * @param integer $participantId
      * @return Offer
      */
-    public function setParticipanttId($participantId)
+    public function setParticipantId($participantId)
     {
         $this->participantId = $participantId;
 

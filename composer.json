@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "squizlabs/php_codesniffer": "2.0.x-dev",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "symfony/framework-standard-edition": "2.5.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
