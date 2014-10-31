@@ -1,7 +1,6 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}DareOrStare - main page{% endblock %}
-{% block stylesheets %}{% endblock %}
 {% block body %}
     <header class="header">
         <nav class="navbar navbar-default" role="navigation">
@@ -15,7 +14,7 @@
                     </button>
                     <a class="navbar-brand" href="#">Dare Or Stare</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" style="overflow:hidden;">
                     <ul class="nav navbar-nav">
                         <li>
                             <form class="navbar-form navbar-left" role="search">
@@ -36,11 +35,10 @@
     </header>
 
     {% block content %}{% endblock %}
-
+    <hr>
     <footer class="footer">
         <div class="container">
             <p>&copy; 2014 Zdrw</p>
         </div>
     </footer>
 {% endblock %}
-{% block javascripts %}{% endblock %}
