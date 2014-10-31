@@ -10,3 +10,10 @@
 /bin/
 /composer.phar
 .idea
+/web/css/
+/web/js/
+/web/fonts/
+/web/img/
+/node_modules/
+/bower_components/
+/.sass-cache/
