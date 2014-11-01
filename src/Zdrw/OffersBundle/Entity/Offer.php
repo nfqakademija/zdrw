@@ -66,9 +66,9 @@ class Offer
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="finish_date", type="datetime")
+     * @ORM\Column(name="finish_date", type="datetime", nullable=true)
      */
-    private $finishDate;
+    private $finishDate = null;
 
     /**
      * @var integer
@@ -87,9 +87,9 @@ class Offer
     /**
      * @var integer
      *
-     * @ORM\Column(name="participant_id", type="integer")
+     * @ORM\Column(name="participant_id", type="integer", nullable=true)
      */
-    private $participantId;
+    private $participantId = null;
 
 
 
