@@ -1,0 +1,18 @@
+$bg-color: #f0f0f0;
+
+.avatar{
+  width:100px;height:100px;background-color: #b6ab84;margin:0px auto;
+}
+
+.profile-content,
+.primary-content,
+.secondary-content{
+  padding: 10px;
+  background-color:$bg-color;
+}
+
+.profile-section,
+.primary-section,
+.secondary-section{
+  padding: 5px;
+}

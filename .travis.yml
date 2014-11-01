@@ -5,9 +5,13 @@ php:
 
 before_install:
     - sudo chmod 0777 -R app/logs/ app/cache/
-
+    - mysql -e 'create database symfony;'
 install:
     - composer install -n --prefer-source
 
 script:
+    - php app/console doctrine:schema:drop --force
+    - php app/console doctrine:schema:create
+    - php app/console doctrine:schema:update --force
+    - php app/console doctrine:fixtures:load --no-interaction
     - bin/phpunit -c app
