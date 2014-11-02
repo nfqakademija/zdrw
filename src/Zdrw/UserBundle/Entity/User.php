@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     /**
+     * @ORM\OneToMany(targetEntity="Zdrw\OffersBundle\Entity\Notification", mappedBy="user")
+     */
+    protected $notification;
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")

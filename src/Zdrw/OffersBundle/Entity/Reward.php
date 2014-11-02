@@ -53,7 +53,7 @@ class Reward
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +76,7 @@ class Reward
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -99,7 +99,7 @@ class Reward
     /**
      * Get offerId
      *
-     * @return integer 
+     * @return integer
      */
     public function getOfferId()
     {
@@ -122,7 +122,7 @@ class Reward
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {

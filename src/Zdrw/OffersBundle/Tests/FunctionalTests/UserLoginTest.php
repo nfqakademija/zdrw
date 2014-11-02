@@ -3,8 +3,6 @@
 namespace Zdrw\OffersBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Zdrw\OffersBundle\ZdrwOffersBundle;
-use Zdrw\UserBundle\ZdrwUserBundle;
 
 class UserLoginTest extends WebTestCase
 {

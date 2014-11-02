@@ -18,7 +18,6 @@ class Offer
      */
     protected $rewards;
 
-
     /**
      * @var integer
      *
@@ -96,7 +95,7 @@ class Offer
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -119,7 +118,7 @@ class Offer
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -142,7 +141,7 @@ class Offer
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -165,7 +164,7 @@ class Offer
     /**
      * Get categoryId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCategoryId()
     {
@@ -188,7 +187,7 @@ class Offer
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -211,7 +210,7 @@ class Offer
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -234,7 +233,7 @@ class Offer
     /**
      * Get finishDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFinishDate()
     {
@@ -257,7 +256,7 @@ class Offer
     /**
      * Get views
      *
-     * @return integer 
+     * @return integer
      */
     public function getViews()
     {
@@ -280,7 +279,7 @@ class Offer
     /**
      * Get ownerId
      *
-     * @return integer 
+     * @return integer
      */
     public function getOwnerId()
     {
@@ -303,7 +302,7 @@ class Offer
     /**
      * Get participantId
      *
-     * @return integer 
+     * @return integer
      */
     public function getParticipantId()
     {
@@ -343,7 +342,7 @@ class Offer
     /**
      * Get rewards
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRewards()
     {
