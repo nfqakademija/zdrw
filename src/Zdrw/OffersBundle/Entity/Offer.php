@@ -19,6 +19,13 @@ class Offer
     protected $rewards;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Zdrw\UserBundle\Entity\User", inversedBy="offers")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     **/
+    protected $user;
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -347,5 +354,28 @@ class Offer
     public function getRewards()
     {
         return $this->rewards;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Zdrw\UserBundle\Entity\User $user
+     * @return Offer
+     */
+    public function setUser(\Zdrw\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Zdrw\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

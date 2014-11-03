@@ -156,4 +156,27 @@ class Notification
     {
         return $this->seen;
     }
+
+    /**
+     * Set user
+     *
+     * @param \Zdrw\UserBundle\Entity\User $user
+     * @return Notification
+     */
+    public function setUser(\Zdrw\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Zdrw\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
