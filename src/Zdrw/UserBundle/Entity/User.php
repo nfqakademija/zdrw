@@ -16,7 +16,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Zdrw\OffersBundle\Entity\Notification", mappedBy="user")
      */
-    protected $notification;
+    protected $notifications;
 
     /**
      * @ORM\OneToMany(targetEntity="Zdrw\OffersBundle\Entity\Reward", mappedBy="user")
@@ -39,6 +39,7 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->rewards = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
         $this->offers = new ArrayCollection();
     }
 
@@ -60,7 +61,7 @@ class User extends BaseUser
      */
     public function addNotification(\Zdrw\OffersBundle\Entity\Notification $notification)
     {
-        $this->notification[] = $notification;
+        $this->notifications[] = $notification;
 
         return $this;
     }
@@ -72,7 +73,7 @@ class User extends BaseUser
      */
     public function removeNotification(\Zdrw\OffersBundle\Entity\Notification $notification)
     {
-        $this->notification->removeElement($notification);
+        $this->notifications->removeElement($notification);
     }
 
     /**
@@ -82,7 +83,7 @@ class User extends BaseUser
      */
     public function getNotification()
     {
-        return $this->notification;
+        return $this->notifications;
     }
 
     /**
@@ -149,5 +150,15 @@ class User extends BaseUser
     public function getOffers()
     {
         return $this->offers;
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }
