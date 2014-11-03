@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Notification
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Zdrw\UserBundle\Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Zdrw\UserBundle\Entity\User", inversedBy="notifications")
      **/
     protected $user;
 
