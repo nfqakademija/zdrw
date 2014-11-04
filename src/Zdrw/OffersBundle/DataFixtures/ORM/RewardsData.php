@@ -21,7 +21,7 @@ class LoadRewardsData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setOwner($user);
         $offer->setPoints(500);
 
-        $manager->persist($offer3);
+        $manager->persist($offer);
         $manager->flush();
     }
 
