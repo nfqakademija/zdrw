@@ -32,20 +32,7 @@ class Reward
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     */
-    private $userId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="offer_id", type="integer")
-     */
-    private $offerId;
+    
 
     /**
      * @var integer

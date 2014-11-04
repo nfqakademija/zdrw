@@ -20,7 +20,6 @@ class Offer
 
     /**
      * @ORM\ManyToOne(targetEntity="Zdrw\UserBundle\Entity\User", inversedBy="offers")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      **/
     protected $user;
 
