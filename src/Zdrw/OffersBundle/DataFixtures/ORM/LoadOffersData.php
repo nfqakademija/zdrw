@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Zdrw\OffersBundle\Entity\Offer;
 
-class OffersData extends AbstractFixture implements OrderedFixtureInterface
+class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
