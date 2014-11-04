@@ -18,7 +18,9 @@ class LoadRewardsData extends AbstractFixture implements OrderedFixtureInterface
         $reward = new Reward();
 
         $user = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
-        $reward->setOwner($user);
+        $reward->setUser($user);
+        $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneByTitle('My Title 1');
+        $reward->setOffer($offer);
         $reward->setPoints(500);
 
         $manager->persist($reward);
