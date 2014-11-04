@@ -5,7 +5,7 @@ namespace Zdrw\OffersBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Zdrw\OffersBundle\Entity\Offer;
+use Zdrw\OffersBundle\Entity\Reward;
 
 class LoadRewardsData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -15,13 +15,13 @@ class LoadRewardsData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         // First offer
-        $offer = new Offer();
+        $reward = new Reward();
 
         $user = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
-        $offer->setOwner($user);
-        $offer->setPoints(500);
+        $reward->setOwner($user);
+        $reward->setPoints(500);
 
-        $manager->persist($offer);
+        $manager->persist($reward);
         $manager->flush();
     }
 
