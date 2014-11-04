@@ -22,7 +22,6 @@ class OffersData implements FixtureInterface
         $offer->setStartDate(new \DateTime('now'));
         $offer->setFinishDate(new \DateTime('tomorrow'));
         $offer->setViews(0);
-        $offer->setOwnerId(1);
         $offer->setParticipantId(1);
 
         // Second offer
@@ -34,7 +33,6 @@ class OffersData implements FixtureInterface
         $offer2->setStartDate(new \DateTime('now'));
         $offer2->setFinishDate(new \DateTime('tomorrow'));
         $offer2->setViews(0);
-        $offer2->setOwnerId(1);
         $offer2->setParticipantId(1);
 
         // Third offer
@@ -46,7 +44,6 @@ class OffersData implements FixtureInterface
         $offer3->setStartDate(new \DateTime('now'));
         $offer3->setFinishDate(new \DateTime('tomorrow'));
         $offer3->setViews(0);
-        $offer3->setOwnerId(1);
         $offer3->setParticipantId(1);
 
         $manager->persist($offer);
