@@ -14,7 +14,7 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function offersAction()
     {
         $offers = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
         $name = $this->getUser()->getUsername();
@@ -24,6 +24,6 @@ class DefaultController extends Controller
             'email' => $email,
             "offers" => $offers
         );
-        return $this->render('ZdrwOffersBundle:Default:index.html.twig', $pass);
+        return $this->render('ZdrwOffersBundle:Default:offers.html.twig', $pass);
     }
 }
