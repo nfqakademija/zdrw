@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
         {% endblock %}
@@ -12,7 +11,6 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
             <script src="{{ asset('js/app.js') }}"></script>
