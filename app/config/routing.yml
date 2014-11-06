@@ -1,25 +1,6 @@
 zdrw_offers:
     resource: "@ZdrwOffersBundle/Resources/config/routing.yml"
     prefix:   /
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-
-#HWIOAuthBundle routes
-hwi_oauth_security:
-    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix: /login
-
-hwi_oauth_connect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-    prefix: /login
-
-hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /login
-
-facebook_login:
-    pattern: /login/check-facebook
-
-google_login:
-    pattern: /login/check-google
+zdrw_user:
+    resource: "@ZdrwUserBundle/Resources/config/routing.yml"
