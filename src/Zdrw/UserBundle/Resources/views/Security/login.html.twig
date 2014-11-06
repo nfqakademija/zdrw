@@ -21,6 +21,6 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
-<a href="login/facebook">facebook</a>
-<a href="login/google">google</a>
+<a href="{{ path("fb_url") }}">facebook</a>
+<a href="{{ path("google_url") }}">google</a>
 {% endblock fos_user_content %}
