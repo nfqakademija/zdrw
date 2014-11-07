@@ -1,3 +1,9 @@
-zdrw_offers_homepage:
-    path:     /offers
-    defaults: { _controller: ZdrwOffersBundle:Default:offers }
+zdrw_dares:
+    path:     /dares
+    defaults: { _controller: ZdrwOffersBundle:Default:dares }
+zdrw_stares:
+    path:     /stares
+    defaults: { _controller: ZdrwOffersBundle:Default:stares }
+zdrw_profile:
+    path:     /profile
+    defaults: { _controller: ZdrwOffersBundle:Default:profile }

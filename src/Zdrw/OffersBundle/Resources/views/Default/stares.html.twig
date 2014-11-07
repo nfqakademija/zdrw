@@ -1,0 +1,36 @@
+{% extends "ZdrwOffersBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <section class="col-md-2 box profile-section">
+            <article class="profile-content">
+                <div class="avatar"></div>
+                <br>
+                <p>
+                    <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ name }}</a></b><br>
+                    {{ email }}
+                </p>
+                <hr>
+                Meniu
+                <br><br>
+            </article>
+        </section>
+        <section class="col-md-6 box primary-section">
+            <div class="primary-content">
+                <h1>Stares</h1>
+                <hr>
+                <p>
+                    Stares
+                </p>
+            </div>
+        </section>
+        <section class="col-md-4 box secondary-section">
+            <div class="secondary-content">
+                <h1>Dares</h1>
+                <p>
+                    Lorem ipsum
+                </p>
+            </div>
+        </section>
+    </div>
+{% endblock %}

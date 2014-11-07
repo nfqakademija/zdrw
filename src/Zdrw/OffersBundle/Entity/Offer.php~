@@ -353,4 +353,27 @@ class Offer
     {
         return $this->owner;
     }
+
+    /**
+     * Set participant
+     *
+     * @param \Zdrw\UserBundle\Entity\User $participant
+     * @return Offer
+     */
+    public function setParticipant(\Zdrw\UserBundle\Entity\User $participant = null)
+    {
+        $this->participant = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Get participant
+     *
+     * @return \Zdrw\UserBundle\Entity\User 
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
+    }
 }

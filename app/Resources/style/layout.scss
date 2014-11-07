@@ -2,11 +2,29 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 $bg-color: #f0f0f0;
+$font-1: 16pt;
+$font-2: 14pt;
+$font-3: 12pt;
 
 .avatar{
   width:100px;height:100px;background-color: #b6ab84;margin:0px auto;
 }
-
+.avatar2{
+  width: 150px;
+  height: 150px;
+  background-color: #b6ab84;
+}
+.font-1{
+  font-size: $font-1;
+}
+.font-2{
+  font-size: $font-1;
+}
+.font-3{
+  font-size: $font-1;
+}
+.profile{
+}
 .profile-content,
 .primary-content,
 .secondary-content{

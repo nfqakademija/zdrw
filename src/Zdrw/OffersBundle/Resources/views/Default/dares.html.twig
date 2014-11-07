@@ -7,7 +7,7 @@
                 <div class="avatar"></div>
                 <br>
                 <p>
-                    <b>{{ name }}</b><br>
+                    <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ name }}</a></b><br>
                     {{ email }}
                 </p>
                 <hr>
@@ -17,13 +17,13 @@
         </section>
         <section class="col-md-6 box primary-section">
             <div class="primary-content">
-                <h1>Offers</h1>
+                <h1>Dares</h1>
                 <hr>
                 <p>
-                    {% for offer in offers %}
-                        <h3>{{ offer.title }}<small class="pull-right">Views: {{ offer.views }}</small></h3>
-                        <p>{{ offer.description }}</p>
-                        <br><small class="pull-right">{{ offer.startDate | date("Y-d-m H:i:s") }}</small>
+                    {% for dare in dares %}
+                        <h3>{{ dare.title }}<small class="pull-right">Views: {{ dare.views }}</small></h3>
+                        <p>{{ dare.description }}</p>
+                        <br><small class="pull-right">{{ dare.startDate | date("Y-d-m H:i:s") }}</small>
                         <hr>
                     {% endfor %}
                 </p>
@@ -31,7 +31,7 @@
         </section>
         <section class="col-md-4 box secondary-section">
             <div class="secondary-content">
-                <h1>Dares</h1>
+                <h1>Stares</h1>
                 <p>
                     Lorem ipsum
                 </p>

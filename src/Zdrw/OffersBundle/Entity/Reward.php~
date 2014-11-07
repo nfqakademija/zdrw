@@ -52,28 +52,6 @@ class Reward
         return $this->id;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Reward
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
     /**
      * Set offerId
