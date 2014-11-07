@@ -3,21 +3,9 @@ filter:
     - src/*
 before_commands:
     - "composer update --prefer-source"
-build:
-    tests:
-        before:
-            - "mysql -e 'create database symfony;"
-            - "php app/console doctrine:schema:drop --force"
-            - "php app/console doctrine:schema:create"
-            - "php app/console doctrine:schema:update --force"
-            - "php app/console doctrine:fixtures:load --no-interaction"
-
-        override:
-            -
-                command: 'bin/phpunit -c app/ --coverage-clover=some-file'
-                coverage:
-                    file: 'some-file'
-                    format: 'php-clover'
+php_code_coverage:
+        enabled:        true
+        test_command:   bin/phpunit -c app/
 checks:
     php:
         code_rating: true
