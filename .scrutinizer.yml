@@ -1,10 +1,13 @@
+tools:
+    external_code_coverage: true
+filter:
+  paths:
+    - src/*
+
 build:
     environment:
         php:
             version: 5.5
-tools:
-    external_code_coverage: true
-build:
     dependencies:
         before:
             - "composer install --no-dev --prefer-source"
@@ -12,7 +15,7 @@ build:
         before:
             - 'bin/phpunit -c app/'
         override:
-            command: "bin/phpunit -c app/ --coverage-clover=my-coverage-file"
+            command: "bin/phpunit -c app/ --coverage-html=my-coverage-file"
             coverage:
                 file: my-coverage-file
                 format: php-clover
