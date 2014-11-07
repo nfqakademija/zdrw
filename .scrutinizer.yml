@@ -3,7 +3,8 @@ filter:
     - src/*
 before_commands:
     - "composer update --prefer-source"
-php_code_coverage:
+tools:
+    php_code_coverage:
         enabled:        true
         test_command:   bin/phpunit -c app/
 checks:
