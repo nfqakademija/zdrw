@@ -1,0 +1,30 @@
+build:
+    environment:
+        php:
+            version: 5.5
+build:
+    dependencies:
+        before:
+            - "composer install --no-dev --prefer-source"
+    environment:
+        hosts:
+            local.dev: '127.0.0.1'
+
+        apache2:
+            modules: ['rewrite']
+            sites:
+                symfony_app:
+                    web_root: 'web/'
+                    host: 'local.dev'
+    tests:
+        before:
+            - 'bin/phpunit -c app/'
+        override:
+            command: "bin/phpunit --coverage-clover=my-coverage-file"
+            coverage:
+                file: my-coverage-file
+                format: php-clover
+checks:
+    php:
+        code_rating: true
+        duplication: true
