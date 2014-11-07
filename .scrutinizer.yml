@@ -3,7 +3,6 @@ tools:
 filter:
   paths:
     - src/*
-
 build:
     environment:
         php:
