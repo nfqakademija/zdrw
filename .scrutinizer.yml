@@ -8,17 +8,6 @@ build:
     environment:
         php:
             version: 5.5
-    dependencies:
-        before:
-            - "composer install --no-dev --prefer-source"
-    tests:
-        before:
-            - 'bin/phpunit -c app/'
-        override:
-            command: "bin/phpunit -c app/ --coverage-html=my-coverage-file"
-            coverage:
-                file: my-coverage-file
-                format: php-clover
 checks:
     php:
         code_rating: true
