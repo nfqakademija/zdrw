@@ -3,13 +3,15 @@ filter:
     - src/*
 before_commands:
     - "composer update --prefer-source"
-    - "mysql -e 'create database symfony;'"
-    - "php app/console doctrine:schema:drop --force"
-    - "php app/console doctrine:schema:create"
-    - "php app/console doctrine:schema:update --force"
-    - "php app/console doctrine:fixtures:load --no-interaction"
 build:
     tests:
+        before:
+            - "mysql -e 'create database symfony;"
+            - "php app/console doctrine:schema:drop --force"
+            - "php app/console doctrine:schema:create"
+            - "php app/console doctrine:schema:update --force"
+            - "php app/console doctrine:fixtures:load --no-interaction"
+
         override:
             -
                 command: 'bin/phpunit -c app/ --coverage-clover=some-file'
