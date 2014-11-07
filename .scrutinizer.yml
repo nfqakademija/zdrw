@@ -3,6 +3,14 @@ filter:
     - src/*
 before_commands:
     - "composer update --prefer-source"
+build:
+    tests:
+        override:
+            -
+                command: 'phpunit --coverage-clover=some-file'
+                coverage:
+                    file: 'some-file'
+                    format: 'php-clover'
 checks:
     php:
         code_rating: true
