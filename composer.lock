@@ -1402,12 +1402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3"
+                "reference": "bf803199c1a0973dee174f06cf0366ed2c9710b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/198692e8e15cb4bde41f31742209f4bf61486af3",
-                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/bf803199c1a0973dee174f06cf0366ed2c9710b0",
+                "reference": "bf803199c1a0973dee174f06cf0366ed2c9710b0",
                 "shasum": ""
             },
             "require": {
@@ -1467,7 +1467,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-11-04 00:15:26"
+            "time": "2014-11-06 21:18:20"
         },
         {
             "name": "swiftmailer/swiftmailer",
