@@ -8,9 +8,6 @@ filter:
 before_commands:
     - "composer update --prefer-source"
 tools:
-    php_code_coverage:
-        enabled:        true
-        test_command:   bin/phpunit -c app/
     external_code_coverage: true
 checks:
     php:
