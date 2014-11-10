@@ -15,7 +15,7 @@ script:
     - php app/console doctrine:schema:update --force
     - php app/console doctrine:fixtures:load --no-interaction
     - bin/phpunit -c app
-    - phpunit --coverage-clover=coverage.clover
+    - bin/phpunit -c app --coverage-clover=coverage.clover
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar
