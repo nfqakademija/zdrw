@@ -5,14 +5,32 @@ namespace Zdrw\OffersBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Google_Service_YouTube;
 use Google_Client;
+use Google_Exception;
+use Google_ServiceException;
 
 class VideoController extends Controller
 {
-    public function indexAction ()
+    public function indexAction(Request $request)
     {
-        $OAUTH2_CLIENT_ID = $this->container->getParameter("google_app_id");
+
+        $form = $this->createFormBuilder()
+            ->add('video', 'file') // If I remove this line data is submitted correctly
+            ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+
+            $file = $form['video']->getData();
+
+            $ext = $file->guessExtension();
+
+            $file->move("uploads","temp.".$ext);
+        }
+        /*$OAUTH2_CLIENT_ID = $this->container->getParameter("google_app_id");
         $OAUTH2_CLIENT_SECRET = $this->container->getParameter("google_app_secret");
 
         $client = new Google_Client();
@@ -135,8 +153,14 @@ class VideoController extends Controller
 END;
         }
 
-
-        return $this->render('ZdrwOffersBundle:Default:upload.html.twig');
+*/
+        return $this->render('ZdrwOffersBundle:Default:upload.html.twig', array(
+            'form' => $form->createView()));
     }
 
+
+    public function uploadYoutube()
+    {
+
+    }
 }
