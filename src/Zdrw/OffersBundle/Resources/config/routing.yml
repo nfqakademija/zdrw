@@ -7,3 +7,6 @@ zdrw_stares:
 zdrw_profile:
     path:     /profile
     defaults: { _controller: ZdrwOffersBundle:Default:profile }
+zdrw_upload:
+    path:     /upload
+    defaults: { _controller: ZdrwOffersBundle:Video:index }

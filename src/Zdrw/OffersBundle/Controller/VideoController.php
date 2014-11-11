@@ -10,10 +10,10 @@ use Google_Client;
 
 class VideoController extends Controller
 {
-    public function uploadAction()
+    public function indexAction ()
     {
-        $OAUTH2_CLIENT_ID = '26727814456-6u635ev7d7vdpa4lmddvn3cthih2dqjr.apps.googleusercontent.com';
-        $OAUTH2_CLIENT_SECRET = 'FeS7s_yhNmyCxOFYwxKoj6mM';
+        $OAUTH2_CLIENT_ID = $this->container->getParameter("google_app_id");
+        $OAUTH2_CLIENT_SECRET = $this->container->getParameter("google_app_secret");
 
         $client = new Google_Client();
         $client->setClientId($OAUTH2_CLIENT_ID);
@@ -61,7 +61,7 @@ class VideoController extends Controller
                 // Set the video's status to "public". Valid statuses are "public",
                 // "private" and "unlisted".
                 $status = new Google_Service_YouTube_VideoStatus();
-                $status->privacyStatus = "public";
+                $status->privacyStatus = "private";
 
                 // Associate the snippet and status objects with a new video resource.
                 $video = new Google_Service_YouTube_Video();
@@ -136,5 +136,7 @@ END;
         }
 
 
+        return $this->render('ZdrwOffersBundle:Default:upload.html.twig');
     }
+
 }
