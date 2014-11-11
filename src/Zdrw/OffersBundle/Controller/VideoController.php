@@ -11,6 +11,7 @@ use Google_Service_YouTube;
 use Google_Client;
 use Google_Exception;
 use Google_ServiceException;
+use SplFileInfo;
 
 class VideoController extends Controller
 {
@@ -24,11 +25,13 @@ class VideoController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
 
+
             $file = $form['video']->getData();
+            $file = $file->getPathname();
+            var_dump($file);
+            /*$ext = $file->guessExtension();
 
-            $ext = $file->guessExtension();
-
-            $file->move("uploads","temp.".$ext);
+            $file->move("uploads","temp.".$ext);*/
         }
         /*$OAUTH2_CLIENT_ID = $this->container->getParameter("google_app_id");
         $OAUTH2_CLIENT_SECRET = $this->container->getParameter("google_app_secret");
