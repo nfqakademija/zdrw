@@ -9,6 +9,7 @@ before_commands:
     - "composer update --prefer-source"
 tools:
     external_code_coverage: true
+    timeout: 600
 checks:
     php:
         code_rating: true
