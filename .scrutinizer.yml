@@ -8,7 +8,8 @@ filter:
 before_commands:
     - "composer update --prefer-source"
 tools:
-    external_code_coverage: true
+    external_code_coverage:
+        timeout: 3600
 checks:
     php:
         code_rating: true
