@@ -12,7 +12,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dare Or Stare</a>
+                    <a class="navbar-brand" href="{{ path('zdrw_index') }}">Dare Or Stare</a>
                 </div>
                 <div class="navbar-collapse collapse" style="overflow:hidden;">
                     <ul class="nav navbar-nav">
@@ -34,6 +34,23 @@
         </nav>
     </header>
 
+    {% block leftSideBar %}
+        <div class="left-sidebar">
+            <div class="left-sidebar-button"></div>
+            <section class="profile-section">
+                <article>
+                    <div class="avatar"></div>
+                    <br>
+                    <p>
+                        <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ name }}</a></b><br>{{ email }}
+                    </p>
+                    <hr>
+                    Meniu
+                    <br><br>
+                </article>
+            </section>
+        </div>
+    {% endblock %}
     {% block content %}{% endblock %}
     <hr>
     <footer class="footer">

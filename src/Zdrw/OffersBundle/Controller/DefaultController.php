@@ -25,6 +25,11 @@ class DefaultController extends Controller
         );
         return $pass;
     }
+    public function indexAction()
+    {
+        $pass = $this->userInfo();
+        return $this->render("ZdrwOffersBundle:Default:index.html.twig", $pass);
+    }
     public function daresAction()
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();

@@ -1,3 +1,6 @@
+zdrw_index:
+    path:     /
+    defaults: { _controller: ZdrwOffersBundle:Default:index }
 zdrw_dares:
     path:     /dares
     defaults: { _controller: ZdrwOffersBundle:Default:dares }

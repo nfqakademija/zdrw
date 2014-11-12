@@ -1,0 +1,18 @@
+.left-sidebar{
+  margin-top:52px;
+  width: 200px;
+  height: 100%;
+  background-color: #474045;
+  color:white;
+  position: fixed;
+  top: 0px;
+  left: -200px;
+  z-index:999;
+}
+.left-sidebar-button{
+  width: 30px;
+  height: 30px;
+  background-color: #a6544a;
+  position: relative;
+  left: 200px;
+}
