@@ -15,17 +15,6 @@ use SplFileInfo;
 
 class VideoController extends Controller
 {
-    private function userInfo(){
-        $id = $this->getUser()->getId();
-        $name = $this->getUser()->getUsername();
-        $email = $this->getUser()->getEmail();
-        $pass = array(
-            'id' => $id,
-            'name' => $name,
-            'email' => $email
-        );
-        return $pass;
-    }
     public function indexAction(Request $request)
     {
 
@@ -168,7 +157,14 @@ END;
         }
 
 */
-        $pass = $this->userInfo();
+        $id = $this->getUser()->getId();
+        $name = $this->getUser()->getUsername();
+        $email = $this->getUser()->getEmail();
+        $pass = array(
+            'id' => $id,
+            'name' => $name,
+            'email' => $email
+        );
         $pass['form'] = $form->createView();
         return $this->render('ZdrwOffersBundle:Default:upload.html.twig', $pass);
     }
