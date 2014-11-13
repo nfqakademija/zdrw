@@ -2,6 +2,7 @@
 
 {% block title %}DareOrStare - main page{% endblock %}
 {% block body %}
+    {% set userInfo = user_info_provider.userInfo(user) %}
     <header class="header">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -42,7 +43,6 @@
                     <div class="avatar"></div>
                     <br>
                     <p>
-                        {% set userInfo = user_info_provider.userInfo(user) %}
                         <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ userInfo.name }}</a></b><br>{{ userInfo.email }}
                     </p>
                     <hr>

@@ -17,29 +17,22 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        $infoProvider = $this->get('user_info_provider');
-        return $this->render("ZdrwOffersBundle:Default:index.html.twig", $infoProvider->userInfo($this->getUser()));
+        return $this->render("ZdrwOffersBundle:Default:index.html.twig", array('user' => $this->getUser()));
     }
     public function daresAction()
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $infoProvider = $this->get('user_info_provider');
-        $pass = $infoProvider->userInfo($this->getUser());
-        $pass["dares"] = $dares;
-        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', $pass);
+        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares, 'user'=> $this->getUser()));
     }
 
     public function staresAction()
     {
-        $infoProvider = $this->get('user_info_provider');
-        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', $infoProvider->userInfo($this->getUser()));
+        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('user' => $this->getUser()));
     }
     public function profileAction()
     {
-        $infoProvider = $this->get('user_info_provider');
-        $pass = $infoProvider->userInfo($this->getUser());
-        $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $pass["id"]));
-        $pass["notifications"] = $notifications;
-        return $this->render('ZdrwOffersBundle:Default:profile.html.twig', $pass);
+        $user = $this->getUser();
+        $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
+        return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'user'=> $user));
     }
 }

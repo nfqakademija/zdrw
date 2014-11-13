@@ -8,8 +8,8 @@
                 <div class="col-md-6 avatar2"></div>
                 <div class="col-md-6">
                 <p>
-                    <b class="font-1">{{ name }}</b><br>
-                    {{ email }}
+                    <b class="font-1">{{ userInfo.name }}</b><br>
+                    {{ userInfo.email }}
                 </p>
                 </div>
             </article>
@@ -19,9 +19,9 @@
                 <h2>Notifications</h2>
                 <hr>
                 <p>
-                    {% for notifications in notifications %}
-                        <p>{{ notifications.notification }}</p>
-                        <br><small class="pull-right">{{ notifications.date | date("Y-d-m H:i:s") }}</small>
+                    {% for n in notifications %}
+                        <p>{{ n.notification }}</p>
+                        <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
                         <hr>
                     {% endfor %}
                 </p>
