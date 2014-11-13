@@ -28,6 +28,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        user_info_provider: "@user_info_provider"
 
 # Assetic Configuration
 assetic:

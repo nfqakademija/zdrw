@@ -42,7 +42,8 @@
                     <div class="avatar"></div>
                     <br>
                     <p>
-                        <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ name }}</a></b><br>{{ email }}
+                        {% set userInfo = user_info_provider.userInfo(user) %}
+                        <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ userInfo.name }}</a></b><br>{{ userInfo.email }}
                     </p>
                     <hr>
                     Meniu

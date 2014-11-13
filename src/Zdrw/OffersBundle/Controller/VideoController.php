@@ -158,10 +158,7 @@ END;
 
 */
 
-        $infoProvider = $this->get('user_info_provider');
-        $pass = $infoProvider->userInfo($this->getUser());
-        $pass['form'] = $form->createView();
-        return $this->render('ZdrwOffersBundle:Default:upload.html.twig', $pass);
+        return $this->render('ZdrwOffersBundle:Default:upload.html.twig', array('form' =>$form->createView(), 'user'=> $this->getUser()));
     }
 
     public function uploadYoutube()
