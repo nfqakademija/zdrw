@@ -157,14 +157,9 @@ END;
         }
 
 */
-        $id = $this->getUser()->getId();
-        $name = $this->getUser()->getUsername();
-        $email = $this->getUser()->getEmail();
-        $pass = array(
-            'id' => $id,
-            'name' => $name,
-            'email' => $email
-        );
+
+        $infoProvider = $this->get('user_info_provider');
+        $pass = $infoProvider->userInfo($this->getUser());
         $pass['form'] = $form->createView();
         return $this->render('ZdrwOffersBundle:Default:upload.html.twig', $pass);
     }
