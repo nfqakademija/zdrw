@@ -34,7 +34,12 @@
             </div>
         </nav>
     </header>
-
+    {% block login %}
+        <div class="user-login">
+            <a href="{{ path("fb_url") }}">facebook</a>
+            <a href="{{ path("google_url") }}">google</a>
+        </div>
+    {% endblock %}
     {% block leftSideBar %}
         <div class="left-sidebar">
             <div class="left-sidebar-button"></div>
