@@ -6,22 +6,24 @@
             <div class="primary-content">
                 <h1>Dares</h1>
                 <hr>
-                <p>
-                        <article class="dareArticle">
-                            <small class="pull-right">
-                                {{ dare.startDate | date("Y-d-m H:i:s") }}
-                            </small>
-                            <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
-                            <h4>{{ dare.title }}</h4>
-                            <p>{{ dare.description }}</p>
-                            <div class="pull-right">
-                                Views: {{ dare.views }}
-                                <button class="btn btn-success btn-xs">Like</button>
-                                <button class="btn btn-primary btn-xs">Share</button>
-                                <button class="btn btn-warning btn-xs">Comment</button>
-                            </div>
-                        </article>
-                </p>
+                <article class="articles">
+                    <div class="dareArticle">
+                    <small class="pull-right">
+                        {{ dare.startDate | date("Y-d-m H:i:s") }}
+                    </small>
+                    <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
+                    <h4>{{ dare.title }}</h4>
+                    <p>{{ dare.description }}</p>
+                    <div class="pull-right">
+                        Views: {{ dare.views }}
+                        <button class="btn btn-success btn-xs">Like</button>
+                        <button class="btn btn-primary btn-xs">Share</button>
+                        <button class="btn btn-warning btn-xs">Comment</button>
+                    </div>
+                    <br>
+                    </div>
+                    <br>
+                </article>
             </div>
         </section>
         <section class="col-md-4 box secondary-section">

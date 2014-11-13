@@ -5,9 +5,9 @@
         <section class="col-md-8 box primary-section">
             <div class="primary-content">
                 <h1>Dares</h1>
-                <hr>
-                    {% for dare in dares %}
-                        <article class="dareArticle">
+                {% for dare in dares %}
+                    <article class="articles">
+                        <div class="dareArticle">
                             <small class="pull-right">
                                 {{ dare.startDate | date("Y-d-m H:i:s") }}
                             </small>
@@ -21,8 +21,9 @@
                                 <button class="btn btn-primary btn-xs">Share</button>
                                 <button class="btn btn-warning btn-xs">Comment</button>
                             </div>
-                        </article>
-                    {% endfor %}
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
         </section>
         <section class="col-md-4 box secondary-section">

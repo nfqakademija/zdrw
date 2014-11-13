@@ -31,7 +31,8 @@ class DefaultController extends Controller
     }
     public function staresAction()
     {
-        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('user' => $this->getUser()));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'user' => $this->getUser()));
     }
     public function profileAction()
     {
