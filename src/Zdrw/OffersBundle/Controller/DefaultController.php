@@ -24,7 +24,11 @@ class DefaultController extends Controller
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
         return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares, 'user'=> $this->getUser()));
     }
-
+    public function dareAction($id)
+    {
+        $dare = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findOneById($id);
+        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'user' => $this->getUser()));
+    }
     public function staresAction()
     {
         return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('user' => $this->getUser()));

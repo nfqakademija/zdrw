@@ -6,7 +6,7 @@
             <div class="primary-content">
                 <h1>Dares</h1>
                 <hr>
-                    {% for dare in dares %}
+                <p>
                         <article class="dareArticle">
                             <small class="pull-right">
                                 {{ dare.startDate | date("Y-d-m H:i:s") }}
@@ -14,7 +14,7 @@
                             <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
                             <h4>{{ dare.title }}</h4>
                             <p>{{ dare.description }}</p>
-                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}" class="read-more">Read more</a>
+                            <a href="#" class="read-more">Read more</a>
                             <div class="pull-right">
                                 Views: {{ dare.views }}
                                 <button class="btn btn-success btn-xs">Like</button>
@@ -22,7 +22,7 @@
                                 <button class="btn btn-warning btn-xs">Comment</button>
                             </div>
                         </article>
-                    {% endfor %}
+                </p>
             </div>
         </section>
         <section class="col-md-4 box secondary-section">

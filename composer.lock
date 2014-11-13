@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6601e4d05da22704bea483d87e470586",
+    "hash": "019ebf535324164019051c620c86d1ce",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -797,48 +797,6 @@
             "time": "2014-10-20 09:15:23"
         },
         {
-            "name": "google/apiclient",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "ba940794f406811c06aa9277d19dea2d2eaac08f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/ba940794f406811c06aa9277d19dea2d2eaac08f",
-                "reference": "ba940794f406811c06aa9277d19dea2d2eaac08f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
-            "keywords": [
-                "google"
-            ],
-            "time": "2014-11-10 10:02:37"
-        },
-        {
             "name": "hwi/oauth-bundle",
             "version": "dev-master",
             "target-dir": "HWI/Bundle/OAuthBundle",
@@ -1444,12 +1402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "628799254040f090b0d6c78eabae937413fad564"
+                "reference": "8363ac03fe601c566a57b0f73fae2c079b7a94a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/628799254040f090b0d6c78eabae937413fad564",
-                "reference": "628799254040f090b0d6c78eabae937413fad564",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8363ac03fe601c566a57b0f73fae2c079b7a94a0",
+                "reference": "8363ac03fe601c566a57b0f73fae2c079b7a94a0",
                 "shasum": ""
             },
             "require": {
@@ -1509,7 +1467,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-11-10 21:39:52"
+            "time": "2014-11-11 21:15:56"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2718,8 +2676,7 @@
         "squizlabs/php_codesniffer": 20,
         "friendsofsymfony/user-bundle": 20,
         "symfony/framework-standard-edition": 20,
-        "hwi/oauth-bundle": 20,
-        "google/apiclient": 20
+        "hwi/oauth-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

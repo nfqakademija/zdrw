@@ -4,6 +4,9 @@ zdrw_index:
 zdrw_dares:
     path:     /dares
     defaults: { _controller: ZdrwOffersBundle:Default:dares }
+zdrw_dare:
+    path:     /dare/{id}
+    defaults: { _controller: ZdrwOffersBundle:Default:dare, id: 0}
 zdrw_stares:
     path:     /stares
     defaults: { _controller: ZdrwOffersBundle:Default:stares }
