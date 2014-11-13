@@ -1,5 +1,9 @@
 parameters:
     user_info_provider.class: Zdrw\OffersBundle\Services\UserInfoProvider
+    auth_handler.class: Zdrw\OffersBundle\Services\AuthHandler
 services:
     user_info_provider:
         class: "%user_info_provider.class%"
+    security_handler:
+        class: "%auth_handler.class%"
+        arguments:  [@router]

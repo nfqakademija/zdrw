@@ -13,3 +13,11 @@ zdrw_profile:
 zdrw_upload:
     path:     /upload
     defaults: { _controller: ZdrwOffersBundle:Video:index }
+
+homepage:
+  pattern: /
+
+google_url:
+    pattern: /login/google
+fb_url:
+    pattern: /login/facebook
