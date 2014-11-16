@@ -4,7 +4,7 @@
 {% block body %}
     {% set userInfo = user_info_provider.userInfo(user) %}
     <header class="header">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -42,7 +42,7 @@
     {% endblock %}
     {% block leftSideBar %}
         <div class="left-sidebar">
-            <div class="left-sidebar-button"></div>
+            <div class="left-sidebar-button"><b><img src="{{ asset('img/icons/leftMenu.svg') }}" alt="Slide icon"></b></div>
             <section class="profile-section">
                 <article>
                     <div class="avatar"></div>
