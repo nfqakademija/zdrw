@@ -21,7 +21,6 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setLongDesc('My very very description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer->setCategoryId(1);
         $offer->setStatus(1);
-        $offer->setStartDate(new \DateTime('now'));
         $offer->setFinishDate(new \DateTime('tomorrow'));
         $offer->setViews(0);
         $user = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
@@ -35,7 +34,6 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer2->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer2->setCategoryId(1);
         $offer2->setStatus(1);
-        $offer2->setStartDate(new \DateTime('now'));
         $offer2->setFinishDate(new \DateTime('tomorrow'));
         $offer2->setViews(0);
         $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
@@ -49,7 +47,6 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer3->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer3->setCategoryId(1);
         $offer3->setStatus(1);
-        $offer3->setStartDate(new \DateTime('now'));
         $offer3->setFinishDate(new \DateTime('tomorrow'));
         $offer3->setViews(0);
         $user3 = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');

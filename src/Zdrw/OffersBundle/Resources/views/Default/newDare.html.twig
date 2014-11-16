@@ -4,42 +4,37 @@
     <div class="container page-content">
         <section class="col-md-8 box primary-section">
             <div class="primary-content">
-                <div class="row">
-                    <article class="articles">
-                            <small class="pull-right">
-                                {{ dare.startDate | date("Y-d-m H:i:s") }}
-                            </small>
-                            <h1>{{ dare.title }}</h1>
-                            <div class="col-md-2">
-                            <div style="width:80px;height:80px;background-color:#777777;margin-right:10px;"></div>
-                                <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner }}</a></b>
-                            </div>
-                            <div class="dare-article col-md-10">
-                                <p>{{ dare.description }}</p>
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                            </div>
-                            <div class="col-md-12">
-                                <p>{{ dare.longDesc }}</p>
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                                <div class="pull-right">
-                                    Views: {{ dare.views }}
-                                    <button class="btn btn-success btn-xs">Like</button>
-                                    <button class="btn btn-primary btn-xs">Share</button>
-                                    <button class="btn btn-warning btn-xs">Comment</button>
-                                </div>
-                            </div>
-                    </article>
-                </div>
+                <article class="articles">
+                    <small class="pull-right">
+                    </small>
+                    <h1>New dare</h1>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div>
+                        {{ form_label(form.title) }}
+                        {{ form_errors(form.title) }}
+                        {{ form_widget(form.title) }}
+                    </div>
+                    <div>
+                        {{ form_label(form.description) }}
+                        {{ form_errors(form.description) }}
+                        {{ form_widget(form.description) }}
+                    </div>
+                    <div>
+                        {{ form_label(form.longDesc, 'Long description') }}
+                        {{ form_errors(form.longDesc) }}
+                        {{ form_widget(form.longDesc) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.save) }}
+                        {{ form_end(form) }}
+                    </div>
+                </article>
             </div>
         </section>
         <section class="col-md-4 box secondary-section">
             <div class="secondary-content">
                 <h1>Stares</h1>
-                <div class="row">
                 {% for stare in stares %}
                     <article class="articles">
                         <div class="dare-article">
@@ -63,7 +58,7 @@
                         </div>
                     </article>
                 {% endfor %}
-                </div>
+                &nbsp;
             </div>
         </section>
     </div>

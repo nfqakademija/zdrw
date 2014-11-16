@@ -206,29 +206,6 @@ class Offer
     }
 
     /**
-     * Set startDate
-     *
-     * @param \DateTime $startDate
-     * @return Offer
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    /**
-     * Get startDate
-     *
-     * @return \DateTime
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
      * Set finishDate
      *
      * @param \DateTime $finishDate
@@ -300,8 +277,11 @@ class Offer
     /**
      * Constructor
      */
+
+
     public function __construct()
     {
+        $this->startDate = new \DateTime();
         $this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -405,5 +385,28 @@ class Offer
     public function getLongDesc()
     {
         return $this->longDesc;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     * @return Offer
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime 
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
     }
 }
