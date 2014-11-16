@@ -53,6 +53,13 @@ class Offer
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="long_desc", type="text")
+     */
+    private $longDesc;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="category_id", type="integer")
@@ -375,5 +382,28 @@ class Offer
     public function getParticipant()
     {
         return $this->participant;
+    }
+
+    /**
+     * Set longDesc
+     *
+     * @param string $longDesc
+     * @return Offer
+     */
+    public function setLongDesc($longDesc)
+    {
+        $this->longDesc = $longDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get longDesc
+     *
+     * @return string 
+     */
+    public function getLongDesc()
+    {
+        return $this->longDesc;
     }
 }

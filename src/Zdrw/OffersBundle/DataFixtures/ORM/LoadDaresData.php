@@ -18,6 +18,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer = new Offer();
         $offer->setTitle('My Title 1');
         $offer->setDescription('My first description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        $offer->setLongDesc('My very very description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer->setCategoryId(1);
         $offer->setStatus(1);
         $offer->setStartDate(new \DateTime('now'));
@@ -31,6 +32,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer2 = new Offer();
         $offer2->setTitle('My Title 2');
         $offer2->setDescription('My second description. Nunc non tortor a nunc interdum molestie nec ac nisl.');
+        $offer2->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer2->setCategoryId(1);
         $offer2->setStatus(1);
         $offer2->setStartDate(new \DateTime('now'));
@@ -44,6 +46,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer3 = new Offer();
         $offer3->setTitle('My Title 3');
         $offer3->setDescription('My third description. Nunc commodo mollis velit, ornare ultrices enim facilisis et.');
+        $offer3->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer3->setCategoryId(1);
         $offer3->setStatus(1);
         $offer3->setStartDate(new \DateTime('now'));
