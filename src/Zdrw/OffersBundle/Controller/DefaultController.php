@@ -27,7 +27,8 @@ class DefaultController extends Controller
     public function daresAction()
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares, 'user'=> $this->getUser()));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()));
     }
 
     /**
@@ -39,7 +40,8 @@ class DefaultController extends Controller
     public function dareAction($id)
     {
         $dare = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findOneById($id);
-        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'user' => $this->getUser()));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares, 'user' => $this->getUser()));
     }
 
     /**
@@ -50,7 +52,8 @@ class DefaultController extends Controller
     public function staresAction()
     {
         $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'user' => $this->getUser()));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()));
     }
 
     /**
@@ -63,5 +66,10 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
         return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'user'=> $user));
+    }
+    public function userAction($name)
+    {
+        $user = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
+        return $this->render('ZdrwOffersBundle:Default:user.html.twig', array('user' => $user));
     }
 }

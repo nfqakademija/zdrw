@@ -1,0 +1,24 @@
+{% extends "ZdrwOffersBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block leftSideBar %}{% endblock %}
+    <div class="container page-content">
+        <section class="col-md-4 profile-section">
+            <article class="profile">
+                <div class="col-md-6 avatar2"></div>
+                <div class="col-md-6">
+                <p>
+                    <b class="font-1">{{ user.username }}</b><br>
+                    {{ user.email }}
+                </p>
+                </div>
+            </article>
+        </section>
+        <section class="col-md-8 primary-section">
+            <div class="primary-content">
+                <h2>Notifications</h2>
+                <hr>
+            </div>
+        </section>
+    </div>
+{% endblock %}
