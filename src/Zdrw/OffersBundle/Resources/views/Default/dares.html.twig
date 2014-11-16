@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container page-content">
-        <section class="col-md-8 box primary-section">
+        <section class="col-md-8 primary-section">
             <div class="primary-content">
                 <h1>Dares</h1>
                 {% for dare in dares %}
@@ -26,12 +26,33 @@
                 {% endfor %}
             </div>
         </section>
-        <section class="col-md-4 box secondary-section">
+        <section class="col-md-4 secondary-section">
             <div class="secondary-content">
                 <h1>Stares</h1>
-                <p>
-                    Lorem ipsum
-                </p>
+                    {% for stare in stares %}
+                        <article class="articles">
+                            <div class="dareArticle">
+                                <div style="float:left;width:100%;height:150px;background-color:#777777;margin-bottom:10px;"></div>
+                                <h4>
+                                    <small class="pull-right">
+                                        {{ stare.startDate | date("Y-d-m H:i") }}
+                                    </small>
+                                    <br>
+                                    {{ stare.title }}
+                                </h4>
+                                <p class="hidden-xs">{{ stare.description }}</p>
+                                <a href="{{ path('zdrw_dare', { id: stare.id }) }}" class="read-more">Read more</a>
+                                <div class="pull-right">
+                                    Views: {{ stare.views }}
+                                    <button class="btn btn-success btn-xs">Like</button>
+                                    <button class="btn btn-primary btn-xs">Share</button>
+                                    <button class="btn btn-warning btn-xs">Comment</button>
+                                </div>
+                                <br><br>
+                            </div>
+                        </article>
+                    {% endfor %}
+                &nbsp;
             </div>
         </section>
     </div>

@@ -2,18 +2,21 @@
 
 {% block content %}
     <div class="container page-content">
-        <section class="col-md-8 box primary-section">
+        <section class="col-md-8 primary-section">
             <div class="primary-content">
                 <h1>Stares</h1>
                 {% for stare in stares %}
                     <article class="col-md-4 articles">
                         <div class="dareArticle">
-                            <small class="pull-right">
-                                {{ stare.startDate | date("Y-d-m H:i:s") }}
-                            </small>
                             <div style="float:left;width:100%;height:150px;background-color:#777777;margin-bottom:10px;"></div>
-                            <h4>{{ stare.title }}</h4>
-                            <p>{{ stare.description }}</p>
+                            <h4>
+                                <small class="pull-right">
+                                    {{ stare.startDate | date("Y-d-m H:i") }}
+                                </small>
+                                <br>
+                                {{ stare.title }}
+                            </h4>
+                            <p class="hidden-xs">{{ stare.description }}</p>
                             <a href="{{ path('zdrw_dare', { id: stare.id }) }}" class="read-more">Read more</a>
                             <div class="pull-right">
                                 Views: {{ stare.views }}
@@ -28,12 +31,28 @@
                 &nbsp;
             </div>
         </section>
-        <section class="col-md-4 box secondary-section">
+        <section class="col-md-4 secondary-section">
             <div class="secondary-content">
                 <h1>Dares</h1>
-                <p>
-                    Lorem ipsum
-                </p>
+                {% for dare in dares %}
+                    <article class="articles">
+                        <div class="dareArticle">
+                            <small class="pull-right">
+                                {{ dare.startDate | date("Y-d-m H:i:s") }}
+                            </small>
+                            <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
+                            <h4>{{ dare.title }}</h4>
+                            <p>{{ dare.description }}</p>
+                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}" class="read-more">Read more</a>
+                            <div class="pull-right">
+                                Views: {{ dare.views }}
+                                <button class="btn btn-success btn-xs">Like</button>
+                                <button class="btn btn-primary btn-xs">Share</button>
+                                <button class="btn btn-warning btn-xs">Comment</button>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
         </section>
     </div>

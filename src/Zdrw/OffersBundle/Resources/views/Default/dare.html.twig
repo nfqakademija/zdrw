@@ -4,34 +4,64 @@
     <div class="container page-content">
         <section class="col-md-8 box primary-section">
             <div class="primary-content">
-                <h1>Dares</h1>
-                <hr>
                 <article class="articles">
-                    <div class="dareArticle">
                     <small class="pull-right">
                         {{ dare.startDate | date("Y-d-m H:i:s") }}
                     </small>
-                    <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
-                    <h4>{{ dare.title }}</h4>
+                    <h1>{{ dare.title }}</h1>
+                    <div class="col-md-2">
+                    <div style="width:80px;height:80px;background-color:#777777;margin-right:10px;"></div>
+                        <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner }}</a></b>
+                    </div>
+                    <div class="dareArticle col-md-10">
                     <p>{{ dare.description }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <p>{{ dare.longDesc }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
                     <div class="pull-right">
                         Views: {{ dare.views }}
                         <button class="btn btn-success btn-xs">Like</button>
                         <button class="btn btn-primary btn-xs">Share</button>
                         <button class="btn btn-warning btn-xs">Comment</button>
                     </div>
-                    <br>
                     </div>
-                    <br>
+                    &nbsp;
                 </article>
             </div>
         </section>
         <section class="col-md-4 box secondary-section">
             <div class="secondary-content">
                 <h1>Stares</h1>
-                <p>
-                    Lorem ipsum
-                </p>
+                {% for stare in stares %}
+                    <article class="articles">
+                        <div class="dareArticle">
+                            <div style="float:left;width:100%;height:150px;background-color:#777777;margin-bottom:10px;"></div>
+                            <h4>
+                                <small class="pull-right">
+                                    {{ stare.startDate | date("Y-d-m H:i") }}
+                                </small>
+                                <br>
+                                {{ stare.title }}
+                            </h4>
+                            <p class="hidden-xs">{{ stare.description }}</p>
+                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}" class="read-more">Read more</a>
+                            <div class="pull-right">
+                                Views: {{ stare.views }}
+                                <button class="btn btn-success btn-xs">Like</button>
+                                <button class="btn btn-primary btn-xs">Share</button>
+                                <button class="btn btn-warning btn-xs">Comment</button>
+                            </div>
+                            <br><br>
+                        </div>
+                    </article>
+                {% endfor %}
+                &nbsp;
             </div>
         </section>
     </div>
