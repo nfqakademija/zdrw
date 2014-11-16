@@ -2,10 +2,20 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "menu";
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../web/fonts/bootstrap/glyphicons-halflings-regular.eot');
+  src: url('../web/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../web/fonts/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('../web/fonts/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('../web/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
 $bg-color: #f0f0f0;
 $font-1: 16pt;
 $font-2: 14pt;
 $font-3: 12pt;
+
+body{
+  margin-top:50px;
+}
 
 .avatar{
   width:100px;height:100px;background-color: #b6ab84;margin:0px auto;
@@ -19,10 +29,10 @@ $font-3: 12pt;
   font-size: $font-1;
 }
 .font-2{
-  font-size: $font-1;
+  font-size: $font-2;
 }
 .font-3{
-  font-size: $font-1;
+  font-size: $font-3;
 }
 .profile{
 }
@@ -43,6 +53,10 @@ $font-3: 12pt;
 }
 .stareArticle,
 .dareArticle{
+  min-height:100px;
+  h4 small{
+    font-size:8pt;
+  }
   border:1px solid #777777;
   border-radius: 10px;
   padding: 10px;

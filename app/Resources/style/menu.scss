@@ -2,17 +2,20 @@
   margin-top:52px;
   width: 200px;
   height: 100%;
-  background-color: #474045;
-  color:white;
+  border-right:1px solid #777777;
+  background-color: white;
   position: fixed;
   top: 0px;
   left: -200px;
   z-index:999;
 }
 .left-sidebar-button{
-  width: 30px;
-  height: 30px;
-  background-color: #a6544a;
+  width: 32px;
+  height: 32px;
   position: relative;
   left: 200px;
+  img{
+    width: 32px;
+    height: 32px;
+  }
 }
