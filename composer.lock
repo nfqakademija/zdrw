@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "019ebf535324164019051c620c86d1ce",
+    "hash": "5ef788205f60135e2ea05e4e375b8c4b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -803,12 +803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "835ab5eb2f8bd783a11980e8cbab549ee01aa720"
+                "reference": "e97748b3333f03ada757b0fc8ececb1b33120b3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/835ab5eb2f8bd783a11980e8cbab549ee01aa720",
-                "reference": "835ab5eb2f8bd783a11980e8cbab549ee01aa720",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/e97748b3333f03ada757b0fc8ececb1b33120b3d",
+                "reference": "e97748b3333f03ada757b0fc8ececb1b33120b3d",
                 "shasum": ""
             },
             "require": {
@@ -821,12 +821,14 @@
             },
             "require-dev": {
                 "doctrine/orm": "~2.3",
+                "symfony/property-access": "~2.5",
                 "symfony/twig-bundle": "~2.1",
                 "symfony/validator": "~2.1"
             },
             "suggest": {
                 "doctrine/doctrine-bundle": "to use Doctrine user provider",
                 "friendsofsymfony/user-bundle": "to connect FOSUB with this bundle",
+                "symfony/property-access": "to use FOSUB integration with this bundle",
                 "symfony/twig-bundle": "to use the Twig hwi_oauth_* functions"
             },
             "type": "symfony-bundle",
@@ -907,7 +909,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2014-07-30 11:47:22"
+            "time": "2014-11-15 10:59:42"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1922,6 +1924,47 @@
                 "templating"
             ],
             "time": "2014-10-17 12:53:44"
+        },
+        {
+            "name": "vimeo/vimeo-api",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vimeo/vimeo.php.git",
+                "reference": "e1552376ce7bb2e90ea56d127a95ea30b8fe770e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/e1552376ce7bb2e90ea56d127a95ea30b8fe770e",
+                "reference": "e1552376ce7bb2e90ea56d127a95ea30b8fe770e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vimeo\\": "src/Vimeo"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vimeo",
+                    "homepage": "http://vimeo.com"
+                }
+            ],
+            "description": "Official PHP library for the Vimeo API.",
+            "homepage": "https://github.com/vimeo/vimeo.php",
+            "keywords": [
+                "video",
+                "vimeo"
+            ],
+            "time": "2014-10-23 20:06:03"
         }
     ],
     "packages-dev": [
