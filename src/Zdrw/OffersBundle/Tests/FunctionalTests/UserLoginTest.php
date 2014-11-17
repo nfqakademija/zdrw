@@ -17,7 +17,7 @@ class UserLoginTest extends WebTestCase
         $form['_username'] = 'admin';
         $form['_password'] = 'test';
 
-        $crawler = $client->submit($form);
+        $client->submit($form);
         $crawler = $client->followRedirect();
         $this->assertGreaterThan(0, $crawler->filter('html:contains("admin")')->count());
 

@@ -23,7 +23,7 @@ class AuthHandler implements AuthenticationSuccessHandlerInterface, Authenticati
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         $referer = $request->headers->get('referer');
-        var_dump($referer);
+
         if (empty($referer)) {
             return new RedirectResponse($this->router->generate('homepage'));
         } else {
@@ -33,6 +33,7 @@ class AuthHandler implements AuthenticationSuccessHandlerInterface, Authenticati
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
+        $error = $exception->getMessage();
         // Edit it to meet your requeriments
         $request->getSession()->set('login_error', $error);
         return new \Symfony\Component\HttpFoundation\RedirectResponse($this->router->generate('login_route'));

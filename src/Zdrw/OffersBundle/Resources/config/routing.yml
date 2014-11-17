@@ -22,10 +22,12 @@ zdrw_user:
 zdrw_upload:
     path:     /upload
     defaults: { _controller: ZdrwOffersBundle:Video:index }
+zdrw_tovimeo:
+    path:     /tovimeo
+    defaults: { _controller: ZdrwOffersBundle:Video:toVimeo }
 
 homepage:
-  pattern: /
-
+    pattern: /
 google_url:
     pattern: /login/google
 fb_url:
