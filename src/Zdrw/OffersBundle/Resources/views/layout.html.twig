@@ -2,7 +2,6 @@
 
 {% block title %}DareOrStare - main page{% endblock %}
 {% block body %}
-    {% set userInfo = user_info_provider.userInfo(user) %}
     <header class="header">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -35,12 +34,11 @@
         </nav>
     </header>
     {% block login %}
-        <div class="user-login">
-            <a href="{{ path("fb_url") }}">facebook</a>
-            <a href="{{ path("google_url") }}">google</a>
-        </div>
+        {{ render(controller('ZdrwUserBundle:Security:login')) }}
     {% endblock %}
     {% block leftSideBar %}
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% set userInfo = user_info_provider.userInfo(user) %}
         <div class="left-sidebar">
             <div class="left-sidebar-button"><b><img src="{{ asset('img/icons/leftMenu.svg') }}" alt="Slide icon"></b></div>
             <section class="profile-section">
@@ -56,6 +54,7 @@
                 </article>
             </section>
         </div>
+        {%  endif %}
     {% endblock %}
     {% block content %}{% endblock %}
     <hr>

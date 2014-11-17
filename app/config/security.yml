@@ -24,7 +24,6 @@ security:
                 check_path: /login_check
                 default_target_path: /dares
                 success_handler:    security_handler
-                failure_handler:    security_handler # optional
             oauth:
                 resource_owners:
                     facebook:           "/login/check-facebook"
@@ -33,7 +32,6 @@ security:
                 failure_path:      /login
                 default_target_path: /dares
                 success_handler:    security_handler
-                failure_handler:    security_handler # optional
 
                 oauth_user_provider:
                     #this is my custom user provider, created from FOSUBUserProvider - will manage the
