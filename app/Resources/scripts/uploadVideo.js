@@ -1,3 +1,4 @@
+/*jshint unused:false*/
 'use strict';
 function _(el){
     return document.getElementById(el);
@@ -11,6 +12,7 @@ function progressHandler(event){
 function completeHandler(event){
     _('status').innerHTML = event.target.responseText;
     _('progressBar').value = 0;
+    location.reload();
 }
 function errorHandler(){
     _('status').innerHTML = 'Upload Failed';
@@ -23,14 +25,18 @@ function uploadFile(ajaxlink){
     var id = form.find('input[name="id"]').val();
     var userid = form.find('input[name="userid"]').val();
     var formdata = new FormData();
-    formdata.append('file1', file);
-    formdata.append('id', id);
-    formdata.append('userid', userid);
-    var ajax = new XMLHttpRequest();
-    ajax.upload.addEventListener('progress', progressHandler, false);
-    ajax.addEventListener('load', completeHandler, false);
-    ajax.addEventListener('error', errorHandler, false);
-    ajax.addEventListener('abort', abortHandler, false);
-    ajax.open('POST', ajaxlink);
-    ajax.send(formdata);
+    if(typeof file !== 'undefined'){
+        formdata.append('file1', file);
+        formdata.append('id', id);
+        formdata.append('userid', userid);
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener('progress', progressHandler, false);
+        ajax.addEventListener('load', completeHandler, false);
+        ajax.addEventListener('error', errorHandler, false);
+        ajax.addEventListener('abort', abortHandler, false);
+        ajax.open('POST', ajaxlink);
+        ajax.send(formdata);
+    } else {
+        window.alert('Choose file to upload');
+    }
 }
