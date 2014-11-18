@@ -2,6 +2,7 @@
 
 {% block content %}
     {% block leftSideBar %}{% endblock %}
+    {% set userInfo = user_info_provider.userInfo(user) %}
     <div class="container page-content">
         <section class="col-md-4 profile-section">
             <article class="profile">
