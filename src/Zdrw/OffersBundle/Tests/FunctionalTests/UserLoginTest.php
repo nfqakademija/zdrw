@@ -10,7 +10,10 @@ class UserLoginTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/login');
+        $crawler = $client->request('GET', '/');
+
+        $link = $crawler->selectLink('Login')->link();
+        $crawler = $client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton('_submit');
         $form = $buttonCrawlerNode->form();
