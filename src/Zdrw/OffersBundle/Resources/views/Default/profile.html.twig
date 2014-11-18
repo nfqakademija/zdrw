@@ -4,29 +4,50 @@
     {% block leftSideBar %}{% endblock %}
     {% set userInfo = user_info_provider.userInfo(user) %}
     <div class="container page-content">
-        <section class="col-md-4 profile-section">
+        <section class="col-md-3 profile-section">
             <article class="profile">
-                <div class="col-md-6 avatar2"></div>
-                <div class="col-md-6">
+                    <a href="#" class="thumbnail avatar2"><img src="http://placehold.it/260x180" alt=""></a>
                 <p>
                     <b class="font-1">{{ userInfo.name }}</b><br>
                     {{ userInfo.email }}
                 </p>
-                </div>
             </article>
         </section>
-        <section class="col-md-8 primary-section">
-            <div class="primary-content">
-                <h2>Notifications</h2>
-                <hr>
-                <p>
-                    {% for n in notifications %}
-                        <p>{{ n.notification }}</p>
-                        <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
+        <section class="col-md-9 primary-section">
+
+            <div class="tabbable tabs-left">
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#A" data-toggle="tab">Notifications</a></li>
+                    <li class=""><a href="#B" data-toggle="tab">Posted dares</a></li>
+                    <li class=""><a href="#C" data-toggle="tab">Accepted challenges</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="A">
                         <hr>
-                    {% endfor %}
-                </p>
+                            <p>
+                                {% for n in notifications %}
+                            <p>{{ n.notification }}</p>
+                            <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
+                            <hr>
+                            {% endfor %}
+                            </p>
+                    </div>
+                    <div class="tab-pane" id="B">
+
+                    </div>
+                    <div class="tab-pane" id="C">
+
+                    </div>
+                </div>
             </div>
+
+
         </section>
+
+
+
+
     </div>
 {% endblock %}

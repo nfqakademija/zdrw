@@ -9,23 +9,30 @@
                 {% for stare in stares %}
                     <article class="col-md-4 articles">
                         <div class="dare-article">
-                            <div style="float:left;width:100%;height:150px;background-color:#777777;margin-bottom:10px;"></div>
-                            <h4>
-                                <small class="pull-right">
-                                    {{ stare.startDate | date("Y-d-m H:i") }}
-                                </small>
-                                <br>
-                                {{ stare.title }}
-                            </h4>
-                            <p class="hidden-xs">{{ stare.description }}</p>
-                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}" class="read-more">Read more</a>
-                            <div class="pull-right">
-                                Views: {{ stare.views }}
-                                <button class="btn btn-success btn-xs">Like</button>
-                                <button class="btn btn-primary btn-xs">Share</button>
-                                <button class="btn btn-warning btn-xs">Comment</button>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="#" class="thumbnail stare-thumbnail">
+                                        <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h4>
+                                        <small class="pull-right">
+                                            {{ stare.startDate | date("Y-d-m H:i") }}
+                                        </small>
+                                        <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                    </h4>
+                                </div>
+                                <div class="col-sm-12">
+                                <p>{{ stare.description }}</p>
+                                    <div class="pull-right">
+                                        Views: {{ stare.views }}
+                                        <button class="btn btn-success btn-xs">Like</button>
+                                        <button class="btn btn-primary btn-xs">Share</button>
+                                        <button class="btn btn-warning btn-xs">Comment</button>
+                                    </div>
+                                </div>
                             </div>
-                            <br><br>
                         </div>
                     </article>
                 {% endfor %}
@@ -37,20 +44,33 @@
                 <h1>Dares</h1>
                 <div class="row">
                 {% for dare in dares %}
-                    <article class="articles">
+                    <article class="col-md-12 articles">
                         <div class="dare-article">
-                            <small class="pull-right">
-                                {{ dare.startDate | date("Y-d-m H:i:s") }}
-                            </small>
-                            <div style="float:left;width:30px;height:30px;background-color:#777777;margin-right:10px;"></div>
-                            <h4>{{ dare.title }}</h4>
-                            <p>{{ dare.description }}</p>
-                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}" class="read-more">Read more</a>
-                            <div class="pull-right">
-                                Views: {{ dare.views }}
-                                <button class="btn btn-success btn-xs">Like</button>
-                                <button class="btn btn-primary btn-xs">Share</button>
-                                <button class="btn btn-warning btn-xs">Comment</button>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="#" class="thumbnail dare-thumbnail">
+                                        <img src="http://placehold.it/80x80" class="img-responsive" alt="" />
+                                    </a>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h4>
+                                        <small class="pull-right">
+                                            {{ dare.startDate | date("Y-d-m H:i") }}
+                                        </small><br>
+                                        <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
+                                    </h4>
+                                    <p>{{ dare.description }}</p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="pull-right">
+                                        Views: {{ dare.views }}
+                                        <button class="btn btn-success btn-xs">Like</button>
+                                        <button class="btn btn-primary btn-xs">Share</button>
+                                        <button class="btn btn-warning btn-xs">Comment</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>

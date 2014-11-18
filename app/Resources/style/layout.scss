@@ -1,6 +1,7 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-compass";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "menu";
+@import "userInNavbar";
 
 $bg-color: #f9f9f9;
 $font-1: 16pt;
@@ -10,13 +11,14 @@ $font-3: 12pt;
 body{
   margin-top: 70px;
 }
+h1,h2,h3,h4,h5,h6{
+  margin: 0px 0px 5px 0px;
+}
 .avatar{
   width:100px;height:100px;background-color: #b6ab84;margin:0px auto;
 }
 .avatar2{
-  width: 150px;
-  height: 150px;
-  background-color: #b6ab84;
+  width: 100%;
 }
 .font-1{
   font-size: $font-1;
@@ -32,7 +34,7 @@ body{
 .profile-content,
 .primary-content,
 .secondary-content{
-  padding: 10px;
+  padding: 20px;
   background-color:$bg-color;
   border-radius: 10px;
   outline: none;
@@ -46,7 +48,8 @@ body{
   padding: 5px;
 }
 .articles{
- padding: 5px;
+  padding: 5px;
+
 }
 .stare-article,
 .dare-article{
@@ -54,14 +57,24 @@ body{
   h4 small{
     font-size: 8pt;
   }
-  background-color: #ffffff;
-  border-color: rgba(119, 119, 119, 0.20);
-  border-width: 1px;
-  border-style: solid;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E1E1;
+  border-radius: 5px;
+  background: #FFFFFF;
   padding: 10px;
 }
 textarea{
   min-width: 100%;
   max-width: 100%;
   min-height: 100px;
+}
+.dare-thumbnail{
+  min-width: 80px;
+  max-width: 80px;
+}
+.stare-thumbnail{
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 80px;
+  max-width: 350px;
 }
