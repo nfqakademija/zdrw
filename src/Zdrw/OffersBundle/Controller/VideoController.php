@@ -3,15 +3,44 @@
 namespace Zdrw\OffersBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Vimeo\Vimeo;
 use Vimeo\Exceptions\VimeoUploadException;
+use Symfony\Component\HttpFoundation\Response;
 
 class VideoController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
 
+        $offerId = $_POST['id'];
+        $userid = $_POST['userid'];
+
+        $fileName = $_FILES["file1"]["name"]; // The file name
+        $ext = pathinfo($fileName, PATHINFO_EXTENSION);
+        $fileName = $offerId.".".$ext;
+
+        $manager = $this->getDoctrine()->getManager();
+        $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($offerId);
+        $offer->setStatus(2);
+        $offer->setParticipantId($userid);
+        $offer->setVideo($fileName);
+        $manager->flush();
+
+        $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
+        /*$fileType = $_FILES["file1"]["type"]; // The type of file it is
+        $fileSize = $_FILES["file1"]["size"]; // File size in bytes
+        $fileErrorMsg = $_FILES["file1"]["error"]; // 0 for false... and 1 for true*/
+        if (!$fileTmpLoc) { // if file not chosen
+            $ret = "ERROR: Please browse for a file before clicking the upload button.";
+        } else {
+            if (move_uploaded_file($fileTmpLoc, "uploads/$fileName")) {
+                $ret = "Upload is complete";
+            } else {
+                $ret = "move_uploaded_file function failed";
+            }
+        }
+        return new Response($ret);
+        /*var_dump($_POST);
         $form = $this->createFormBuilder()
             ->add('video', 'file') // If I remove this line data is submitted correctly
             ->getForm();
@@ -24,7 +53,7 @@ class VideoController extends Controller
             $name = $file->getClientOriginalName();
             $file->move("uploads",$name);
         }
-        return $this->render('ZdrwOffersBundle:Default:upload.html.twig', array('form' =>$form->createView(), 'user'=> $this->getUser()));
+        //return $this->render('ZdrwOffersBundle:Default:upload.html.twig', array('form' =>$form->createView(), 'user'=> $this->getUser()));*/
     }
 
     public function toVimeoAction($file)

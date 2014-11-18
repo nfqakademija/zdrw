@@ -74,6 +74,13 @@ class Offer
     private $status;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="video", type="string", length=255, nullable=true)
+     */
+    private $video = null;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="datetime")
@@ -408,5 +415,28 @@ class Offer
     public function getStartDate()
     {
         return $this->startDate;
+    }
+
+    /**
+     * Set video
+     *
+     * @param string $video
+     * @return Offer
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string 
+     */
+    public function getVideo()
+    {
+        return $this->video;
     }
 }

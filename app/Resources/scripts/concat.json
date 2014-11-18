@@ -1,6 +1,7 @@
 {
     "zdrw.js": [
-        "leftMeniu.js"
+        "leftMeniu.js",
+        "uploadVideo.js"
     ],
     "app.js": [
         "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"

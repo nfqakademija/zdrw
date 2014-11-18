@@ -25,6 +25,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setViews(0);
         $user = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
         $offer->setOwner($user);
+        $offer->setVideo("test.mp4");
         $offer->setParticipantId(1);
 
         // Second offer

@@ -24,6 +24,34 @@
                                 <p>{{ dare.longDesc }}</p>
                             </div>
                             <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#uploadModal">I did it</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="upload_form" method="post" enctype="multipart/form-data">
+                                                    <div id="form">
+                                                        <label for="form_video" class="required">Video</label>
+                                                        <input type="file" name="file1" id="file1" required="required" />
+                                                        <input name="id" type="hidden" value="{{ dare.id }}"/>
+                                                        <input name="userid" type="hidden" value="{{ user.id }}"/>
+                                                        <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-sm btn-success" value="Upload" />
+                                                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress> <h3 id="status"></h3> <p id="loaded_n_total"></p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <br>
                                 <div class="pull-right">
                                     Views: {{ dare.views }}
