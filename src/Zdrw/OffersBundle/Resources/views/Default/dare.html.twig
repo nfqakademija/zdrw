@@ -53,9 +53,9 @@
                                     </div>
                                 </div>
                             {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
-                                <div class="alert alert-info" role="alert">You must be registered user in order to accept the challange!</div>
+                                <div class="alert alert-info" role="alert">You must be registered user in order to accept the challenge!</div>
                             {% elseif dare.status == 2 %}
-                            <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
+                                <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
                             {% endif %}
                         </div>
                         <br/>
