@@ -1,6 +1,5 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-compass";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
-@import "menu";
 @import "userInNavbar";
 
 $bg-color: #f9f9f9;
@@ -69,8 +68,8 @@ textarea{
   min-height: 100px;
 }
 .dare-thumbnail{
-  min-width: 80px;
-  max-width: 80px;
+  min-width: 100px;
+  max-width: 100px;
 }
 .stare-thumbnail{
   margin-left: auto;

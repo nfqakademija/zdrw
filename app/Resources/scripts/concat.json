@@ -1,6 +1,5 @@
 {
     "zdrw.js": [
-        "leftMeniu.js",
         "uploadVideo.js"
     ],
     "app.js": [

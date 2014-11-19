@@ -111,26 +111,6 @@
         {% endif %}
 
     {% endblock %}
-    {% block leftSideBar %}
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        {% set userInfo = user_info_provider.userInfo(user) %}
-            <div class="left-sidebar">
-                <div class="left-sidebar-button"><b><img src="{{ asset('img/icons/leftMenu.svg') }}" alt="Slide icon"></b></div>
-                <section class="profile-section">
-                    <article>
-                        <div class="avatar"></div>
-                        <br>
-                        <p>
-                            <b class="font-2"><a href="{{ path("zdrw_profile") }}">{{ userInfo.name }}</a></b><br>{{ userInfo.email }}
-                        </p>
-                        <hr>
-                        Meniu
-                        <br><br>
-                    </article>
-                </section>
-            </div>
-        {% endif %}
-    {% endblock %}
     {% block content %}{% endblock %}
     <hr>
     <footer class="footer">
