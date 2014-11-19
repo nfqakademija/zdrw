@@ -14,7 +14,7 @@ zdrw_stares:
     path:     /stares
     defaults: { _controller: ZdrwOffersBundle:Default:stares }
 zdrw_profile:
-    path:     /profile
+    path:     /profile2
     defaults: { _controller: ZdrwOffersBundle:Default:profile }
 zdrw_user:
     path:     /user/{name}
