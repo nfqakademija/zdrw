@@ -6,6 +6,7 @@
             <div class="primary-content">
                 <div class="row">
                     <article class="articles">
+<<<<<<< HEAD
                         <div class="dare-article">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -53,6 +54,47 @@
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
+=======
+                        <small class="pull-right">
+                            {{ dare.startDate | date("Y-d-m H:i:s") }}
+                        </small>
+                        <h1>{{ dare.title }}</h1>
+                        <div class="col-md-2">
+                        <div style="width:80px;height:80px;background-color:#777777;margin-right:10px;"></div>
+                            <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner }}</a></b>
+                        </div>
+                        <div class="dare-article col-md-10">
+                            <p>{{ dare.description }}</p>
+                            <mark>Reward: {{ reward }} points</mark>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                        </div>
+                        <div class="col-md-12">
+                            <p>{{ dare.longDesc }}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-lg-6">
+                            {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#uploadModal">I did it</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="upload_form" method="post" enctype="multipart/form-data">
+                                                    <div id="form">
+                                                        <label for="form_video" class="required">Video</label>
+                                                        <input type="file" name="file1" id="file1" required="required" />
+                                                        <input name="id" type="hidden" value="{{ dare.id }}"/>
+                                                        <input name="userid" type="hidden" value="{{ user.id }}"/>
+                                                        <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-sm btn-success" value="Upload" />
+                                                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress> <h3 id="status"></h3> <p id="loaded_n_total"></p>
+>>>>>>> 222d72c65266dfd1119f864712956561f5b02aa3
                                                     </div>
                                                 </div>
                                             {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -66,6 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 <div class="col-sm-12">
                                     <hr>
                                     <div class="pull-right">
@@ -76,6 +119,34 @@
                                     </div>
                                 </div>
                             </div>
+=======
+                            </div>
+                            <div class="col-lg-6">
+                                <form method="post">
+                                    <label for="add_points">Add reward:</label>
+                                    <input type="text" name="points" size="4" />
+                                    <input type="submit" value="Add" name="add">
+                                </form>
+                                {% if points == 1 %}
+                                    <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
+                                {% elseif points == 2 %}
+                                    <div class="alert alert-danger" role="alert">You don't have enough points</div>
+                                {% endif %}
+                            </div>
+                            {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                <div class="alert alert-info" role="alert">You must be registered user in order to accept the challenge!</div>
+                            {% elseif dare.status == 2 %}
+                                <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
+                            {% endif %}
+
+                        </div>
+                        <br/>
+                        <div class="pull-right">
+                            Views: {{ dare.views }}
+                            <button class="btn btn-success btn-xs">Like</button>
+                            <button class="btn btn-primary btn-xs">Share</button>
+                            <button class="btn btn-warning btn-xs">Comment</button>
+>>>>>>> 222d72c65266dfd1119f864712956561f5b02aa3
                         </div>
                     </article>
                 </div>

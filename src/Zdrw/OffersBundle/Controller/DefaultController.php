@@ -2,11 +2,13 @@
 
 namespace Zdrw\OffersBundle\Controller;
 
+use Zdrw\OffersBundle\Entity\Reward;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zdrw\OffersBundle\Entity\Offer;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
 use Zdrw\OffersBundle\Services\UserInfoProvider;
+
 /**
  * Controller managing the offers
  */
@@ -31,7 +33,8 @@ class DefaultController extends Controller
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
         $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()));
+        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares,
+            'user'=> $this->getUser()));
     }
 
     /**
@@ -42,9 +45,38 @@ class DefaultController extends Controller
      */
     public function dareAction($id)
     {
-        $dare = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findOneById($id);
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares, 'user' => $this->getUser()));
+        $post = Request::createFromGlobals();
+        $manager = $this->getDoctrine()->getManager();
+        $dare = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($id);
+        $user = $this->getUser();
+        $pointsMsg = false;
+        if ($post->request->has('add')) {
+            $points = $post->request->get('points');
+            if ($user->getPoints() >= $points) {
+                $reward = new Reward();
+                $reward->setUser($user);
+                $reward->setOffer($dare);
+                $reward->setPoints($points);
+                $manager->persist($reward);
+
+                $userPoints = $user->getPoints();
+                $userPoints -= $points;
+                $user->setPoints($userPoints);
+                $manager->persist($user);
+                $manager->flush();
+                $pointsMsg = 1;
+            } else {
+                $pointsMsg = 2;
+            }
+        }
+
+        $rewards = $dare->getRewards();
+        $reward = 0;
+        foreach($rewards as $r)
+            $reward += $r->getPoints();
+        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares,
+            'user' => $user, 'reward' => $reward, 'points' => $pointsMsg));
     }
 
     /**

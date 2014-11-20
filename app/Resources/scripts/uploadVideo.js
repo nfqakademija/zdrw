@@ -10,7 +10,7 @@ function progressHandler(event){
     _('status').innerHTML = Math.round(percent)+'% uploaded... please wait';
 }
 function completeHandler(event){
-    _('status').innerHTML = event.target.responseText; // make 1, 0. if 1 then ok, if 0 then wrong format. texts there
+    _('status').innerHTML = event.target.responseText;
     _('progressBar').value = 0;
     location.reload();
 }
