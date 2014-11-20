@@ -16,6 +16,7 @@
                         </div>
                         <div class="dare-article col-md-10">
                             <p>{{ dare.description }}</p>
+                            <mark>Reward: {{ reward }} points</mark>
                         </div>
                         <div class="col-md-12">
                             <br>
@@ -24,6 +25,7 @@
                             <p>{{ dare.longDesc }}</p>
                         </div>
                         <div class="col-md-12">
+                            <div class="col-lg-6">
                             {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
                                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#uploadModal">I did it</button>
                                 <!-- Modal -->
@@ -52,11 +54,25 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <form method="post">
+                                    <label for="add_points">Add reward:</label>
+                                    <input type="text" name="points" size="4" />
+                                    <input type="submit" value="Add" name="add">
+                                </form>
+                                {% if points == 1 %}
+                                    <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
+                                {% elseif points == 2 %}
+                                    <div class="alert alert-danger" role="alert">You don't have enough points</div>
+                                {% endif %}
+                            </div>
                             {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
                                 <div class="alert alert-info" role="alert">You must be registered user in order to accept the challenge!</div>
                             {% elseif dare.status == 2 %}
                                 <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
                             {% endif %}
+
                         </div>
                         <br/>
                         <div class="pull-right">
