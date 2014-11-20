@@ -11,7 +11,6 @@ class VideoController extends Controller
 {
     public function indexAction()
     {
-
         $offerId = $_POST['id'];
         $userid = $_POST['userid'];
 
@@ -19,24 +18,31 @@ class VideoController extends Controller
         $ext = pathinfo($fileName, PATHINFO_EXTENSION);
         $fileName = $offerId.".".$ext;
 
-        $manager = $this->getDoctrine()->getManager();
-        $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($offerId);
-        $offer->setStatus(2);
-        $offer->setParticipantId($userid);
-        $offer->setVideo($fileName);
-        $manager->flush();
-
         $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
-        /*$fileType = $_FILES["file1"]["type"]; // The type of file it is
-        $fileSize = $_FILES["file1"]["size"]; // File size in bytes
+        $filetype = $_FILES["file1"]["type"]; // The type of file it is
+
+        /*$fileSize = $_FILES["file1"]["size"]; // File size in bytes
         $fileErrorMsg = $_FILES["file1"]["error"]; // 0 for false... and 1 for true*/
+
         if (!$fileTmpLoc) { // if file not chosen
             $ret = "ERROR: Please browse for a file before clicking the upload button.";
         } else {
-            if (move_uploaded_file($fileTmpLoc, "uploads/$fileName")) {
-                $ret = "Upload is complete";
+            if (($filetype == "video/avi") || ($filetype == "video/mpeg") || ($filetype == "video/mpg")
+                || ($filetype == "video/mov")|| ($filetype == "video/wmv") || ($filetype == "video/mp4")) {
+
+                if (move_uploaded_file($fileTmpLoc, "uploads/$fileName")) {
+                    $manager = $this->getDoctrine()->getManager();
+                    $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($offerId);
+                    $offer->setStatus(2);
+                    $offer->setParticipantId($userid);
+                    $offer->setVideo($fileName);
+                    $manager->flush();
+                    $ret = "Upload is complete";
+                } else {
+                    $ret = "move_uploaded_file function failed";
+                }
             } else {
-                $ret = "move_uploaded_file function failed";
+                $ret = "You have selected wrong format. Allowed: AVI, MPG, MOV, WMV, MP4";
             }
         }
         return new Response($ret);

@@ -1,0 +1,7 @@
+{% extends "ZdrwUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {{ render(controller('ZdrwUserBundle:Security:login')) }}
+{% endblock fos_user_content %}

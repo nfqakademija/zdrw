@@ -40,6 +40,7 @@ security:
             logout:
                 path:   /logout
                 target: /dares
+                success_handler:  security_handler
             anonymous:    true
 
         login:

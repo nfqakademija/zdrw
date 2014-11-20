@@ -10,7 +10,7 @@ function progressHandler(event){
     _('status').innerHTML = Math.round(percent)+'% uploaded... please wait';
 }
 function completeHandler(event){
-    _('status').innerHTML = event.target.responseText;
+    _('status').innerHTML = event.target.responseText; // make 1, 0. if 1 then ok, if 0 then wrong format. texts there
     _('progressBar').value = 0;
     location.reload();
 }
@@ -25,18 +25,22 @@ function uploadFile(ajaxlink){
     var id = form.find('input[name="id"]').val();
     var userid = form.find('input[name="userid"]').val();
     var formdata = new FormData();
-    if(typeof file !== 'undefined'){
-        formdata.append('file1', file);
-        formdata.append('id', id);
-        formdata.append('userid', userid);
-        var ajax = new XMLHttpRequest();
-        ajax.upload.addEventListener('progress', progressHandler, false);
-        ajax.addEventListener('load', completeHandler, false);
-        ajax.addEventListener('error', errorHandler, false);
-        ajax.addEventListener('abort', abortHandler, false);
-        ajax.open('POST', ajaxlink);
-        ajax.send(formdata);
+    if (typeof file !== 'undefined') {
+        if (file.type.match('video.*')) {
+            formdata.append('file1', file);
+            formdata.append('id', id);
+            formdata.append('userid', userid);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener('progress', progressHandler, false);
+            ajax.addEventListener('load', completeHandler, false);
+            ajax.addEventListener('error', errorHandler, false);
+            ajax.addEventListener('abort', abortHandler, false);
+            ajax.open('POST', ajaxlink);
+            ajax.send(formdata);
+        } else {
+            window.alert('This file is in the wrong format. Allowed: AVI, MPG, MOV, WMV, MP4');
+        }
     } else {
-        window.alert('Choose file to upload');
+        window.alert('Choose video to upload');
     }
 }
