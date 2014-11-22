@@ -13,12 +13,6 @@ body{
 h1,h2,h3,h4,h5,h6{
   margin: 0px 0px 5px 0px;
 }
-.avatar{
-  width:100px;height:100px;background-color: #b6ab84;margin:0px auto;
-}
-.avatar2{
-  width: 100%;
-}
 .font-1{
   font-size: $font-1;
 }
@@ -27,8 +21,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .font-3{
   font-size: $font-3;
-}
-.profile{
 }
 .profile-content,
 .primary-content,
@@ -40,7 +32,6 @@ h1,h2,h3,h4,h5,h6{
   border-color: #9ecaed;
   box-shadow: 0 3px 3px #777;
 }
-
 .profile-section,
 .primary-section,
 .secondary-section{
@@ -48,7 +39,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .articles{
   padding: 5px;
-
 }
 .stare-article,
 .dare-article{
@@ -62,18 +52,36 @@ h1,h2,h3,h4,h5,h6{
   background: #FFFFFF;
   padding: 10px;
 }
+.shortDesc{
+  color: #777777;
+}
 textarea{
   min-width: 100%;
   max-width: 100%;
   min-height: 100px;
 }
 .dare-thumbnail{
-  min-width: 100px;
-  max-width: 100px;
+  margin: 0px 0px 5px 0px;
 }
 .stare-thumbnail{
   margin-left: auto;
   margin-right: auto;
   min-width: 80px;
   max-width: 350px;
+}
+@media screen and (min-width: 767px) {
+  .dividers-left{
+    border-right: 1px solid #E1E1E1;
+    margin-top: -15px;
+    margin-bottom: -15px;
+    padding: 15px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .dividers-left{
+    border-bottom: 1px solid #E1E1E1;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
 }
