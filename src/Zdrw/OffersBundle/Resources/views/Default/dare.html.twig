@@ -30,7 +30,7 @@
                                                 <div class="col-sm-6 dividers-left">
                                                     <p class="lead">Challange acceptance</p>
                                                     {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
-                                                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#uploadModal">I did it</button>
+                                                        <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
@@ -67,9 +67,30 @@
                                                         <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
                                                     {% endif %}
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 dividers-right">
                                                     <p class="lead">Challange info</p>
                                                     <mark>Reward: {{ reward }} points</mark>
+                                                    <br><br>
+                                                    {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
+                                                        <form method="post">
+                                                            <label for="add_points">Add reward:</label>
+                                                            <div class="input-group">
+                                                                <input class="form-control" type="number" name="points" size="4" required/>
+                                                                <span class="input-group-btn">
+                                                                    <button name="add" class="btn btn-default" type="submit">Add</button>
+                                                                </span>
+                                                            </div>
+                                                        </form>
+                                                        {% if points == 1 %}
+                                                            <br>
+                                                            <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
+                                                        {% elseif points == 2 %}
+                                                            <br>
+                                                            <div class="alert alert-danger" role="alert">You don't have enough points</div>
+                                                        {% endif %}
+                                                    {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                        <div class="alert alert-info" role="alert">You must be registered user in order to add some points!</div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
