@@ -70,7 +70,9 @@
                                 </ul>
                             </li>
                         {% else %}
+                            {% block loginBtn %}
                             <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                            {% endblock %}
                         {% endif %}
                     </ul>
                 </div>

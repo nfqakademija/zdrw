@@ -4,3 +4,6 @@ zdrw_offers:
 
 zdrw_user:
     resource: "@ZdrwUserBundle/Resources/config/routing.yml"
+
+homepage:
+    pattern: /

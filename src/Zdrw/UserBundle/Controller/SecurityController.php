@@ -8,6 +8,9 @@ class SecurityController extends BaseController
 {
     public function loginPageAction()
     {
-        return $this->render('ZdrwUserBundle:Security:loginPage.html.twig');
+        if ($this->get('security.context')->isGranted('ROLE_USER'))
+            return $this->redirect($this->generateUrl('homepage'));
+        else
+            return $this->render('ZdrwUserBundle:Security:loginPage.html.twig');
     }
 }

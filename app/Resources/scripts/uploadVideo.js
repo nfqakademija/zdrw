@@ -12,7 +12,6 @@ function progressHandler(event){
 function completeHandler(event){
     _('status').innerHTML = event.target.responseText;
     _('progressBar').value = 0;
-    location.reload();
 }
 function errorHandler(){
     _('status').innerHTML = 'Upload Failed';
