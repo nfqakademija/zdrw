@@ -6,7 +6,7 @@ function _(el){
 function progressHandler(event){
     _('loaded_n_total').innerHTML = 'Uploaded '+event.loaded+' bytes of '+event.total;
     var percent = (event.loaded / event.total) * 100;
-    _('progressBar').value = Math.round(percent);
+    $('#progressBar').css('width', Math.round(percent)+'%');
     _('status').innerHTML = Math.round(percent)+'% uploaded... please wait';
 }
 function completeHandler(event){
@@ -18,7 +18,8 @@ function errorHandler(){
     _('status').innerHTML = 'Upload Failed';
 }
 function abortHandler(){
-    _('status').innerHTML = 'Upload Aborted'; }
+    _('status').innerHTML = 'Upload Aborted';
+}
 function uploadFile(ajaxlink){
     var file = _('file1').files[0];
     var form = $('#upload_form');

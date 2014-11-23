@@ -28,7 +28,7 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-sm-6 dividers-left">
-                                                    <p class="lead">Challange accpetance</p>
+                                                    <p class="lead">Challange acceptance</p>
                                                     {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
                                                         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#uploadModal">I did it</button>
                                                         <!-- Modal -->
@@ -48,9 +48,9 @@
                                                                                 <input name="userid" type="hidden" value="{{ user.id }}"/>
                                                                                 <br>
                                                                                 <div class="progress">
-                                                                                    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                                    <div data-percentage="0%" id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                                                                 </div>
-                                                                                <progress id="progressBar" value="20" max="100"></progress> <h3 id="status"></h3> <p id="loaded_n_total"></p>
+                                                                                <h3 id="status"></h3> <p id="loaded_n_total"></p>
                                                                             </div>
                                                                         </form>
                                                                     </div>
