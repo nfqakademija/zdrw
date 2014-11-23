@@ -3,6 +3,7 @@
 @import "userInNavbar";
 
 $bg-color: #f9f9f9;
+$light: #f2f2f2;
 $font-1: 16pt;
 $font-2: 14pt;
 $font-3: 12pt;
@@ -49,8 +50,10 @@ h1,h2,h3,h4,h5,h6{
   background-color: #FFFFFF;
   border: 1px solid #E1E1E1;
   border-radius: 5px;
-  background: #FFFFFF;
   padding: 10px;
+}
+.dare-article:hover{
+  background-color: $light;
 }
 .shortDesc{
   color: #777777;
@@ -84,4 +87,8 @@ textarea{
     margin-bottom: 15px;
     padding: 15px;
   }
+}
+
+.list-group-item:hover{
+  background-color: $light;
 }

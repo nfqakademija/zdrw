@@ -16,25 +16,36 @@
 
             <div class="tabbable tabs-left">
 
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-pills">
                     <li class="active"><a href="#A" data-toggle="tab">Notifications</a></li>
                     <li class=""><a href="#B" data-toggle="tab">Posted dares</a></li>
                     <li class=""><a href="#C" data-toggle="tab">Accepted challenges</a></li>
                 </ul>
-
+                <br>
                 <div class="tab-content">
                     <div class="tab-pane active" id="A">
-                        <hr>
-                            <p>
-                                {% for n in notifications %}
-                            <p>{{ n.notification }}</p>
-                            <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
-                            <hr>
+                        <ul class="list-group profile-list">
+                            {% for n in notifications %}
+                                <li class="list-group-item">
+                                    <p>{{ n.notification }}</p>
+                                    <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
+                                    <br>
+                                </li>
                             {% endfor %}
-                            </p>
+                        </ul>
                     </div>
                     <div class="tab-pane" id="B">
-
+                        <ul class="list-group profile-list">
+                            {% for dare in dares %}
+                                <li class="list-group-item">
+                                    <h4>
+                                        <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
+                                        <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
+                                    </h4>
+                                    <p>{{ dare.description }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                     <div class="tab-pane" id="C">
 

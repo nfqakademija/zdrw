@@ -127,7 +127,8 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
-        return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'user'=> $user));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("owner" => $user->getId()));
+        return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user'=> $user));
     }
 
     /**
