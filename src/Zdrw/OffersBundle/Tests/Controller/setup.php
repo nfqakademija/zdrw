@@ -4,27 +4,28 @@ namespace Zdrw\OffersBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserLoginTest extends WebTestCase
+class setup extends WebTestCase
 {
-    public function testLogin()
-    {
-        $client = static::createClient();
+    protected $client = null;
 
-        $crawler = $client->request('GET', '/');
+    public function logIn()
+    {
+        $this->client = static::createClient();
+
+        $crawler = $this->client->request('GET', '/');
 
         $link = $crawler->selectLink('Login')->link();
-        $crawler = $client->click($link);
+        $crawler = $this->client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton('_submit');
         $form = $buttonCrawlerNode->form(array(
             '_username' => 'admin',
             '_password' => 'test'
-
         ));
 
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("admin")')->count());
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
 
+        return $crawler;
     }
 }
