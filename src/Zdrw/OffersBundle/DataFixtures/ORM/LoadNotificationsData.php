@@ -16,7 +16,7 @@ class LoadNotificationsData extends AbstractFixture implements OrderedFixtureInt
     {
         $notification = new Notification();
         $notification->setNotification("Test notification 1");
-        $user = $manager->getRepository('ZdrwUserBundle:User')->findOneByUsername('admin');
+        $user = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));
         $notification->setUser($user);
         $notification->setDate(new \DateTime("now"));
         $notification->setSeen(0);

@@ -32,7 +32,7 @@ class VideoController extends Controller
 
                 if (move_uploaded_file($fileTmpLoc, "uploads/$fileName")) {
                     $manager = $this->getDoctrine()->getManager();
-                    $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($offerId);
+                    $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $offerId));
                     $offer->setStatus(2);
                     $offer->setParticipantId($userid);
                     $offer->setVideo($fileName);
@@ -77,6 +77,7 @@ class VideoController extends Controller
         //include $file;
         $lib = new Vimeo($config['client_id'], $config['client_secret'], $config['access_token']);
         // Get the args from the command line to see what files to upload.
+        $files = array();
         $files[] = $file;
 
         // Keep track of what we have uploaded.

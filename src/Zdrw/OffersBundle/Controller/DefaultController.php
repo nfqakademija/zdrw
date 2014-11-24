@@ -25,14 +25,28 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method getting data from repository;
+     *
+     * @return array
+     */
+    private function daresAndStares()
+    {
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        $result = array('dares' => $dares,'stares' => $stares);
+        return $result;
+    }
+
+    /**
      * Method rendering the "Dares" page with all dares
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function daresAction()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        $daresAndStares = $this->daresAndStares();
+        $dares = $daresAndStares['dares'];
+        $stares = $daresAndStares['stares'];
         return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares,
             'user'=> $this->getUser()));
     }
@@ -47,7 +61,7 @@ class DefaultController extends Controller
     {
         $post = Request::createFromGlobals();
         $manager = $this->getDoctrine()->getManager();
-        $dare = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneById($id);
+        $dare = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $id));
         $user = $this->getUser();
         $pointsMsg = false;
         if ($post->request->has('add')) {
@@ -113,8 +127,9 @@ class DefaultController extends Controller
      */
     public function staresAction()
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        $daresAndStares = $this->daresAndStares();
+        $dares = $daresAndStares['dares'];
+        $stares = $daresAndStares['stares'];
         return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()));
     }
 

@@ -16,9 +16,11 @@ class UserLoginTest extends WebTestCase
         $crawler = $client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton('_submit');
-        $form = $buttonCrawlerNode->form();
-        $form['_username'] = 'admin';
-        $form['_password'] = 'test';
+        $form = $buttonCrawlerNode->form(array(
+            '_username' => 'admin',
+            '_password' => 'test'
+
+        ));
 
         $client->submit($form);
         $crawler = $client->followRedirect();
