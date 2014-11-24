@@ -125,10 +125,18 @@ class DefaultController extends Controller
      */
     public function profileAction()
     {
-        $user = $this->getUser();
-        $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("owner" => $user->getId()));
-        return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user'=> $user));
+
+        if (!$this->get('security.context')->isGranted('ROLE_USER'))
+        {
+            return $this->redirect($this->generateUrl('homepage'));
+        }
+        else
+        {
+            $user = $this->getUser();
+            $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
+            $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("owner" => $user->getId()));
+            return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user' => $user));
+        }
     }
 
     /**
