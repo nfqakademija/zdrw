@@ -42,7 +42,7 @@ class DefaultController extends Controller
      */
     private function getStares()
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findByStatus(5);
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(5)));
         return $stares;
     }
 
@@ -169,7 +169,8 @@ class DefaultController extends Controller
                 return $this->redirect($this->generateUrl('zdrw_dares'));
             }
         }
-        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $form->createView(), 'stares' => $stares, 'user' => $user));
+        $formExe = $form->createView();
+        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $formExe, 'stares' => $stares, 'user' => $user));
     }
 
 
