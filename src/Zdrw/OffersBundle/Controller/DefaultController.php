@@ -26,16 +26,25 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method to get all stares and dares;
+     * Method to get all dares
      *
      * @return array
      */
-    private function daresAndStares()
+    private function getDares()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $result = array('dares' => $dares, 'stares' => $stares);
-        return $result;
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)));
+        return $dares;
+    }
+
+    /**
+     * Method to get all stares
+     *
+     * @return array
+     */
+    private function getStares()
+    {
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findByStatus(5);
+        return $stares;
     }
 
     /**
@@ -45,9 +54,8 @@ class DefaultController extends Controller
      */
     public function daresAction()
     {
-        $daresAndStares = $this->daresAndStares();
-        $dares = $daresAndStares['dares'];
-        $stares = $daresAndStares['stares'];
+        $dares = $this->getDares();
+        $stares = $this->getStares();
         return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares,
             'user'=> $this->getUser()));
     }
@@ -140,26 +148,29 @@ class DefaultController extends Controller
     /**
      * Method to render page, where user can add a dare
      *
+     * @param $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newDareAction(Request $request)
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
+        $stares = $this->getStares();
 
-        $offer = new Offer();
-        $offer->setOwner($this->getUser());
-        $form = $this->createForm(new OfferType(), $offer);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if ($user != null) {
+            $offer = new Offer();
+            $offer->setOwner($user);
+            $form = $this->createForm(new OfferType(), $offer);
+            $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($offer);
-            $em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($offer);
+                $em->flush();
 
-            return $this->redirect($this->generateUrl('zdrw_dares'));
+                return $this->redirect($this->generateUrl('zdrw_dares'));
+            }
         }
-
-        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $form->createView(), 'stares' => $stares, 'user' => $this->getUser()));
+        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $form->createView(), 'stares' => $stares, 'user' => $user));
     }
 
 
@@ -170,9 +181,8 @@ class DefaultController extends Controller
      */
     public function staresAction()
     {
-        $daresAndStares = $this->daresAndStares();
-        $dares = $daresAndStares['dares'];
-        $stares = $daresAndStares['stares'];
+        $dares = $this->getDares();
+        $stares = $this->getStares();
         return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()));
     }
 
@@ -199,12 +209,9 @@ class DefaultController extends Controller
     public function profileAction()
     {
 
-        if (!$this->get('security.context')->isGranted('ROLE_USER'))
-        {
+        if (!$this->get('security.context')->isGranted('ROLE_USER')) {
             return $this->redirect($this->generateUrl('homepage'));
-        }
-        else
-        {
+        } else {
             $user = $this->getUser();
             $drStNt = $this->drStNt($user->getId());
             $notifications = $drStNt['notifications'];
