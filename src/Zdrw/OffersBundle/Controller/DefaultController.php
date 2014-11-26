@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zdrw\OffersBundle\Entity\Offer;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
-use Zdrw\OffersBundle\Services\UserInfoProvider;
 
 /**
  * Controller managing the offers

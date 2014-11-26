@@ -2,7 +2,7 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "userInNavbar";
 
-$bg-color: #f9f9f9;
+$bg-color: #f8f8f8;
 $light: #f2f2f2;
 $font-1: 16pt;
 $font-2: 14pt;
@@ -13,6 +13,11 @@ body{
 }
 h1,h2,h3,h4,h5,h6{
   margin: 0px 0px 5px 0px;
+}
+h1{
+  text-shadow: 0px 1px 1px #b5b5b5;
+  color: #ffffff;
+  font: 40px 'LeagueGothicRegular';
 }
 .font-1{
   font-size: $font-1;
