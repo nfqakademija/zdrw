@@ -23,7 +23,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer->setStatus(3);
         $offer->setFinishDate(new \DateTime('tomorrow'));
         $offer->setViews(0);
-        $user = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));
+        $user = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
         $offer->setOwner($user);
         $offer->setVideo("test.mp4");
         $offer->setParticipantId(1);
@@ -37,7 +37,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer2->setStatus(1);
         $offer2->setFinishDate(new \DateTime('tomorrow'));
         $offer2->setViews(0);
-        $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));;
+        $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));
         $offer2->setOwner($user2);
         $offer2->setParticipantId(1);
 
