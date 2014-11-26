@@ -28,7 +28,7 @@ class DefaultControllerFunctionalTest extends setup
         $setup = new setup();
         $setup->logIn();
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('My Title 1')->link();
+        $link = $crawler->selectLink('My Title 3')->link();
         $crawler = $setup->client->click($link);
         $this->assertGreaterThan(0, $crawler->filter('.i-did-it:contains("I did it")')->count());
     }
@@ -49,7 +49,7 @@ class DefaultControllerFunctionalTest extends setup
         $this->assertGreaterThan(0, $crawler->filter('.tab-content:contains("Test notification 1")')->count());
         $link = $crawler->selectLink('Posted dares')->link();
         $crawler = $setup->client->click($link);
-        $this->assertGreaterThan(0, $crawler->filter('.tab-content h4:contains("My Title 1")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('.tab-content h4:contains("My Title 2")')->count());
     }
     public function testUser()
     {
