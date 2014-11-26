@@ -3,21 +3,62 @@
 {% block content %}
     {% block leftSideBar %}{% endblock %}
     <div class="container page-content">
-        <section class="col-md-4 profile-section">
+        <section class="col-md-3 profile-section">
             <article class="profile">
-                <div class="col-md-6 avatar2"></div>
-                <div class="col-md-6">
+                <a href="#" class="thumbnail avatar2"><img src="http://placehold.it/260x180" alt=""></a>
                 <p>
                     <b class="font-1">{{ user.username }}</b><br>
                     {{ user.email }}
                 </p>
-                </div>
             </article>
         </section>
-        <section class="col-md-8 primary-section">
-            <div class="primary-content">
-                <h2>Notifications</h2>
-                <hr>
+        <section class="col-md-9 primary-section">
+            <div class="tabbable tabs-left">
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#A" data-toggle="tab">Notifications</a></li>
+                    <li class=""><a href="#B" data-toggle="tab">Posted dares</a></li>
+                    <li class=""><a href="#C" data-toggle="tab">Accepted challenges</a></li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="A">
+                        <ul class="list-group profile-list">
+                            {% for n in notifications %}
+                                <li class="list-group-item">
+                                    <p>{{ n.notification }}</p>
+                                    <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
+                                    <br>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="B">
+                        <ul class="list-group profile-list">
+                            {% for dare in dares %}
+                                <li class="list-group-item">
+                                    <h4>
+                                        <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
+                                        <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
+                                    </h4>
+                                    <p>{{ dare.description }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="C">
+                        <ul class="list-group profile-list">
+                            {% for stare in stares %}
+                                <li class="list-group-item">
+                                    <h4>
+                                        <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                        <small class="pull-right">{{ stare.startDate | date("Y-d-m H:i") }}</small>
+                                    </h4>
+                                    <p>{{ stare.description }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

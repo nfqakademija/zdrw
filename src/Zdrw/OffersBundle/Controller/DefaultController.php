@@ -15,7 +15,7 @@ use Zdrw\OffersBundle\Services\UserInfoProvider;
 class DefaultController extends Controller
 {
     /**
-     * Method rendering the main project page
+     * Method to render the main project page
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method getting data from repository;
+     * Method to get all stares and dares;
      *
      * @return array
      */
@@ -33,12 +33,12 @@ class DefaultController extends Controller
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
         $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        $result = array('dares' => $dares,'stares' => $stares);
+        $result = array('dares' => $dares, 'stares' => $stares);
         return $result;
     }
 
     /**
-     * Method rendering the "Dares" page with all dares
+     * Method to render the "Dares" page with all dares
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -52,7 +52,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method rendering certain dare page
+     * Method to render certain dare page
      *
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -94,7 +94,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method rendering page, where user can add a dare
+     * Method to render page, where user can add a dare
      *
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -121,7 +121,7 @@ class DefaultController extends Controller
 
 
     /**
-     * Method rendering the "Stares" page with all stares
+     * Method to render the "Stares" page with all stares
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -134,7 +134,22 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method rendering user profile page with that user data
+     * Method to get user DARES, STARES and NOTIFICATIONS
+     *
+     * @param $id
+     * @return array
+     */
+    private function DrStNt($id)
+    {
+        $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $id));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("owner" => $id));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("participant" => $id));
+        $result = array('notifications' => $notifications, 'dares' => $dares, 'stares' => $stares);
+        return $result;
+    }
+
+    /**
+     * Method to render user profile page with that user data
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -148,14 +163,16 @@ class DefaultController extends Controller
         else
         {
             $user = $this->getUser();
-            $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $user->getId()));
-            $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array("owner" => $user->getId()));
-            return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user' => $user));
+            $DrStNt = $this->DrStNt($user->getId());
+            $notifications = $DrStNt['notifications'];
+            $dares = $DrStNt['dares'];
+            $stares = $DrStNt['stares'];
+            return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares));
         }
     }
 
     /**
-     * Method rendering certain user profile page
+     * Method to render certain user profile page
      *
      * @param $name
      * @return \Symfony\Component\HttpFoundation\Response
@@ -164,6 +181,10 @@ class DefaultController extends Controller
     public function userAction($name)
     {
         $user = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
-        return $this->render('ZdrwOffersBundle:Default:user.html.twig', array('user' => $user));
+        $DrStNt = $this->DrStNt($user->getId());
+        $notifications = $DrStNt['notifications'];
+        $dares = $DrStNt['dares'];
+        $stares = $DrStNt['stares'];
+        return $this->render('ZdrwOffersBundle:Default:user.html.twig', array('user' => $user, 'notifications' => $notifications, 'dares' => $dares, 'stares' => $stares));
     }
 }
