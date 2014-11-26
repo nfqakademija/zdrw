@@ -22,80 +22,96 @@
                                             </small></a></h4>
                                     <p class="shortDesc">{{ dare.description }}</p>
                                     <p>{{ dare.longDesc }}</p>
+                                    {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (dare.status == 5) %}
+                                        <video height="360" width="540" id="video" controls>
+                                            <source src="/zdrw/web/uploads/{{ dare.video }}"/>
+                                        </video>
+                                        {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) %}
+                                            <form method="post">
+                                                <input type="submit" class="btn btn-success" name="accept" value="Accept video">
+                                                <input type="submit" class="btn btn-danger" name="decline" value="Decline video">
+                                            </form>
+                                        {% endif %}
+                                    {% endif %}
+
                                 </div>
-                                <div class="col-sm-12"><br>
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-sm-6 dividers-left">
-                                                    <p class="lead">Challange acceptance</p>
-                                                    {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
-                                                        <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                                        <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form id="upload_form" method="post" enctype="multipart/form-data">
-                                                                            <div id="form">
-                                                                                <label for="form_video" class="required">Video</label>
-                                                                                <input type="file" name="file1" id="file1" required="required" />
-                                                                                <input name="id" type="hidden" value="{{ dare.id }}"/>
-                                                                                <input name="userid" type="hidden" value="{{ user.id }}"/>
-                                                                                <br>
-                                                                                <div class="progress">
-                                                                                    <div data-percentage="0%" id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                {% if dare.status != 5 %}
+                                    <div class="col-sm-12"><br>
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6 dividers-left">
+                                                        <p class="lead">Challenge acceptance</p>
+                                                        {% if user and dare.owner.id == user.id %}
+                                                            <div class="alert alert-warning" role="alert">You can't accept this challenge</div>
+                                                        {% elseif (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
+                                                            <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                                            <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form id="upload_form" method="post" enctype="multipart/form-data">
+                                                                                <div id="form">
+                                                                                    <label for="form_video" class="required">Video</label>
+                                                                                    <input type="file" name="file1" id="file1" required="required" />
+                                                                                    <input name="id" type="hidden" value="{{ dare.id }}"/>
+                                                                                    <input name="userid" type="hidden" value="{{ user.id }}"/>
+                                                                                    <br>
+                                                                                    <div class="progress">
+                                                                                        <div data-percentage="0%" id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                                    </div>
+                                                                                    <h3 id="status"></h3> <p id="loaded_n_total"></p>
                                                                                 </div>
-                                                                                <h3 id="status"></h3> <p id="loaded_n_total"></p>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-success" value="Upload" />
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-success" value="Upload" />
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
-                                                        <div class="alert alert-info" role="alert">You must be registered user in order to accept the challange!</div>
-                                                    {% elseif dare.status == 2 %}
-                                                        <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 dividers-right">
-                                                    <p class="lead">Challange info</p>
-                                                    <mark>Reward: {{ reward }} points</mark>
-                                                    <br><br>
-                                                    {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
-                                                        <form method="post">
-                                                            <label for="add_points">Add reward:</label>
-                                                            <div class="input-group">
-                                                                <input class="form-control" type="number" name="points" size="4" required/>
-                                                                <span class="input-group-btn">
-                                                                    <button name="add" class="btn btn-default" type="submit">Add</button>
-                                                                </span>
-                                                            </div>
-                                                        </form>
-                                                        {% if points == 1 %}
-                                                            <br>
-                                                            <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
-                                                        {% elseif points == 2 %}
-                                                            <br>
-                                                            <div class="alert alert-danger" role="alert">You don't have enough points</div>
+                                                        {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                            <div class="alert alert-info" role="alert">You must be registered user in order to accept the challange!</div>
+                                                        {% elseif dare.status == 3 %}
+                                                            <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
                                                         {% endif %}
-                                                    {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
-                                                        <div class="alert alert-info" role="alert">You must be registered user in order to add some points!</div>
-                                                    {% endif %}
+                                                    </div>
+                                                    <div class="col-sm-6 dividers-right">
+                                                        <p class="lead">Challenge info</p>
+                                                        <mark>Reward: {{ reward }} points</mark>
+                                                        <br><br>
+                                                        {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
+                                                            <form method="post">
+                                                                <label for="add_points">Add reward:</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control" type="text" pattern="\d*" name="points" size="4" required/>
+                                                                    <span class="input-group-btn">
+                                                                        <button name="add" class="btn btn-default" type="submit">Add</button>
+                                                                    </span>
+                                                                </div>
+                                                            </form>
+                                                            {% if points == 1 %}
+                                                                <br>
+                                                                <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
+                                                            {% elseif points == 2 %}
+                                                                <br>
+                                                                <div class="alert alert-danger" role="alert">You don't have enough points</div>
+                                                            {% endif %}
+                                                        {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                            <div class="alert alert-info" role="alert">You must be registered user in order to add some points!</div>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endif %}
                                 <div class="col-sm-12">
                                     <div class="pull-right">
                                         Views: {{ dare.views }}

@@ -25,7 +25,7 @@
                         <ul class="list-group profile-list">
                             {% for n in notifications %}
                                 <li class="list-group-item">
-                                    <p>{{ n.notification }}</p>
+                                    <p>{{ n.notification | raw }}</p>
                                     <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
                                     <br>
                                 </li>

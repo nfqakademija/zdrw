@@ -281,11 +281,10 @@ class Offer
     {
         return $this->participantId;
     }
+
     /**
      * Constructor
      */
-
-
     public function __construct()
     {
         $this->startDate = new \DateTime();

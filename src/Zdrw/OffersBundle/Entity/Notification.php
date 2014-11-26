@@ -45,7 +45,7 @@ class Notification
      *
      * @ORM\Column(name="seen", type="integer")
      */
-    private $seen;
+    private $seen = 0;
 
 
     /**
@@ -149,5 +149,13 @@ class Notification
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTime();
     }
 }

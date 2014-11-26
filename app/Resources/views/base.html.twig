@@ -11,10 +11,22 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
+
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('js/zdrw.js') }}"></script>
+            {% if (app.request.attributes.get('_route') == "zdrw_dare") and ((dare.status == 5) or (user and (dare.owner.id == user.id) and (dare.status == 3))) %}
+                <script>
+                    document.addEventListener( "DOMContentLoaded", function() {
+                        var p = Popcorn("#video");
+                        p.listen( "canplayall", function() {
+                            this.capture({ at: 10 });
+                        });
+                        //p.play().pause();
+                    }, false );
+                </script>
+            {% endif %}
         {% endblock %}
     </body>
 </html>
