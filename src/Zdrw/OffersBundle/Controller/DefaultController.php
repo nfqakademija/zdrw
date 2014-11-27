@@ -25,6 +25,115 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method to add points to offer
+     *
+     * @param $points
+     * @param $dare
+     * @param $manager
+     * @return int
+     */
+    private function addPoints($points, $dare, $manager)
+    {
+        $user = $this->getUser();
+        if ($user->getPoints() >= $points) {
+            $reward = new Reward();
+            $reward->setUser($user);
+            $reward->setOffer($dare);
+            $reward->setPoints($points);
+            $manager->persist($reward);
+
+            $userPoints = $user->getPoints();
+            $userPoints -= $points;
+            $user->setPoints($userPoints);
+            $manager->persist($user);
+            $manager->flush();
+            $pointsMsg = 1;
+        } else {
+            $pointsMsg = 2;
+        }
+        return $pointsMsg;
+    }
+
+    /**
+     * Method to decline video for owner
+     *
+     * @param $dare
+     * @param $manager
+     */
+    private function declineVideo($dare, $manager)
+    {
+        $dare->setStatus(4);
+
+        $not1 = new Notification();
+        $not1->setUser($dare->getParticipant());
+        $not1->setNotification("Dare owner declined your video of confirmation. Website admins will review your video.");
+        $manager->persist($not1);
+
+        $manager->flush();
+    }
+
+    /**
+     * Method to accept video for owner
+     *
+     * @param $dare
+     * @param $manager
+     */
+    private function acceptVideo($dare, $manager)
+    {
+        $user = $this->getUser();
+        $participant = $dare->getParticipant();
+
+        $rewards = $dare->getRewards();
+        $reward = 0;
+        foreach ($rewards as $r) {
+            $reward += $r->getPoints();
+            $manager->remove($r);
+        }
+        $partPoints = $participant->getPoints();
+        $partPoints += $reward;
+        $participant->setPoints($partPoints);
+
+        $dare->setStatus(5);
+
+        $not1 = new Notification();
+        $not1->setUser($dare->getParticipant());
+        $not1->setNotification("Dare owner accepted your video of confirmation. You got ".$reward." points. Congratulations!");
+        $manager->persist($not1);
+
+        $not2 = new Notification();
+        $not2->setUser($user);
+        $not2->setNotification("You have accepted video of your offer");
+        $manager->persist($not2);
+
+        $manager->flush();
+    }
+
+    /**
+     * Method to make offer reservation
+     *
+     * @param $dare
+     * @param $manager
+     */
+    private function makeReservation($dare, $manager)
+    {
+        $user = $this->getUser();
+        $dare->setStatus(2);
+        $dare->setParticipant($user);
+
+        $not1 = new Notification();
+        $not1->setUser($user);
+        $not1->setNotification("You have reserved offer. Do not forget to upload video to prove offer completion");
+        $manager->persist($not1);
+
+        $not2 = new Notification();
+        $not2->setUser($dare->getOwner());
+        $not2->setNotification("Your offer reserved user ".$user->getNickname());
+        $manager->persist($not2);
+
+        $manager->flush();
+    }
+
+    /**
      * Method to get all dares
      *
      * @return array
@@ -42,7 +151,7 @@ class DefaultController extends Controller
      */
     private function getStares()
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(5)));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findByStatus(5);
         return $stares;
     }
 
@@ -73,65 +182,21 @@ class DefaultController extends Controller
         $dare = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $id));
 
         if (($user != null) && ($user == $dare->getOwner())) {
-
             if ($post->request->has('decline')) {
 
-                $dare->setStatus(4);
+                $this->declineVideo($dare, $manager);
 
-                $not1 = new Notification();
-                $not1->setUser($dare->getParticipant());
-                $not1->setNotification("Dare owner declined your video of confirmation. Website admins will review your video.");
-                $manager->persist($not1);
-
-                $manager->flush();
             } elseif ($post->request->has('accept')) {
-
-                $participant = $dare->getParticipant();
-
-                $rewards = $dare->getRewards();
-                $reward = 0;
-                foreach ($rewards as $r) {
-                    $reward += $r->getPoints();
-                    $manager->remove($r);
-                }
-                $partPoints = $participant->getPoints();
-                $partPoints += $reward;
-                $participant->setPoints($partPoints);
-
-                $dare->setStatus(5);
-
-                $not1 = new Notification();
-                $not1->setUser($dare->getParticipant());
-                $not1->setNotification("Dare owner accepted your video of confirmation. You got ".$reward." points. Congratulations!");
-                $manager->persist($not1);
-
-                $not2 = new Notification();
-                $not2->setUser($user);
-                $not2->setNotification("You have accepted video of your offer");
-                $manager->persist($not2);
-
-                $manager->flush();
+                $this->acceptVideo($dare, $manager);
             }
+        }
+        if (($post->request->has('reservation')) && ($user != null)) {
+            $this->makeReservation($dare, $manager);
         }
         $pointsMsg = false;
         if (($post->request->has('add')) && ($user != null)) {
             $points = $post->request->get('points');
-            if ($user->getPoints() >= $points) {
-                $reward = new Reward();
-                $reward->setUser($user);
-                $reward->setOffer($dare);
-                $reward->setPoints($points);
-                $manager->persist($reward);
-
-                $userPoints = $user->getPoints();
-                $userPoints -= $points;
-                $user->setPoints($userPoints);
-                $manager->persist($user);
-                $manager->flush();
-                $pointsMsg = 1;
-            } else {
-                $pointsMsg = 2;
-            }
+            $pointsMsg = $this->addPoints($points, $dare, $manager);
         }
 
         $rewards = $dare->getRewards();
@@ -169,8 +234,7 @@ class DefaultController extends Controller
                 return $this->redirect($this->generateUrl('zdrw_dares'));
             }
         }
-        $formExe = $form->createView();
-        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $formExe, 'stares' => $stares, 'user' => $user));
+        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $form->createView(), 'stares' => $stares, 'user' => $user));
     }
 
 
