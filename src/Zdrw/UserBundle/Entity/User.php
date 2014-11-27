@@ -34,6 +34,12 @@ class User extends BaseUser
      */
     protected $id;
 
+    /** @ORM\Column(name="nickname", type="string") */
+    protected $nickname;
+
+    /** @ORM\Column(name="avatar", type="string") */
+    protected $avatar = "default.jpg";
+
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebook_id;
 
@@ -290,5 +296,51 @@ class User extends BaseUser
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * Set nickname
+     *
+     * @param string $nickname
+     * @return User
+     */
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    /**
+     * Get nickname
+     *
+     * @return string 
+     */
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string 
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }
