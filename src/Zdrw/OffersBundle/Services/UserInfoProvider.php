@@ -7,10 +7,12 @@ class UserInfoProvider
     {
         $id = $user->getId();
         $name = $user->getUsername();
+        $nick = $user->getNickname();
         $email = $user->getEmail();
         return array(
             'id' => $id,
             'name' => $name,
+            'nick' => $nick,
             'email' => $email
         );
     }

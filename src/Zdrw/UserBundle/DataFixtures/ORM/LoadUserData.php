@@ -16,6 +16,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     {
         $userAdmin = new User();
         $userAdmin->setUsername('admin');
+        $userAdmin->setNickname('admin');
+        $userAdmin->setAvatar('default.jpg');
         $userAdmin->setPlainPassword('test');
         $userAdmin->setEmail('test@gmail.com');
         $userAdmin->setEnabled(true);
@@ -24,6 +26,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
         $user = new User();
         $user->setUsername('TestUser1');
+        $user->setNickname('TestUser1');
+        $user->setAvatar('default.jpg');
         $user->setPlainPassword('user');
         $user->setEmail('testUser1@gmail.com');
         $user->setEnabled(true);
