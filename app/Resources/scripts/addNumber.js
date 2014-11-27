@@ -3,7 +3,6 @@
 
     var points = $('#points').val();
     points = parseInt(points);
-    console.log(points);
     $('.plus').click(function(){
         $('#points').val(points += 1);
     });

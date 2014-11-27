@@ -26,11 +26,17 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                {% set userInfo = user_info_provider.userInfo(user) %}
+                                <li><a href="{{ path('admin_index') }}">Admin panel</a></li>
+                            {% endif %}
+                        {% endif %}
                         <li><a href="{{ path('zdrw_dares') }}">Dares</a></li>
                         <li><a href="{{ path('zdrw_stares') }}">Stares</a></li>
                         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                             {% set userInfo = user_info_provider.userInfo(user) %}
-                            <li class="dropdown">
+                            <li class="dropdown hidden-xs">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span>&nbsp;
                                     <strong>{{ userInfo.nick }}</strong>
@@ -38,11 +44,11 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <div class="navbar-login">
+                                        <div class="navbar-login ">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <p class="text-center">
-                                                        <img src="http://placehold.it/80x80" class="img-circle" alt="Profile picture">
+                                                        <img class="hidden-xs" src="http://placehold.it/80x80" class="img-circle" alt="Profile picture">
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-8">
@@ -68,6 +74,21 @@
                                         </div>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="visible-xs">
+                                <a href="{{ path("zdrw_profile") }}">
+                                    <strong>{{ userInfo.nick }}</strong>
+                                </a>
+                            </li>
+                            <li class="visible-xs">
+                                <p class="text-left">
+                                    <a href="{{ path("zdrw_profile") }}" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                </p>
+                                </li>
+                            <li class="visible-xs">
+                                <p class="text-left">
+                                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger btn-block btn-sm">Log out</a>
+                                </p>
                             </li>
                         {% else %}
                             {% block loginBtn %}
