@@ -1,5 +1,6 @@
 {
     "zdrw.js": [
+        "addNumber.js",
         "uploadVideo.js"
     ],
     "app.js": [

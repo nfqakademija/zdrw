@@ -89,12 +89,23 @@
                                                         {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
                                                             <form method="post">
                                                                 <label for="add_points">Add reward:</label>
-                                                                <div class="input-group">
-                                                                    <input class="form-control" type="text" pattern="\d*" name="points" size="4" required/>
-                                                                    <span class="input-group-btn">
-                                                                        <button name="add" class="btn btn-default" type="submit">Add</button>
-                                                                    </span>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <div class="input-group number-spinner">
+                                                                            <span class="input-group-btn">
+                                                                                <button  type="button" class="btn btn-default minus"><span class="glyphicon glyphicon-minus"></span></button>
+                                                                            </span>
+                                                                            <input type="text" class="form-control text-center" id="points" pattern="\d*" name="points" size="4" value="0">
+                                                                            <span class="input-group-btn">
+                                                                                <button type="button" class="btn btn-default plus"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <button name="add" class="btn btn-default spinnerBtn" type="submit">Add</button>
+                                                                    </div>
                                                                 </div>
+
                                                             </form>
                                                             {% if points == 1 %}
                                                                 <br>
