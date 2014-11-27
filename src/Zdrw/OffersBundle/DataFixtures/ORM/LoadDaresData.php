@@ -51,7 +51,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $user3 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
         $offer3->setOwner($user3);
 
-        // Third offer
+        // Fourth offer
         $offer4 = new Offer();
         $offer4->setTitle('With status 4');
         $offer4->setDescription('Declined, waiting for admin approval');
