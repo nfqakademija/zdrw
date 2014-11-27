@@ -16,8 +16,8 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
     {
         // First offer
         $offer = new Offer();
-        $offer->setTitle('My Title 1');
-        $offer->setDescription('My first description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        $offer->setTitle('With status 5');
+        $offer->setDescription('Approved dare');
         $offer->setLongDesc('My very very description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer->setCategoryId(1);
         $offer->setStatus(5);
@@ -29,8 +29,8 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
 
         // Second offer
         $offer2 = new Offer();
-        $offer2->setTitle('My Title 2');
-        $offer2->setDescription('My second description. Nunc non tortor a nunc interdum molestie nec ac nisl.');
+        $offer2->setTitle('With status 3');
+        $offer2->setDescription('Video uploaded, waiting for approval');
         $offer2->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer2->setCategoryId(1);
         $offer2->setStatus(3);
@@ -41,7 +41,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
 
         // Third offer
         $offer3 = new Offer();
-        $offer3->setTitle('My Title 3');
+        $offer3->setTitle('With status 1');
         $offer3->setDescription('My third description. Nunc commodo mollis velit, ornare ultrices enim facilisis et.');
         $offer3->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer3->setCategoryId(1);
@@ -51,9 +51,22 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $user3 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
         $offer3->setOwner($user3);
 
+        // Third offer
+        $offer4 = new Offer();
+        $offer4->setTitle('With status 4');
+        $offer4->setDescription('Declined, waiting for admin approval');
+        $offer4->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+        $offer4->setCategoryId(1);
+        $offer4->setStatus(4);
+        $offer4->setFinishDate(new \DateTime('tomorrow'));
+        $offer4->setViews(0);
+        $user4 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
+        $offer4->setOwner($user4);
+
         $manager->persist($offer);
         $manager->persist($offer2);
         $manager->persist($offer3);
+        $manager->persist($offer4);
         $manager->flush();
     }
 

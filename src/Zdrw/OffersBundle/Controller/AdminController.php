@@ -16,6 +16,12 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('ZdrwOffersBundle:Admin:index.html.twig', array('user' => $this->getUser()));
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 4));
+            return $this->render('ZdrwOffersBundle:Admin:index.html.twig', array('user' => $this->getUser(), 'stares' => $stares));
+        }
+        else{
+            return $this->redirect($this->generateUrl('zdrw_index'),301);
+        }
     }
 }
