@@ -8,8 +8,24 @@ $font-1: 16pt;
 $font-2: 14pt;
 $font-3: 12pt;
 
+html{
+  height: 100%;
+}
 body{
-  margin-top: 70px;
+  height: 100%;
+  padding-top:70px;
+}
+.wrap{
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -50px;
+  padding: 0 0 70px;
+}
+footer{
+  height: 50px;
+  background-color: #c4baf5;
+  padding: 15px;
+  text-align: center;
 }
 h1,h2,h3,h4,h5,h6{
   margin: 0px 0px 5px 0px;
