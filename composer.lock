@@ -5,10 +5,14 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "6b9de5562fb68ddcca10f5af282e5d08",
 =======
     "hash": "3cfbe28cee2eeb34c13d5b0210afb113",
 >>>>>>> 5a06163eaa80104a8e6291ea7aa194ef9c8e427b
+=======
+    "hash": "5ef788205f60135e2ea05e4e375b8c4b",
+>>>>>>> parent of e5e7928... Added video approval, offer reservation; migrations
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -545,65 +549,6 @@
             "time": "2013-09-05 11:23:37"
         },
         {
-            "name": "doctrine/doctrine-migrations-bundle",
-            "version": "dev-master",
-            "target-dir": "Doctrine/Bundle/MigrationsBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "81575a4316951125ce408c70f30547c77d98f78a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/81575a4316951125ce408c70f30547c77d98f78a",
-                "reference": "81575a4316951125ce408c70f30547c77d98f78a",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/doctrine-bundle": "~1.0",
-                "doctrine/migrations": "~1.0@dev",
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.1"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Bundle\\MigrationsBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Doctrine Project",
-                    "homepage": "http://www.doctrine-project.org"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony DoctrineMigrationsBundle",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "dbal",
-                "migrations",
-                "schema"
-            ],
-            "time": "2014-08-17 07:53:47"
-        },
-        {
             "name": "doctrine/inflector",
             "version": "v1.0",
             "source": {
@@ -772,64 +717,6 @@
                 "parser"
             ],
             "time": "2013-01-12 18:59:04"
-        },
-        {
-            "name": "doctrine/migrations",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/migrations.git",
-                "reference": "f4fe9d9cc21a711d89d91d29c4a4e7945289cdd0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/f4fe9d9cc21a711d89d91d29c4a4e7945289cdd0",
-                "reference": "f4fe9d9cc21a711d89d91d29c4a4e7945289cdd0",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "~2.0",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "symfony/console": "2.*",
-                "symfony/yaml": "2.*"
-            },
-            "suggest": {
-                "symfony/console": "to run the migration from the console"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\DBAL\\Migrations": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                }
-            ],
-            "description": "Database Schema migrations using Doctrine DBAL",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "migrations"
-            ],
-            "time": "2014-10-30 14:49:25"
         },
         {
             "name": "doctrine/orm",
@@ -1594,10 +1481,11 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "efc0ecf32d36a47b0e63106d2bd41b1704bb0d7e"
+                "reference": "7cbe821f6825cd339c3e73c8e9c023c1181b6d74"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/efc0ecf32d36a47b0e63106d2bd41b1704bb0d7e",
                 "reference": "efc0ecf32d36a47b0e63106d2bd41b1704bb0d7e",
 =======
@@ -1612,6 +1500,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
                 "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
+=======
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/7cbe821f6825cd339c3e73c8e9c023c1181b6d74",
+                "reference": "7cbe821f6825cd339c3e73c8e9c023c1181b6d74",
+>>>>>>> parent of e5e7928... Added video approval, offer reservation; migrations
                 "shasum": ""
             },
             "require": {
@@ -1642,7 +1534,11 @@
             "keywords": [
                 "timer"
             ],
+<<<<<<< HEAD
             "time": "2013-08-02 07:42:54"
+=======
+            "time": "2014-11-26 05:09:19"
+>>>>>>> parent of e5e7928... Added video approval, offer reservation; migrations
         },
         {
             "name": "phpunit/php-token-stream",
@@ -2972,9 +2868,7 @@
         "squizlabs/php_codesniffer": 20,
         "friendsofsymfony/user-bundle": 20,
         "symfony/framework-standard-edition": 20,
-        "hwi/oauth-bundle": 20,
-        "doctrine/migrations": 20,
-        "doctrine/doctrine-migrations-bundle": 20
+        "hwi/oauth-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

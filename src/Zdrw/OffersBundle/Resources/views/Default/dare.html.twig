@@ -14,7 +14,7 @@
                                     <a href="#" class="thumbnail dare-thumbnail">
                                         <img src="http://placehold.it/100x100" alt="" />
                                     </a>
-                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner }}</a></b></div>
                                 </div>
                                 <div class="col-sm-10">
                                     <h4><a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}<small class="pull-right">
@@ -42,20 +42,10 @@
                                                 <div class="row">
                                                     <div class="col-sm-6 dividers-left">
                                                         <p class="lead">Challenge acceptance</p>
-                                                        {% if dare.status == 4 %}
-                                                            <div class="alert alert-warning" role="alert">Dare is completed. Waiting for admin review</div>
-                                                        {% elseif user and dare.owner.id == user.id %}
+                                                        {% if user and dare.owner.id == user.id %}
                                                             <div class="alert alert-warning" role="alert">You can't accept this challenge</div>
-                                                        {% elseif (dare.status == 2) and (is_granted("IS_AUTHENTICATED_FULLY")) and (dare.participant != user) %}
-                                                            <div class="alert alert-info" role="alert">Someone reserved this challenge</div>
-                                                        {% elseif ((dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY"))) or ((is_granted("IS_AUTHENTICATED_FULLY")) and (dare.status == 2) and (dare.participant.id == user.id)) %}
+                                                        {% elseif (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
                                                             <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
-                                                            {% if dare.status == 1 %}
-                                                                <form method="post">
-                                                                    <input type="submit" name="reservation" value="I'll do it" class="btn btn-success i-will-do-it"/>
-                                                                </form>
-                                                            {% endif %}
-
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
