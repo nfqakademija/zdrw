@@ -44,13 +44,13 @@ class VideoController extends Controller
 
                         $owner = $offer->getOwner();
                         $notification = new Notification();
-                        $notification->setUser($user);
+                        $notification->setUser($owner);
                         $notification->setDate(new \DateTime("now"));
                         $url = $this->container->get('router')->generate(
                             'zdrw_dare',
                             array('id' => $offer->getId())
                         );
-                        $notification->setNotification("User " . $owner->getUsername() . " completed your challenge. You can view the video and approve <a href='".$url."'>here</a>");
+                        $notification->setNotification("User " . $owner->getNickname() . " completed your challenge. You can view the video and approve <a href='".$url."'>here</a>");
                         $manager->persist($notification);
                         $manager->flush();
 
