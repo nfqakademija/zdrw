@@ -110,3 +110,8 @@ hwi_oauth:
     # here you will add one (or more) configurations for resource owners
     http_client:
         verify_peer: false
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations

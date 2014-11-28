@@ -1,4 +1,8 @@
 {
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
@@ -19,16 +23,12 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "symfony/framework-standard-edition": "2.5.*@dev",
         "hwi/oauth-bundle": "0.4.*@dev",
-<<<<<<< HEAD
         "vimeo/vimeo-api" : "1.1.*",
         "doctrine/migrations": "1.0.*@dev",
-        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
-        "sensio/generator-bundle": "~2.3"
-=======
-        "vimeo/vimeo-api" : "1.1.*"
->>>>>>> parent of e5e7928... Added video approval, offer reservation; migrations
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev"
     },
     "require-dev": {
+        "sensio/generator-bundle": "~2.3",
         "phpunit/phpunit": "~4.3"
     },
     "scripts": {
