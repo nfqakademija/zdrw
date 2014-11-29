@@ -25,7 +25,9 @@ zdrw_upload:
 zdrw_tovimeo:
     path:     /tovimeo
     defaults: { _controller: ZdrwOffersBundle:Video:toVimeo }
-
+zdrw_search:
+    path:     /search
+    defaults: { _controller: ZdrwOffersBundle:Default:search }
 admin_index:
     path:     /admin
     defaults: { _controller: ZdrwOffersBundle:Admin:index }
