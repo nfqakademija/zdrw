@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 box primary-section">
-            <h1 class="text-info">New dare</h1>
+            <h1>New dare</h1>
             <div class="primary-content">
                 <div class="row">
                     <article class="articles">
@@ -11,22 +11,27 @@
                             {{ form_start(form) }}
                             {{ form_errors(form) }}
                             <div>
-                                {{ form_label(form.title) }}
+                                <span class="control-label">{{ form_label(form.title) }}:</span>
                                 {{ form_errors(form.title) }}
-                                {{ form_widget(form.title) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                             </div>
+                            <br>
                             <div>
-                                {{ form_label(form.description) }}
+                                <span class="control-label">{{ form_label(form.description) }}:</span>
                                 {{ form_errors(form.description) }}
-                                {{ form_widget(form.description) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                             </div>
+                            <br>
                             <div>
-                                {{ form_label(form.longDesc, 'Long description') }}
+                                <span class="control-label">{{ form_label(form.longDesc, 'Long description') }}:</span>
                                 {{ form_errors(form.longDesc) }}
-                                {{ form_widget(form.longDesc) }}
+                                {{ form_widget(form.longDesc, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <div>
-                                {{ form_widget(form.save) }}
+                                <br>
+                                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+                                <br>
+                                <br>
                                 {{ form_end(form) }}
                             </div>
                         </div>
@@ -42,19 +47,21 @@
             </div>
         </section>
         <section class="col-md-4 secondary-section">
-            <h1 class="text-info">Stares</h1>
+            <h1>Stares</h1>
             <div class="secondary-content">
                 <div class="row">
                     {% for stare in stares %}
                         <article class="col-md-12 articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-6 thumb-keeper">
-                                        <a href="#" class="thumbnail stare-thumbnail">
-                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
-                                        </a>
+                                    <div class="col-sm-6 thumb-keeper col-without-padding">
+                                        <div class="thumb-container">
+                                            <a href="#" class="thumbnail stare-thumbnail">
+                                                <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-without-padding">
                                         <h4>
                                             <small class="pull-right">
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
@@ -63,7 +70,7 @@
                                         </h4>
                                         <p class="hidden-xs">{{ stare.description }}</p>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
                                             <small>Views: {{ stare.views }}</small>
                                             <button class="btn btn-success btn-xs">Like</button>

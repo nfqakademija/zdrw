@@ -3,28 +3,30 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 primary-section">
-            <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Create new</button></a>
-            <h1 class="text-info">Dares</h1>
+            <a href="{{ path('zdrw_new_dare') }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create new</a>
+            <h1>Dares</h1>
             <div class="primary-content">
                 <div class="row">
                     {% for dare in dares %}
                         <article class="articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-2 thumb-keeper">
-                                        <a href="#" class="thumbnail dare-thumbnail">
-                                            <img src="http://placehold.it/100x100" alt="" />
-                                        </a>
-                                        <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                    <div class="col-sm-2 thumb-keeper col-without-padding">
+                                        <div class="thumb-container">
+                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
+                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                            </a>
+                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-10 col-without-padding">
                                         <h4>
                                             <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                             <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
                                         </h4>
                                         <p>{{ dare.description }}</p>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
                                             <small>Views: {{ dare.views }}</small>
                                             <button class="btn btn-success btn-xs">Like</button>
@@ -46,19 +48,21 @@
             </div>
         </section>
         <section class="col-md-4 secondary-section">
-            <h1 class="text-info">Stares</h1>
+            <h1>Stares</h1>
             <div class="secondary-content">
                 <div class="row">
                     {% for stare in stares %}
                         <article class="col-md-12 articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-6 thumb-keeper">
-                                        <a href="#" class="thumbnail stare-thumbnail">
-                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
-                                        </a>
+                                    <div class="col-sm-6 thumb-keeper col-without-padding">
+                                        <div class="thumb-container">
+                                            <a href="#" class="thumbnail stare-thumbnail">
+                                                <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-without-padding">
                                         <h4>
                                             <small class="pull-right">
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
@@ -67,7 +71,7 @@
                                         </h4>
                                         <p class="hidden-xs">{{ stare.description }}</p>
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
                                             <small>Views: {{ stare.views }}</small>
                                             <button class="btn btn-success btn-xs">Like</button>

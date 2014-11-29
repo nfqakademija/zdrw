@@ -164,7 +164,17 @@ module.exports = function (grunt) {
         src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
         dest: '<%= config.out %>/fonts/bootstrap',
         flatten: true
-      }
+      },
+        images: {
+            files: [
+                {
+                    expand: true,
+                    cwd: '<%= config.in %>/img',
+                    src: '{,*/}*.{gif,jpeg,jpg,png}',
+                    dest: '<%= config.out %>/img'
+                }
+            ]
+        }
     }
 
   });
