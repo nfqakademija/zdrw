@@ -146,8 +146,7 @@ class DefaultController extends Controller
      */
     private function getUserDares($id)
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2),
-            'owner' => $id));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('owner' => $id));
         return $dares;
     }
 
@@ -159,9 +158,8 @@ class DefaultController extends Controller
      */
     private function getUserPerformedDares($id)
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2),
-            'participant' => $id));
-        return $dares;
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('participant' => $id));
+        return $stares;
     }
 
     /**
