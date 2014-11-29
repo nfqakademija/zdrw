@@ -1,9 +1,12 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-compass";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 @import "userInNavbar";
+@import "stripes";
+@import "seachBar";
 
-$bg-color: #f8f8f8;
-$light: #f2f2f2;
+$bg-color: rgba(214, 211, 196, 0.50);
+$article-color: #E0DDD4;
+$light: #CDCAB9;
 $font-1: 16pt;
 $font-2: 14pt;
 $font-3: 12pt;
@@ -14,6 +17,14 @@ html{
 body{
   height: 100%;
   padding-top:70px;
+  background: url('../img/back.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+a{
+  color: #6F6E6B;
 }
 .wrap{
   min-height: 100%;
@@ -23,16 +34,16 @@ body{
 }
 footer{
   height: 50px;
-  background-color: #c4baf5;
+  background-color: $bg-color;
   padding: 15px;
   text-align: center;
+  color: black;
 }
 h1,h2,h3,h4,h5,h6{
   margin: 0px 0px 5px 0px;
 }
 h1{
-  text-shadow: 0px 1px 1px #b5b5b5;
-  color: #ffffff;
+  color: #333333;
   font: 40px 'LeagueGothicRegular';
 }
 .font-1{
@@ -47,20 +58,20 @@ h1{
 .profile-content,
 .primary-content,
 .secondary-content{
-  padding: 20px;
-  background-color:$bg-color;
-  border-radius: 10px;
+  background-color: $bg-color;
   outline: none;
-  border-color: #9ecaed;
-  box-shadow: 0 3px 3px #777;
+  border-radius: 7px;
 }
 .profile-section,
 .primary-section,
 .secondary-section{
-  padding: 5px;
+  padding: 20px;
 }
 .articles{
-  padding: 5px;
+  padding: 20px 30px 0px;
+}
+.articles:last-child{
+  padding-bottom: 20px
 }
 .stare-article,
 .dare-article{
@@ -68,9 +79,7 @@ h1{
   h4 small{
     font-size: 8pt;
   }
-  background-color: #FFFFFF;
-  border: 1px solid #E1E1E1;
-  border-radius: 5px;
+  background-color: $article-color;
   padding: 10px;
 }
 .dare-article:hover{
@@ -86,6 +95,7 @@ textarea{
 }
 .dare-thumbnail{
   margin: 0px 0px 5px 0px;
+  max-width: 100px;
 }
 .stare-thumbnail{
   margin-left: auto;
@@ -95,13 +105,13 @@ textarea{
 }
 @media screen and (min-width: 767px) {
   .dividers-left{
-    border-right: 1px solid #E1E1E1;
+    border-right: 1px solid $light;
     margin-top: -15px;
     margin-bottom: -15px;
     padding: 15px;
   }
   .dividers-right{
-    border-left: 1px solid #E1E1E1;
+    border-left: 1px solid $light;
     margin-top: -15px;
     margin-bottom: -15px;
     padding: 15px;
@@ -110,7 +120,7 @@ textarea{
 }
 @media screen and (max-width: 767px) {
   .dividers-left{
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid $light;
     margin-top: -15px;
     margin-bottom: 15px;
     padding: 15px;
@@ -125,4 +135,13 @@ textarea{
 }
 .spinnerBtn{
   float:right;
+}
+.thumb-keeper{
+  padding-right: 0px;
+}
+.thumbnail{
+  margin-bottom: 5px;
+}
+.tabbable a{
+  color: #69B2B2;
 }

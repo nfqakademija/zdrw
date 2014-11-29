@@ -4,18 +4,18 @@
 
     <div class="container page-content">
         <section class="col-md-12 box primary-section">
+            <h1 class="text-info">Admin panel</h1>
             <div class="primary-content">
-                <h1>Admin panel</h1>
-            <ul class="list-group profile-list">
-                {% for stare in stares %}
-                    <li class="list-group-item">
-                        <h4>
-                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
-                        </h4>
-                        <p>{{ stare.description }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+                <ul class="list-group profile-list">
+                    {% for stare in stares %}
+                        <li class="list-group-item">
+                            <h4>
+                                <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                            </h4>
+                            <p>{{ stare.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </section>
     </div>

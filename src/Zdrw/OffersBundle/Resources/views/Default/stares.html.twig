@@ -3,8 +3,8 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 primary-section">
+            <h1 class="text-info">Stares</h1>
             <div class="primary-content">
-                <h1>Stares</h1>
                 <div class="row">
                 {% for stare in stares %}
                     <article class="col-lg-4 col-sm-6 col-xs-12 articles">
@@ -19,20 +19,26 @@
                                     <h4>
                                         <small class="pull-right">
                                             {{ stare.startDate | date("Y-d-m H:i") }}
-                                        </small>
+                                        </small><br>
                                         <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
                                     </h4>
                                 </div>
                                 <div class="col-sm-12">
                                 <p>{{ stare.description }}</p>
                                     <div class="pull-right">
-                                        Views: {{ stare.views }}
+                                        <small>Views: {{ stare.views }}</small>
                                         <button class="btn btn-success btn-xs">Like</button>
-                                        <button class="btn btn-primary btn-xs">Share</button>
                                         <button class="btn btn-warning btn-xs">Comment</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <div class="st st1"></div>
+                            <div class="st st2"></div>
+                            <div class="st st3"></div>
+                            <div class="st st4"></div>
+                            <div class="st st5"></div>
                         </div>
                     </article>
                 {% endfor %}
@@ -40,8 +46,8 @@
             </div>
         </section>
         <section class="col-md-4 secondary-section">
+            <h1 class="text-info">Dares</h1>
             <div class="secondary-content">
-                <h1>Dares</h1>
                 <div class="row">
                 {% for dare in dares %}
                     <article class="col-md-12 articles">
@@ -49,7 +55,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 thumb-keeper">
                                     <a href="#" class="thumbnail dare-thumbnail">
                                         <img src="http://placehold.it/100x100" class="img-responsive" alt="" />
                                     </a>
@@ -66,13 +72,19 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="pull-right">
-                                        Views: {{ dare.views }}
+                                        <small>Views: {{ dare.views }}</small>
                                         <button class="btn btn-success btn-xs">Like</button>
-                                        <button class="btn btn-primary btn-xs">Share</button>
                                         <button class="btn btn-warning btn-xs">Comment</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <div class="st st5"></div>
+                            <div class="st st2"></div>
+                            <div class="st st3"></div>
+                            <div class="st st4"></div>
+                            <div class="st st1"></div>
                         </div>
                     </article>
                 {% endfor %}

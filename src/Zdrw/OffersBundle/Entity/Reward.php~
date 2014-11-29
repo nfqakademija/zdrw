@@ -54,29 +54,6 @@ class Reward
 
 
     /**
-     * Set offerId
-     *
-     * @param integer $offerId
-     * @return Reward
-     */
-    public function setOfferId($offerId)
-    {
-        $this->offerId = $offerId;
-
-        return $this;
-    }
-
-    /**
-     * Get offerId
-     *
-     * @return integer
-     */
-    public function getOfferId()
-    {
-        return $this->offerId;
-    }
-
-    /**
      * Set points
      *
      * @param integer $points

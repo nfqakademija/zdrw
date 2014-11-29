@@ -18,10 +18,14 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <form class="navbar-form navbar-left" method="post" action="{{ path('zdrw_search') }}" role="search">
-                                <div class="form-group">
-                                    <input type="text" name="keyword" class="form-control" placeholder="Search">
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" name="keyword" class="form-control"  placeholder="Search" >
+                                <span class="input-group-addon">
+                                    <button name="search" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
                                 </div>
-                                <button type="submit" name="search" class="btn btn-default">Submit</button>
                             </form>
                         </li>
                     </ul>
@@ -99,6 +103,7 @@
                 </div>
             </div>
         </nav>
+
     </header>
     {% block login %}
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -147,7 +152,7 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">&copy; Zdrw team, 2014</p>
+            <p>&copy; Zdrw team, 2014</p>
         </div>
     </footer>
 {% endblock %}
