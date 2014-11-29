@@ -3,6 +3,7 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 box primary-section">
+            <h1 class="text-info">Dares</h1>
             <div class="primary-content">
                 <div class="row">
                     <article class="articles">
@@ -10,7 +11,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 thumb-keeper">
                                     <a href="#" class="thumbnail dare-thumbnail">
                                         <img src="http://placehold.it/100x100" alt="" />
                                     </a>
@@ -94,7 +95,7 @@
                                                     </div>
                                                     <div class="col-sm-6 dividers-right">
                                                         <p class="lead">Challenge info</p>
-                                                        <mark>Reward: {{ reward }} points</mark>
+                                                        <b>Reward: <span class="text-info">{{ reward }}</span> points</b>
                                                         <br><br>
                                                         {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
                                                             <form method="post">
@@ -134,28 +135,35 @@
                                     </div>
                                 {% endif %}
                                 <div class="col-sm-12">
+                                    <br>
                                     <div class="pull-right">
-                                        Views: {{ dare.views }}
+                                        <small>Views: {{ dare.views }}</small>
                                         <button class="btn btn-success btn-xs">Like</button>
-                                        <button class="btn btn-primary btn-xs">Share</button>
                                         <button class="btn btn-warning btn-xs">Comment</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div class="st st5"></div>
+                            <div class="st st2"></div>
+                            <div class="st st3"></div>
+                            <div class="st st4"></div>
+                            <div class="st st1"></div>
+                        </div>
                     </article>
                 </div>
             </div>
         </section>
-        <section class="col-md-4 box secondary-section">
+        <section class="col-md-4 secondary-section">
+            <h1 class="text-info">Stares</h1>
             <div class="secondary-content">
-                <h1>Stares</h1>
                 <div class="row">
                     {% for stare in stares %}
                         <article class="col-md-12 articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 thumb-keeper">
                                         <a href="#" class="thumbnail stare-thumbnail">
                                             <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
                                         </a>
@@ -169,16 +177,21 @@
                                         </h4>
                                         <p class="hidden-xs">{{ stare.description }}</p>
                                     </div>
-                                    <div class="col-sm-12"><hr></div>
                                     <div class="col-sm-12">
                                         <div class="pull-right">
-                                            Views: {{ stare.views }}
+                                            <small>Views: {{ stare.views }}</small>
                                             <button class="btn btn-success btn-xs">Like</button>
-                                            <button class="btn btn-primary btn-xs">Share</button>
                                             <button class="btn btn-warning btn-xs">Comment</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div>
+                                <div class="st st1"></div>
+                                <div class="st st2"></div>
+                                <div class="st st3"></div>
+                                <div class="st st4"></div>
+                                <div class="st st5"></div>
                             </div>
                         </article>
                     {% endfor %}

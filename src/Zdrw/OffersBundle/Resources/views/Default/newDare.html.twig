@@ -3,62 +3,85 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 box primary-section">
+            <h1 class="text-info">New dare</h1>
             <div class="primary-content">
-                <article class="articles">
-                    <small class="pull-right">
-                    </small>
-                    <h1>New dare</h1>
-                    {{ form_start(form) }}
-                    {{ form_errors(form) }}
-                    <div>
-                        {{ form_label(form.title) }}
-                        {{ form_errors(form.title) }}
-                        {{ form_widget(form.title) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.description) }}
-                        {{ form_errors(form.description) }}
-                        {{ form_widget(form.description) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.longDesc, 'Long description') }}
-                        {{ form_errors(form.longDesc) }}
-                        {{ form_widget(form.longDesc) }}
-                    </div>
-                    <div>
-                        {{ form_widget(form.save) }}
-                        {{ form_end(form) }}
-                    </div>
-                </article>
-            </div>
-        </section>
-        <section class="col-md-4 box secondary-section">
-            <div class="secondary-content">
-                <h1>Stares</h1>
-                {% for stare in stares %}
+                <div class="row">
                     <article class="articles">
-                        <div class="dare-article">
-                            <div style="float:left;width:100%;height:150px;background-color:#777777;margin-bottom:10px;"></div>
-                            <h4>
-                                <small class="pull-right">
-                                    {{ stare.startDate | date("Y-d-m H:i") }}
-                                </small>
-                                <br>
-                                {{ stare.title }}
-                            </h4>
-                            <p class="hidden-xs">{{ stare.description }}</p>
-                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}" class="read-more">Read more</a>
-                            <div class="pull-right">
-                                Views: {{ stare.views }}
-                                <button class="btn btn-success btn-xs">Like</button>
-                                <button class="btn btn-primary btn-xs">Share</button>
-                                <button class="btn btn-warning btn-xs">Comment</button>
+                        <div class="stare-article">
+                            {{ form_start(form) }}
+                            {{ form_errors(form) }}
+                            <div>
+                                {{ form_label(form.title) }}
+                                {{ form_errors(form.title) }}
+                                {{ form_widget(form.title) }}
                             </div>
-                            <br><br>
+                            <div>
+                                {{ form_label(form.description) }}
+                                {{ form_errors(form.description) }}
+                                {{ form_widget(form.description) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.longDesc, 'Long description') }}
+                                {{ form_errors(form.longDesc) }}
+                                {{ form_widget(form.longDesc) }}
+                            </div>
+                            <div>
+                                {{ form_widget(form.save) }}
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="st st5"></div>
+                            <div class="st st2"></div>
+                            <div class="st st3"></div>
+                            <div class="st st4"></div>
+                            <div class="st st1"></div>
                         </div>
                     </article>
-                {% endfor %}
-                &nbsp;
+                </div>
+            </div>
+        </section>
+        <section class="col-md-4 secondary-section">
+            <h1 class="text-info">Stares</h1>
+            <div class="secondary-content">
+                <div class="row">
+                    {% for stare in stares %}
+                        <article class="col-md-12 articles">
+                            <div class="dare-article">
+                                <div class="row">
+                                    <div class="col-sm-6 thumb-keeper">
+                                        <a href="#" class="thumbnail stare-thumbnail">
+                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>
+                                            <small class="pull-right">
+                                                {{ stare.startDate | date("Y-d-m H:i") }}
+                                            </small><br>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                        </h4>
+                                        <p class="hidden-xs">{{ stare.description }}</p>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="pull-right">
+                                            <small>Views: {{ stare.views }}</small>
+                                            <button class="btn btn-success btn-xs">Like</button>
+                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="st st1"></div>
+                                <div class="st st2"></div>
+                                <div class="st st3"></div>
+                                <div class="st st4"></div>
+                                <div class="st st5"></div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </div>
