@@ -3,16 +3,139 @@
 {% block content %}
 
     <div class="container page-content">
-        <section class="col-md-6 box primary-section">
-            <h1>Dares</h1>
-            <div class="primary-content">
-                <br>
+        <section class="col-md-12 primary-section hidden-xs">
+            <div class='row'>
+                <div class='col-md-offset-2 col-md-8'>
+                    <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                        <!-- Bottom Carousel Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#quote-carousel" data-slide-to="1"></li>
+                            <li data-target="#quote-carousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Carousel Slides / Quotes -->
+                        <div class="carousel-inner">
+                            <!-- Quote 1 -->
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p class="font-4">“It takes courage to grow up and become who you really are.” </p>
+                                        <div class="pull-right author">- E.E. Cummings</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quote 2 -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p class="font-4">“All happiness depends on courage and work.” </p>
+                                        <div class="pull-right author">- Honoré de Balzac</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quote 3 -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p class="font-4">“Believe you can and you're halfway there.” </p>
+                                        <div class="pull-right author">- Theodore Roosevelt</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Buttons Next/Prev -->
+                        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="col-md-6 box primary-section">
-            <h1>Stares</h1>
+        <section class="col-md-6 primary-section">
+            <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create your own</button></a>
+            <h1>Dares</h1>
             <div class="primary-content">
-                <br>
+                <div class="row">
+                    {% for dare in dares %}
+                        <article class="articles">
+                            <div class="dare-article">
+                                <div class="row">
+                                    <div class="col-sm-3 thumb-keeper col-without-padding">
+                                        <div class="thumb-container">
+                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
+                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                            </a>
+                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-without-padding">
+                                        <h4>
+                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
+                                            <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
+                                        </h4>
+                                        <p>{{ dare.description }}</p>
+                                    </div>
+                                    <div class="col-sm-12 col-without-padding">
+                                        <div class="pull-right">
+                                            <small>Views: {{ dare.views }}</small>
+                                            <button class="btn btn-success btn-xs">Like</button>
+                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="st st5"></div>
+                                <div class="st st2"></div>
+                                <div class="st st3"></div>
+                                <div class="st st4"></div>
+                                <div class="st st1"></div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="col-md-6 secondary-section">
+            <h1>Stares</h1>
+            <div class="secondary-content">
+                <div class="row">
+                    {% for stare in stares %}
+                        <article class="col-lg-6 col-sm-6 col-xs-12 articles">
+                            <div class="dare-article">
+                                <div class="row">
+                                    <div class="col-sm-12 col-without-padding">
+                                        <a href="#" class="thumbnail stare-thumbnail">
+                                            <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-12 col-without-padding">
+                                        <h4>
+                                            <small class="pull-right">
+                                                {{ stare.startDate | date("Y-d-m H:i") }}
+                                            </small><br>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-sm-12 col-without-padding">
+                                        <p>{{ stare.description }}</p>
+                                        <div class="pull-right">
+                                            <small>Views: {{ stare.views }}</small>
+                                            <button class="btn btn-success btn-xs">Like</button>
+                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="st st1"></div>
+                                <div class="st st2"></div>
+                                <div class="st st3"></div>
+                                <div class="st st4"></div>
+                                <div class="st st5"></div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </div>

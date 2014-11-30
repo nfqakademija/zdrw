@@ -1,0 +1,120 @@
+.font-4{
+  font-size: 26pt;
+  font-family: 'Tangerine', serif;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 3px #e2e2e2;
+}
+
+.carousel-inner{
+  min-height:200px;
+}
+
+.author{
+  font-size: 15pt;
+  color: rgba(226, 226, 226, 0.60);
+  font-family: 'Tangerine', serif;
+}
+
+/* carousel */
+#quote-carousel
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px 0px 0px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 5.3em;
+  text-shadow: none;
+  margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left
+{
+  font-size:45pt;
+  left: -40px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right
+{
+  font-size:45pt;
+  right: -40px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li
+{
+  background: rgba(32, 40, 41, 0.51);
+  border: none;
+}
+#quote-carousel .carousel-indicators .active
+{
+  background: #202829;
+  border: none;
+}
+/* End carousel */
+
+.item blockquote {
+  border-left: none;
+  margin: 0;
+}
+
+.item blockquote img {
+  margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+  content: "\f10d";
+  font-family: 'Fontawesome';
+  float: left;
+  margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #quote-carousel
+  {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+    margin-top: 30px;
+  }
+
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) {
+
+  /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+
+  #quote-carousel .carousel-indicators {
+    bottom: -20px !important;
+  }
+  #quote-carousel .carousel-indicators li {
+    display: inline-block;
+    margin: 0px 5px;
+    width: 15px;
+    height: 15px;
+  }
+  #quote-carousel .carousel-indicators li.active {
+    margin: 0px 5px;
+    width: 20px;
+    height: 20px;
+  }
+}

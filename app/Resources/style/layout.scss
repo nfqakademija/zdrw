@@ -3,6 +3,7 @@
 @import "userInNavbar";
 @import "stripes";
 @import "seachBar";
+@import "qoutes";
 
 $bg-color: rgba(214, 211, 196, 0.50);
 $article-color: #E0DDD4;
@@ -148,8 +149,10 @@ textarea{
 .list-group-item:hover{
   background-color: $light;
 }
-.i-did-it{
+.i-did-it,
+.i-will-do-it{
   width: 100%;
+  margin-bottom: 7px;
 }
 .spinnerBtn{
   width: 100%;

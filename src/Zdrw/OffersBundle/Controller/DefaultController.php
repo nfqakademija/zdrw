@@ -15,16 +15,6 @@ use Zdrw\OffersBundle\Form\Type\OfferType;
 class DefaultController extends Controller
 {
     /**
-     * Method to render the main project page
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function indexAction()
-    {
-        return $this->render("ZdrwOffersBundle:Default:index.html.twig", array('user' => $this->getUser()));
-    }
-
-    /**
      * Method to add points to offer
 
      * @param $user
@@ -146,7 +136,7 @@ class DefaultController extends Controller
      */
     private function getUserDares($id)
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('owner' => $id));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('owner' => $id), array('id' => 'desc'));
         return $dares;
     }
 
@@ -158,7 +148,7 @@ class DefaultController extends Controller
      */
     private function getUserPerformedDares($id)
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('participant' => $id));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('participant' => $id), array('id' => 'desc'));
         return $stares;
     }
 
@@ -169,7 +159,7 @@ class DefaultController extends Controller
      */
     private function getDares()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)), array('id' => 'desc'));
         return $dares;
     }
 
@@ -180,8 +170,20 @@ class DefaultController extends Controller
      */
     private function getStares()
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5));
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'));
         return $stares;
+    }
+
+    /**
+     * Method to render the main project page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction()
+    {
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)), array('id' => 'desc'),2);
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'),2);
+        return $this->render("ZdrwOffersBundle:Default:index.html.twig", array('dares' => $dares,'stares' => $stares, 'user' => $this->getUser()));
     }
 
     /**
@@ -193,8 +195,7 @@ class DefaultController extends Controller
     {
         $dares = $this->getDares();
         $stares = $this->getStares();
-        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares,
-            'user'=> $this->getUser()));
+        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()));
     }
 
     /**
@@ -227,9 +228,8 @@ class DefaultController extends Controller
         foreach ($rewards as $r) {
             $reward += $r->getPoints();
         }
-        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findAll();
-        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares,
-            'user' => $user, 'reward' => $reward, 'points' => $pointsMsg));
+        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findBy(array(), array('id' => 'desc'), 3);
+        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'points' => $pointsMsg));
     }
 
     /**

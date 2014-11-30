@@ -1,7 +1,8 @@
 {
     "zdrw.js": [
         "addNumber.js",
-        "uploadVideo.js"
+        "uploadVideo.js",
+        "qoutes.js"
     ],
     "app.js": [
         "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
