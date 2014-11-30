@@ -63,8 +63,10 @@
                                 </div>
                                 <div class="col-sm-8 col-without-padding">
                                     <h4>
+                                        <small class="pull-right">
+                                            {{ dare.startDate | date("Y-d-m H:i") }}
+                                        </small><br>
                                         <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
-                                        <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
                                     </h4>
                                     <p>{{ dare.description }}</p>
                                 </div>
