@@ -34,6 +34,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
         $offer2->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
         $offer2->setCategoryId(1);
         $offer2->setStatus(3);
+        $offer2->setParticipant($user);
         $offer2->setFinishDate(new \DateTime('tomorrow'));
         $offer2->setViews(0);
         $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));

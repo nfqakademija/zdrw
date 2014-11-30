@@ -51,7 +51,9 @@
             </div>
         </section>
         <section class="col-md-6 primary-section">
-            <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create your own</button></a>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create your own</button></a>
+            {% endif %}
             <h1>Dares</h1>
             <div class="primary-content">
                 <div class="row">

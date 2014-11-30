@@ -53,16 +53,26 @@ class DefaultController extends Controller
      */
     private function declineVideo($user, $dare, $manager)
     {
-        if ($user == $dare->getOwner()) {
+        $securityContext = $this->container->get('security.context');
+        $not1 = new Notification();
+        $not1->setUser($dare->getParticipant());
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            $dare->setStatus(1);
+
+            $not1->setNotification("Admin declined your video of confirmation. Now dare is available for everyone");
+
+            $not2 = new Notification();
+            $not2->setUser($dare->getOwner());
+            $not2->setNotification("Admin declined video of confirmation for your dare. Now dare is available for everyone");
+            $manager->persist($not2);
+
+        } elseif ($user == $dare->getOwner()) {
             $dare->setStatus(4);
-
-            $not1 = new Notification();
-            $not1->setUser($dare->getParticipant());
             $not1->setNotification("Dare owner declined your video of confirmation. Website admins will review your video.");
-            $manager->persist($not1);
-
-            $manager->flush();
         }
+        $manager->persist($not1);
+        $manager->flush();
     }
 
     /**
@@ -74,33 +84,39 @@ class DefaultController extends Controller
      */
     private function acceptVideo($user, $dare, $manager)
     {
+        $securityContext = $this->container->get('security.context');
+
         $participant = $dare->getParticipant();
+        $rewards = $dare->getRewards();
+        $reward = 0;
+        foreach ($rewards as $r) {
+            $reward += $r->getPoints();
+            $manager->remove($r);
+        }
+        $partPoints = $participant->getPoints();
+        $partPoints += $reward;
+        $participant->setPoints($partPoints);
 
-        if ($user == $dare->getOwner()) {
-            $rewards = $dare->getRewards();
-            $reward = 0;
-            foreach ($rewards as $r) {
-                $reward += $r->getPoints();
-                $manager->remove($r);
-            }
-            $partPoints = $participant->getPoints();
-            $partPoints += $reward;
-            $participant->setPoints($partPoints);
+        $dare->setStatus(5);
 
-            $dare->setStatus(5);
+        $not1 = new Notification();
+        $not1->setUser($participant);
+        $not2 = new Notification();
 
-            $not1 = new Notification();
-            $not1->setUser($dare->getParticipant());
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            $not1->setNotification("Admin accepted your video of confirmation. You got " . $reward . " points. Congratulations!");
+
+            $not2->setUser($dare->getOwner());
+            $not2->setNotification("Admin have accepted video of your offer");
+        } elseif ($user == $dare->getOwner()) {
             $not1->setNotification("Dare owner accepted your video of confirmation. You got " . $reward . " points. Congratulations!");
-            $manager->persist($not1);
 
-            $not2 = new Notification();
             $not2->setUser($user);
             $not2->setNotification("You have accepted video of your offer");
-            $manager->persist($not2);
-
-            $manager->flush();
         }
+        $manager->persist($not1);
+        $manager->persist($not2);
+        $manager->flush();
     }
 
     /**
@@ -228,7 +244,7 @@ class DefaultController extends Controller
         foreach ($rewards as $r) {
             $reward += $r->getPoints();
         }
-        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findBy(array(), array('id' => 'desc'), 3);
+        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'), 3);
         return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'points' => $pointsMsg));
     }
 

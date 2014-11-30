@@ -3,7 +3,9 @@
 {% block content %}
     <div class="container page-content">
         <section class="col-md-8 primary-section">
-            <a href="{{ path('zdrw_new_dare') }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create new</a>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href="{{ path('zdrw_new_dare') }}" class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create new</a>
+            {% endif %}
             <h1>Dares</h1>
             <div class="primary-content">
                 <div class="row">
