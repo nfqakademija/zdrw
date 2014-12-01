@@ -27,3 +27,8 @@ parameters:
     vimeo_client_id: af37f59e59f7ddc9ebb654059251e1c9ae9f828d
     vimeo_client_secret: 13c838265b3c9269168ea141461aefacda5fa874
     vimeo_access_token: 83e9c9f2bfc60904a77696e450d62996
+
+    mailer_transport: gmail
+    mailer_host: ~
+    mailer_user: dareorstare
+    mailer_password: zdrwacademy
