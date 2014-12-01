@@ -1,0 +1,32 @@
+$brand-primary:         #0D8390;
+$brand-success:         #51A06B;
+$brand-info:            #69B2B2;
+$brand-warning:         #F0AD4E;
+$brand-danger:          #e84144;
+
+$dropdown-bg:           #f8f5ec;
+
+$navbar-default-color:             #ECD078;
+$navbar-default-bg:                #352312;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%);
+
+// Navbar links
+$navbar-default-link-color:                #D6D3C4;
+$navbar-default-link-hover-color:          #e84144;
+
+
+$state-success-text:             #3c763d !default;
+$state-success-bg:               #b7c3b2 !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%);
+
+$state-info-text:                #0D8390 !default;
+$state-info-bg:                  #a7bac3 !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%);
+
+$state-warning-text:             #8a6d3b !default;
+$state-warning-bg:               #f6da85 !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 10%);
+
+$state-danger-text:              #d95553 !default;
+$state-danger-bg:                #ebb8aa !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
