@@ -6,7 +6,7 @@
     ],
     "app.js": [
         "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
-        "popcorn.js"
+        "../../../bower_components/popcorn-js/popcorn.js"
     ],
     "jquery.js": [
         "../../../bower_components/jquery/dist/jquery.min.js"

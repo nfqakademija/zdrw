@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass-official": "~3.2.0",
-    "jquery": "1.11.1"
+    "jquery": "1.11.1",
+    "popcorn-js": "1.5.2"
   }
 }
