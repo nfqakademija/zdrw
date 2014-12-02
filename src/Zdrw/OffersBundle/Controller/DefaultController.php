@@ -152,7 +152,10 @@ class DefaultController extends Controller
      */
     private function getUserDares($id)
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('owner' => $id), array('id' => 'desc'));
+        $dares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('owner' => $id), array('id' => 'desc'));
         return $dares;
     }
 
@@ -164,7 +167,10 @@ class DefaultController extends Controller
      */
     private function getUserPerformedDares($id)
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('participant' => $id), array('id' => 'desc'));
+        $stares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('participant' => $id), array('id' => 'desc'));
         return $stares;
     }
 
@@ -175,7 +181,10 @@ class DefaultController extends Controller
      */
     private function getDares()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)), array('id' => 'desc'));
+        $dares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'));
         return $dares;
     }
 
@@ -186,7 +195,10 @@ class DefaultController extends Controller
      */
     private function getStares()
     {
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'));
+        $stares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('status' => 5), array('id' => 'desc'));
         return $stares;
     }
 
@@ -197,9 +209,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => array(1,2)), array('id' => 'desc'),2);
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'),2);
-        return $this->render("ZdrwOffersBundle:Default:index.html.twig", array('dares' => $dares,'stares' => $stares, 'user' => $this->getUser()));
+        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
+            findBy(array('status' => array(1, 2)), array('id' => 'desc'), 2);
+        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
+            findBy(array('status' => 5), array('id' => 'desc'), 2);
+        return $this->render(
+            "ZdrwOffersBundle:Default:index.html.twig",
+            array('dares' => $dares, 'stares' => $stares, 'user' => $this->getUser()
+            )
+        );
     }
 
     /**
@@ -211,7 +229,11 @@ class DefaultController extends Controller
     {
         $dares = $this->getDares();
         $stares = $this->getStares();
-        return $this->render('ZdrwOffersBundle:Default:dares.html.twig', array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()));
+        return $this->render(
+            'ZdrwOffersBundle:Default:dares.html.twig',
+            array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
+            )
+        );
     }
 
     /**
@@ -244,8 +266,14 @@ class DefaultController extends Controller
         foreach ($rewards as $r) {
             $reward += $r->getPoints();
         }
-        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 5), array('id' => 'desc'), 3);
-        return $this->render("ZdrwOffersBundle:Default:dare.html.twig", array('dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'points' => $pointsMsg));
+        $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->
+            findBy(array('status' => 5), array('id' => 'desc'), 3);
+        return $this->render(
+            "ZdrwOffersBundle:Default:dare.html.twig",
+            array(
+            'dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'points' => $pointsMsg
+            )
+        );
     }
 
     /**
@@ -273,7 +301,12 @@ class DefaultController extends Controller
                 return $this->redirect($this->generateUrl('zdrw_dares'));
             }
         }
-        return $this->render("ZdrwOffersBundle:Default:newDare.html.twig", array('form' => $form->createView(), 'stares' => $stares, 'user' => $user));
+        return $this->render(
+            "ZdrwOffersBundle:Default:newDare.html.twig",
+            array(
+            'form' => $form->createView(), 'stares' => $stares, 'user' => $user
+            )
+        );
     }
 
 
@@ -286,7 +319,12 @@ class DefaultController extends Controller
     {
         $dares = $this->getDares();
         $stares = $this->getStares();
-        return $this->render('ZdrwOffersBundle:Default:stares.html.twig', array('stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()));
+        return $this->render(
+            'ZdrwOffersBundle:Default:stares.html.twig',
+            array(
+                'stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()
+            )
+        );
     }
 
     /**
@@ -297,7 +335,10 @@ class DefaultController extends Controller
      */
     private function getNotifications($id)
     {
-        $notifications = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->findBy(array("user" => $id));
+        $notifications = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Notification')
+            ->findBy(array("user" => $id));
         return $notifications;
     }
 
@@ -316,7 +357,12 @@ class DefaultController extends Controller
             $notifications = $this->getNotifications($user->getId());
             $dares = $this->getUserDares($user->getId());
             $stares = $this->getUserPerformedDares($user->getId());
-            return $this->render('ZdrwOffersBundle:Default:profile.html.twig', array('notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares));
+            return $this->render(
+                'ZdrwOffersBundle:Default:profile.html.twig',
+                array(
+                    'notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares
+                )
+            );
         }
     }
 
@@ -333,7 +379,12 @@ class DefaultController extends Controller
         $notifications = $this->getNotifications($user->getId());
         $dares = $this->getUserDares($user->getId());
         $stares = $this->getUserPerformedDares($user->getId());
-        return $this->render('ZdrwOffersBundle:Default:user.html.twig', array('user' => $user, 'notifications' => $notifications, 'dares' => $dares, 'stares' => $stares));
+        return $this->render(
+            'ZdrwOffersBundle:Default:user.html.twig',
+            array(
+                'user' => $user, 'notifications' => $notifications, 'dares' => $dares, 'stares' => $stares
+            )
+        );
     }
 
     /**
@@ -351,7 +402,11 @@ class DefaultController extends Controller
             $dares = $manager->searchForDares($keyword);
             $stares = $manager->searchForStares($keyword);
         }
-        return $this->render('ZdrwOffersBundle:Default:search.html.twig', array('dares' => $dares,'stares' => $stares,
-        'user'=> $this->getUser()));
+        return $this->render(
+            'ZdrwOffersBundle:Default:search.html.twig',
+            array(
+                'dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
+            )
+        );
     }
 }
