@@ -20,15 +20,15 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    facebook_app_id: 832824790073559
-    facebook_app_secret: 7b5972e328fe33d50d4569c4c5eb80e4
-    google_app_id: 453981874681-vkj38n42ii1o1tb24qqiii0tgpsueo7q.apps.googleusercontent.com
-    google_app_secret: 3hPiBTTWozs1F7kve351Qlhp
-    vimeo_client_id: af37f59e59f7ddc9ebb654059251e1c9ae9f828d
-    vimeo_client_secret: 13c838265b3c9269168ea141461aefacda5fa874
-    vimeo_access_token: 83e9c9f2bfc60904a77696e450d62996
+    facebook_app_id: ~
+    facebook_app_secret: ~
+    google_app_id: ~
+    google_app_secret: ~
+    vimeo_client_id: ~
+    vimeo_client_secret: ~
+    vimeo_access_token: ~
 
     mailer_transport: gmail
     mailer_host: ~
     mailer_user: dareorstare
-    mailer_password: zdrwacademy
+    mailer_password: ~
