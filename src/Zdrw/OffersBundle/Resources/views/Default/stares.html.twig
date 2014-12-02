@@ -24,7 +24,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-sm-12 col-without-padding">
-                                    <p>{{ stare.description }}</p>
+                                    <p>{{ stare.description|length > 100 ? stare.description|slice(0, 100) ~ '...' : stare.description  }}</p>
                                     <div class="pull-right">
                                         <small>Views: {{ stare.views }}</small>
                                         <button class="btn btn-success btn-xs">Like</button>
@@ -68,7 +68,7 @@
                                         </small><br>
                                         <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                     </h4>
-                                    <p>{{ dare.description }}</p>
+                                    <p>{{ dare.description|length > 100 ? dare.description|slice(0, 100) ~ '...' : dare.description  }}</p>
                                 </div>
                                 <div class="col-sm-12 col-without-padding">
                                     <div class="pull-right">
