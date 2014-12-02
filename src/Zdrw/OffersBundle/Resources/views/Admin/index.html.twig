@@ -3,8 +3,35 @@
 {% block content %}
 
     <div class="container page-content">
-        <section class="col-md-12 box primary-section">
-            <h1>Admin panel</h1>
+        <section class="col-md-3 box primary-section">
+            <h1>Points addition</h1>
+            <div class="primary-content">
+                <div class="articles">
+                    <div class="stare-article col-md ">
+                        {{ form_start(form) }}
+
+                        {{ form_label(form.nickname) }}
+                        {{ form_widget(form.nickname, { 'attr': {'class': 'form-control'} }) }}
+                        <br>
+                        {{ form_label(form.points) }}
+                        {{ form_widget(form.points, { 'attr': {'class': 'form-control'} }) }}
+                        <br>
+                        {{ form_row(form.save, { 'attr': {'class': 'btn btn-primary add-points'} }) }}
+
+                        {{ form_end(form) }}
+                        {% if points == 1 %}
+                            <br>
+                            <div class="alert alert-success" role="alert">You have added points to <b>{{ userNick }}</b>, now he have got <b>{{ userPoints }}</b> points</div>
+                        {% elseif points == 2 %}
+                            <br>
+                            <div class="alert alert-danger" role="alert">You have specified wrong username</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="col-md-9 box secondary-section">
+            <h1>Dares confirmation</h1>
             <div class="primary-content">
                 <ul class="list-group profile-list">
                     {% for stare in stares %}
