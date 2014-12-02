@@ -20,15 +20,12 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
-    facebook_app_id: ~
-    facebook_app_secret: ~
-    google_app_id: ~
-    google_app_secret: ~
-    vimeo_client_id: ~
-    vimeo_client_secret: ~
-    vimeo_access_token: ~
+    facebook_app_id: changeme
+    facebook_app_secret: changeme
+    google_app_id: changeme
+    google_app_secret: changeme
 
     mailer_transport: gmail
-    mailer_host: ~
+    mailer_host: changeme
     mailer_user: dareorstare
-    mailer_password: ~
+    mailer_password: changeme

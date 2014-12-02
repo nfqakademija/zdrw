@@ -26,7 +26,7 @@ class AdminController extends Controller
             );
         }
         else{
-            return $this->redirect($this->generateUrl('zdrw_index'),301);
+            return $this->redirect($this->generateUrl('zdrw_index'), 301);
         }
     }
 }

@@ -1,5 +1,4 @@
 <?php
-ini_set('max_execution_time', 3600); // prints 10 (or whatever the old value was)
 
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;

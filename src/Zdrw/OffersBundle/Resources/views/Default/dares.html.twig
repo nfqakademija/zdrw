@@ -26,7 +26,7 @@
                                             <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                             <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
                                         </h4>
-                                        <p>{{ dare.description }}</p>
+                                        <p>{{ dare.description|length > 200 ? dare.description|slice(0, 200) ~ '...' : dare.description  }}</p>
                                     </div>
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
@@ -71,7 +71,7 @@
                                             </small><br>
                                             <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
                                         </h4>
-                                        <p class="hidden-xs">{{ stare.description }}</p>
+                                        <p class="hidden-xs">{{ stare.description|length > 100 ? stare.description|slice(0, 100) ~ '...' : stare.description  }}</p>
                                     </div>
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
