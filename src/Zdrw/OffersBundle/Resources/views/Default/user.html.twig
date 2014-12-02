@@ -15,23 +15,11 @@
         <section class="col-md-9 primary-section">
             <div class="tabbable tabs-left">
                 <ul class="nav nav-pills">
-                    <li class="active"><a href="#A" data-toggle="tab">Notifications</a></li>
-                    <li class=""><a href="#B" data-toggle="tab">Posted dares</a></li>
+                    <li class="active"><a href="#B" data-toggle="tab">Posted dares</a></li>
                     <li class=""><a href="#C" data-toggle="tab">Accepted challenges</a></li>
                 </ul>
                 <br>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="A">
-                        <ul class="list-group profile-list">
-                            {% for n in notifications %}
-                                <li class="list-group-item">
-                                    <p>{{ n.notification }}</p>
-                                    <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
-                                    <br>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
                     <div class="tab-pane" id="B">
                         <ul class="list-group profile-list">
                             {% for dare in dares %}
