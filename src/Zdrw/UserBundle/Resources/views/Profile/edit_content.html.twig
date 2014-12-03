@@ -2,18 +2,7 @@
 
 <div class="container page-content">
     <div class="row">
-        <section class="col-md-3 profile-section">
-            <article class="profile">
-                <a href="#" class="thumbnail avatar2"><img src="http://placehold.it/260x180" alt=""></a>
-                <p class="panel panel-body articles">
-                    <b class="font-1">{{ userInfo.name }}</b><br>
-                    {{ userInfo.email }}
-                    <br><br>
-                    <a class="text-info" href="{{ path('zdrw_profile') }}">Profile page</a>
-                </p>
-            </article>
-        </section>
-        <section class="primary-section col-md-4">
+        <section class="primary-section col-md-offset-4 col-md-4">
             <div class="well">
                 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
                     {{ form_label(form.username) }}
@@ -26,15 +15,14 @@
                     {{ form_widget(form.current_password, {'attr': {'class': 'form-control'}}) }}
 
                     {{ form_rest(form) }}
+                    <br>
                     {% if not form.vars.valid %}
-                        <br>
                         <div class="alert alert-danger">
                             {{ form_errors(form.username) }}
                             {{ form_errors(form.email) }}
                             {{ form_errors(form.current_password) }}
                         </div>
                     {% endif %}
-                    <br>
                     <div>
                         <input class="btn btn-primary btn-block" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
                     </div>

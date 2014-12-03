@@ -344,30 +344,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method to render user profile page with that user data
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function profileAction()
-    {
-
-        if (!$this->get('security.context')->isGranted('ROLE_USER')) {
-            return $this->redirect($this->generateUrl('homepage'));
-        } else {
-            $user = $this->getUser();
-            $notifications = $this->getNotifications($user->getId());
-            $dares = $this->getUserDares($user->getId());
-            $stares = $this->getUserPerformedDares($user->getId());
-            return $this->render(
-                'ZdrwOffersBundle:Default:profile.html.twig',
-                array(
-                    'notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares
-                )
-            );
-        }
-    }
-
-    /**
      * Method to render certain user profile page
      *
      * @param $name

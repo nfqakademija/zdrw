@@ -47,7 +47,7 @@ class DefaultControllerFunctionalTest extends setup
     public function testProfile()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/profile2');
+        $crawler = $setup->client->request('GET', '/profile/');
         $this->assertGreaterThan(0, $crawler->filter('.tab-content:contains("Test notification 1")')->count());
         $link = $crawler->selectLink('Posted dares')->link();
         $crawler = $setup->client->click($link);
