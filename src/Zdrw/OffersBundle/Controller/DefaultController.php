@@ -150,7 +150,7 @@ class DefaultController extends Controller
      * @param $id
      * @return array
      */
-    private function getUserDares($id)
+    public function getUserDares($id)
     {
         $dares = $this
             ->getDoctrine()
@@ -165,7 +165,7 @@ class DefaultController extends Controller
      * @param $id
      * @return array
      */
-    private function getUserPerformedDares($id)
+    public function getUserPerformedDares($id)
     {
         $stares = $this
             ->getDoctrine()
@@ -328,12 +328,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method to get user DARES, STARES and NOTIFICATIONS
+     * Method to get user notifications
      *
      * @param $id
      * @return array
      */
-    private function getNotifications($id)
+    public function getNotifications($id)
     {
         $notifications = $this
             ->getDoctrine()

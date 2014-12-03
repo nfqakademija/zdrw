@@ -2,6 +2,10 @@ zdrw_login:
     path:     /login/
     defaults: { _controller: ZdrwUserBundle:Security:loginPage }
 
+zdrw_profile:
+    path:     /profile/
+    defaults: { _controller: ZdrwUserBundle:Profile:show }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 

@@ -3,9 +3,19 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
-    {% endif %}
+    <div class="container page-content">
+        <div class="row">
+            <section class="col-sm-12"><br><br></section>
+            <section class="stare-section col-sm-offset-2 col-sm-8">
+                <div class="primary-content articles">
+                    <div class="stare-article text-center">
+                        <p class="font-2">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                        {% if app.session is not empty %}
+                            <a href="{{ path('zdrw_dares') }}" class="font-2 text-info">Click here to continue</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 {% endblock fos_user_content %}

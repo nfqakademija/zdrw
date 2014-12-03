@@ -3,7 +3,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+    <div class="container page-content">
+        <div class="row">
+            <section class="col-sm-12"><br><br></section>
+            <section class="stare-section col-sm-offset-2 col-sm-8">
+                <div class="primary-content articles">
+                    <div class="stare-article">
+                        <p class="font-1">
+                            {{ 'resetting.check_email'|trans({'%email%': email}) }}
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 {% endblock %}

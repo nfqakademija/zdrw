@@ -10,7 +10,7 @@ $bg-color: rgba(214, 211, 196, 0.50);
 $article-color: #E0DDD4;
 $light: #CDCAB9;
 $font-1: 16pt;
-$font-2: 14pt;
+$font-2: 24pt;
 $font-3: 12pt;
 
 html{
@@ -42,6 +42,9 @@ a{
 }
 a:hover{
   text-decoration: none;
+}
+.text-white{
+  color: #FFFFFF;
 }
 .wrap{
   min-height: 100%;

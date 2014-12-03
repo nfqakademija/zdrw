@@ -6,7 +6,7 @@ zdrw_dares:
     defaults: { _controller: ZdrwOffersBundle:Default:dares }
 zdrw_dare:
     path:     /dare/{id}
-    defaults: { _controller: ZdrwOffersBundle:Default:dare, id: 0}
+    defaults: { _controller: ZdrwOffersBundle:Default:dare }
 zdrw_new_dare:
     path:     /new
     defaults: { _controller: ZdrwOffersBundle:Default:newDare}
