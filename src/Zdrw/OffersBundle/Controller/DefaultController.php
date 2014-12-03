@@ -6,6 +6,7 @@ use Zdrw\OffersBundle\Entity\Notification;
 use Zdrw\OffersBundle\Entity\Reward;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zdrw\OffersBundle\Entity\Offer;
+use Zdrw\OffersBundle\Entity\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
 
@@ -25,7 +26,7 @@ class DefaultController extends Controller
      */
     private function addPoints($user, $points, $dare, $manager)
     {
-        if (($user->getPoints() >= $points) && ($points > 0)) {
+        if (($user->getPoints() >= $points) && ($points >= 0)) {
             $reward = new Reward();
             $reward->setUser($user);
             $reward->setOffer($dare);
@@ -293,7 +294,7 @@ class DefaultController extends Controller
             $form = $this->createForm(new OfferType(), $offer);
             $form->handleRequest($request);
 
-            if ($form->isValid()) {
+            if ($form->isValid() && (strlen($offer->getDescription()) <= 500) && (strlen($offer->getLongDesc()) <= 1000)) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($offer);
                 $em->flush();

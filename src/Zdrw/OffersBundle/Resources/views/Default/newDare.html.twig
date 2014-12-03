@@ -20,12 +20,14 @@
                                 <span class="control-label">{{ form_label(form.description) }}:</span>
                                 {{ form_errors(form.description) }}
                                 {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                <span>Maximum 500 symbols</span>
                             </div>
                             <br>
                             <div>
                                 <span class="control-label">{{ form_label(form.longDesc, 'Long description') }}:</span>
                                 {{ form_errors(form.longDesc) }}
                                 {{ form_widget(form.longDesc, {'attr': {'class': 'form-control'}}) }}
+                                <span>Maximum 1000 symbols</span>
                             </div>
                             <div>
                                 <br>
@@ -57,7 +59,7 @@
                                     <div class="col-sm-6 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
                                             <a href="#" class="thumbnail stare-thumbnail">
-                                                <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                                <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
                                             </a>
                                         </div>
                                     </div>

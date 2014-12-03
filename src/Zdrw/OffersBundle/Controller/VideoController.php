@@ -3,8 +3,6 @@
 namespace Zdrw\OffersBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Vimeo\Vimeo;
-use Vimeo\Exceptions\VimeoUploadException;
 use Symfony\Component\HttpFoundation\Response;
 use Zdrw\OffersBundle\Entity\Notification;
 
@@ -32,10 +30,14 @@ class VideoController extends Controller
                 $ret = "ERROR: Please browse for a file before clicking the upload button.";
             } else {
                 if (($filetype == "video/avi") || ($filetype == "video/mpeg") || ($filetype == "video/mpg")
-                    || ($filetype == "video/mov") || ($filetype == "video/wmv") || ($filetype == "video/mp4")
-                ) {
+                    || ($filetype == "video/mov") || ($filetype == "video/wmv") || ($filetype == "video/mp4")) {
 
                     if (move_uploaded_file($fileTmpLoc, "uploads/$fileName")) {
+                        $path = $this->get('kernel')->getRootDir().'/../web/';
+                        $video = $path."uploads/".$fileName;
+                        $image = $path."uploads/thumb/".$offerId.".jpg";
+                        shell_exec("ffmpeg -i $video -deinterlace -an -ss 1 -t 00:00:10 -r 1 -y -vcodec mjpeg -f mjpeg $image 2>&1");
+
                         $manager = $this->getDoctrine()->getManager();
                         $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $offerId));
                         $offer->setParticipantId($user->getId());
@@ -55,7 +57,6 @@ class VideoController extends Controller
                         $manager->persist($notification);
                         $manager->flush();
 
-
                         $ret = "Upload is complete";
                     } else {
                         $ret = "move_uploaded_file function failed";
@@ -64,8 +65,9 @@ class VideoController extends Controller
                     $ret = "You have selected wrong format. Allowed: AVI, MPG, MOV, WMV, MP4";
                 }
             }
-        } else
+        } else {
             $ret = "Please login";
+        }
         return new Response($ret);
     }
 }

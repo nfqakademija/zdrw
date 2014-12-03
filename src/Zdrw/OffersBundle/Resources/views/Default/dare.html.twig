@@ -26,8 +26,12 @@
                                     {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (dare.status == 5) or (user and dare.status == 4 and is_granted('ROLE_ADMIN'))%}
                                         <div class="well">
                                         <h2 class="lead">Challenge fulfilment proof</h2>
-                                        <video height="360" width="540" id="video" controls>
-                                            <source src="../../uploads/{{ dare.video }}"/>
+                                        <video preload="auto" height="360" width="520" poster="../../uploads/thumb/{{ dare.id }}.jpg" class="video-js vjs-default-skin vjs-big-play-centered" id="video" data-setup='{}' controls>
+                                            <source src="../../uploads/{{ dare.video }}" type='video/mp4'/>
+                                            <p class="vjs-no-js">
+                                                To view this video please enable JavaScript, and consider upgrading to a web browser
+                                                that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                            </p>
                                         </video>
                                         {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (user and dare.status == 4 and is_granted('ROLE_ADMIN')) %}
                                             <form method="post">
@@ -176,7 +180,7 @@
                                     <div class="col-sm-6 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
                                             <a href="#" class="thumbnail stare-thumbnail">
-                                                <img src="http://placehold.it/350x260" class="img-responsive" alt="" />
+                                                <img src="../../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
                                             </a>
                                         </div>
                                     </div>
