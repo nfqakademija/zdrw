@@ -56,8 +56,8 @@ class DefaultControllerFunctionalTest extends setup
     public function testUser()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/user/testUser1');
-        $this->assertGreaterThan(0, $crawler->filter('.profile p:contains("testUser1@gmail.com")')->count());
+        $crawler = $setup->client->request('GET', '/user/TestUser1');
+        $this->assertGreaterThan(0, $crawler->filter('.profile p:contains("TestUser1")')->count());
     }
     public function testAdminIndex()
     {
