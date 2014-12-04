@@ -6,6 +6,10 @@ zdrw_profile:
     path:     /profile/
     defaults: { _controller: ZdrwUserBundle:Profile:show }
 
+zdrw_user:
+    path:     /user/{name}
+    defaults: { _controller: ZdrwOffersBundle:Default:user}
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 

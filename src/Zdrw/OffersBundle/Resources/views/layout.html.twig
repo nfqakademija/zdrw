@@ -17,14 +17,13 @@
                 <div class="navbar-collapse collapse" style="overflow:hidden;">
                     <ul class="nav navbar-nav">
                         <li>
-                            <form class="navbar-form navbar-left" method="post" action="{{ path('zdrw_search') }}" role="search">
-                                <div class="input-group stylish-input-group">
-                                    <input type="text" name="keyword" class="form-control"  placeholder="Search" >
-                                <span class="input-group-addon">
+
+                            <form method="post" action="{{ path('zdrw_search') }}" role="search" id="custom-search-form" class="form-search form-horizontal pull-right">
+                                <div class="input-append span12">
+                                    <input type="text" class="search-query mac-style" name="keyword" class="form-control"  placeholder="Search" >
                                     <button name="search" type="submit">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
-                                </span>
                                 </div>
                             </form>
                         </li>

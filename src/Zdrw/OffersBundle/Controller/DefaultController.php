@@ -352,14 +352,14 @@ class DefaultController extends Controller
      */
     public function userAction($name)
     {
-        $user = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
-        $notifications = $this->getNotifications($user->getId());
+        $user= $this->getUser();
+        $currentUser = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
         $dares = $this->getUserDares($user->getId());
         $stares = $this->getUserPerformedDares($user->getId());
         return $this->render(
-            'ZdrwOffersBundle:Default:user.html.twig',
+            'ZdrwUserBundle:Profile:user.html.twig',
             array(
-                'user' => $user, 'notifications' => $notifications, 'dares' => $dares, 'stares' => $stares
+                'user' => $user, 'currentUser' => $currentUser, 'dares' => $dares, 'stares' => $stares
             )
         );
     }

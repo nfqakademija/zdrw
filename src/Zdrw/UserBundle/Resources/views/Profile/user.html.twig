@@ -1,21 +1,19 @@
-{% extends "ZdrwOffersBundle::layout.html.twig" %}
+{% extends "ZdrwUserBundle::layout.html.twig" %}
 
 {% block content %}
-    {% block leftSideBar %}{% endblock %}
     <div class="container page-content">
         <section class="col-md-3 profile-section">
             <article class="profile">
-                <a href="#" class="thumbnail avatar2"><img src="http://placehold.it/260x180" alt=""></a>
-                <p>
-                    <b class="font-1">{{ user.username }}</b><br>
-                    {{ user.email }}
+                <span class="thumbnail profile-thumbnail"><img src="http://placehold.it/260x180" alt=""></span>
+                <p class="panel panel-body articles">
+                    <b class="font-1">{{ currentUser.username }}</b><br>
                 </p>
             </article>
         </section>
         <section class="col-md-9 primary-section">
             <div class="tabbable tabs-left">
                 <ul class="nav nav-pills">
-                    <li class="active"><a href="#B" data-toggle="tab">Posted dares</a></li>
+                    <li class=""><a href="#B" data-toggle="tab">Posted dares</a></li>
                     <li class=""><a href="#C" data-toggle="tab">Accepted challenges</a></li>
                 </ul>
                 <br>

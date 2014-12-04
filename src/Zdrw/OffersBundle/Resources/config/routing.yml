@@ -13,9 +13,6 @@ zdrw_new_dare:
 zdrw_stares:
     path:     /stares
     defaults: { _controller: ZdrwOffersBundle:Default:stares }
-zdrw_user:
-    path:     /user/{name}
-    defaults: { _controller: ZdrwOffersBundle:Default:user, name: admin}
 zdrw_upload:
     path:     /upload
     defaults: { _controller: ZdrwOffersBundle:Video:index }

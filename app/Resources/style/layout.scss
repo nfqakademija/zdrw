@@ -138,6 +138,12 @@ textarea{
   min-width: 80px;
   max-width: 350px;
 }
+.profile-thumbnail{
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 80px;
+  max-width: 260px;
+}
 @media screen and (min-width: 767px) {
   .dividers-left{
     border-right: 1px solid $light;
