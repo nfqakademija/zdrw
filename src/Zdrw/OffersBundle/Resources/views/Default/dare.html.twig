@@ -165,6 +165,57 @@
                             <div class="st st4"></div>
                             <div class="st st1"></div>
                         </div>
+                        <br>
+                        <div class="stare-article">
+                            <div class="row">
+                                <article class="comment">
+                                    <div class="col-sm-12"><br></div>
+                                    <div class="col-sm-10">
+                                        <div class="bubble-right">
+                                            <div class="pointer">
+                                            </div>
+                                            <span class="visible-xs">
+                                                <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b>
+                                            </span>
+                                            <p>
+                                                This is a dare <b>owner</b> comment
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 thumb-keeper hidden-xs">
+                                        <div class="thumb-container">
+                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
+                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                            </a>
+                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="comment">
+                                    <div class="col-sm-12"><br></div>
+                                    <div class="col-sm-2 thumb-keeper hidden-xs">
+                                        <div class="thumb-container">
+                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
+                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                            </a>
+                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="bubble-left">
+                                            <div class="pointer">
+                                            </div>
+                                            <span class="visible-xs">
+                                                <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b>
+                                            </span>
+                                            <p>
+                                                This is a random user comment
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </div>
