@@ -354,8 +354,8 @@ class DefaultController extends Controller
     {
         $user= $this->getUser();
         $currentUser = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
-        $dares = $this->getUserDares($user->getId());
-        $stares = $this->getUserPerformedDares($user->getId());
+        $dares = $this->getUserDares($currentUser->getId());
+        $stares = $this->getUserPerformedDares($currentUser->getId());
         return $this->render(
             'ZdrwUserBundle:Profile:user.html.twig',
             array(
