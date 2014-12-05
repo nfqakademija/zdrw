@@ -132,6 +132,7 @@ textarea{
 .dare-thumbnail{
   margin: 0px auto 5px;
   max-width: 100px;
+  max-height: 100px;
 }
 .stare-thumbnail{
   margin-left: auto;
@@ -144,6 +145,11 @@ textarea{
   margin-right: auto;
   min-width: 80px;
   max-width: 260px;
+}
+.comment-thumbnail{
+  margin: 0px auto 5px;
+  max-width: 65px;
+  max-height: 65px;
 }
 @media screen and (min-width: 767px) {
   .dividers-left{
