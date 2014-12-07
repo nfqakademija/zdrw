@@ -31,8 +31,10 @@
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
                                             <small>Views: {{ dare.views }}</small>
-                                            <button class="btn btn-success btn-xs like" data-path='{{ path('zdrw_like', { id: dare.id }) }}'>{{ render(controller('ZdrwUserBundle:Social:checkLike', {id: dare.id})) }}</button>
-                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                <button class="btn btn-success btn-xs like" data-path='{{ path('zdrw_like', { id: dare.id }) }}'>{{ render(controller('ZdrwUserBundle:Social:checkLike', {id: dare.id})) }}</button>
+                                                <button class="btn btn-warning btn-xs">Comment</button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
