@@ -41,7 +41,7 @@ class DefaultControllerFunctionalTest extends setup
     {
         $setup = $this->loginForTest();
         $crawler = $setup->client->request('GET', '/stares');
-        $this->assertGreaterThan(0, $crawler->filter('.dare-article h4 a:contains("With status 5")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('.stare-article h4 a:contains("With status 5")')->count());
     }
 
     public function testProfile()

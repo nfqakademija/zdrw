@@ -24,7 +24,7 @@
                                     <div class="col-sm-10 col-without-padding">
                                         <h4>
                                             <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
-                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.description|length > 50 ? dare.description|slice(0, 50) ~ '...' : dare.description  }}</a>
+                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title|length > 50 ? dare.title|slice(0, 50) ~ '...' : dare.title  }}</a>
                                         </h4>
                                         <p>{{ dare.description|length > 200 ? dare.description|slice(0, 200) ~ '...' : dare.description  }}</p>
                                     </div>
