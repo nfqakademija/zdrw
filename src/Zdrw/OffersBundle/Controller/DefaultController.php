@@ -147,6 +147,21 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method to get offer comments
+     *
+     * @param $id
+     * @return array
+     */
+    private function getComments($id)
+    {
+        $comments = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwUserBundle:Comment')
+            ->findBy(array('offer' => $id), array('id' => 'desc'));
+        return $comments;
+    }
+
+    /**
      * Method to get all dares
      *
      * @param $id
@@ -300,10 +315,12 @@ class DefaultController extends Controller
         }
         $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->
             findBy(array('status' => 5), array('startDate' => 'desc'), 3);
+        $comments = $this->getComments($dare->getId());
         return $this->render(
             "ZdrwOffersBundle:Default:dare.html.twig",
             array(
-            'dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'points' => $pointsMsg
+            'dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'comments' => $comments,
+                'points' => $pointsMsg
             )
         );
     }
@@ -327,7 +344,7 @@ class DefaultController extends Controller
 
             if ($form->isValid() &&
                 (strlen($offer->getDescription()) <= 500) &&
-                (strlen($offer->getLongDesc()) <= 1000)) {
+                (strlen($offer->getLongDesc()) <= 1500)) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($offer);
                 $em->flush();

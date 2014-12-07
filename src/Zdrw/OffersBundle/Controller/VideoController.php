@@ -36,7 +36,7 @@ class VideoController extends Controller
                         $path = $this->get('kernel')->getRootDir().'/../web/';
                         $video = $path."uploads/".$fileName;
                         $image = $path."uploads/thumb/".$offerId.".jpg";
-                        shell_exec("ffmpeg -i $video -deinterlace -an -ss 1 -t 00:00:10 -r 1 -y -vcodec mjpeg -f mjpeg $image 2>&1");
+                        shell_exec("ffmpeg -i $video -deinterlace -an -ss 10 -f mjpeg -t 1 -r 1 -y -s 350x260 $image 2>&1");
 
                         $manager = $this->getDoctrine()->getManager();
                         $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $offerId));

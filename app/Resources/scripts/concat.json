@@ -7,8 +7,7 @@
         "social.js"
     ],
     "app.js": [
-        "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",
-        "../../../bower_components/popcorn-js/popcorn.js"
+        "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
     ],
     "jquery.js": [
         "../../../bower_components/jquery/dist/jquery.min.js"

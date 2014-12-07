@@ -1,7 +1,7 @@
 {% extends "ZdrwOffersBundle::layout.html.twig" %}
 
 {% block content %}
-    <div class="container page-content">
+    <div class="container page-content" xmlns="http://www.w3.org/1999/html">
         <section class="col-md-8 box primary-section">
             <h1>Dares</h1>
             <div class="primary-content">
@@ -170,56 +170,62 @@
                         </div>
                         <br>
                         <div class="stare-article">
-                            <div class="row">
+                            <div class="row" id="comments">
                                 <article class="comment">
                                     <span class="lead">Comments</span>
                                 </article>
-                                <article class="comment">
-                                    <div class="col-sm-12"><br></div>
-                                    <div class="col-sm-10">
-                                        <div class="bubble-right">
-                                            <div class="pointer">
+                                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                    <form id="commentForm">
+                                        <textarea name="commentText"></textarea>
+                                        <input type="hidden" value="{{ dare.id }}" name="dare-id">
+                                        <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success" value="Comment" />
+                                    </form>
+                                    <div class="spinner hidden-msg" id="loading-bar">
+                                        <div class="rect1"></div>
+                                        <div class="rect2"></div>
+                                        <div class="rect3"></div>
+                                        <div class="rect4"></div>
+                                        <div class="rect5"></div>
+                                    </div>
+                                    <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
+                                {% endif %}
+                                {% for comment in comments %}
+                                    <article class="comment">
+                                        <div class="col-sm-12"><br></div>
+                                        {% if dare.Owner != comment.User %}
+                                            <div class="col-sm-2 thumb-keeper hidden-xs">
+                                                <div class="thumb-container">
+                                                    <a href="{{ path('zdrw_user', {name: comment.User}) }}" class="thumbnail comment-thumbnail">
+                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                                    </a>
+                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User}) }}">{{ comment.User.nickname }}</a></b></div>
+                                                </div>
                                             </div>
-                                            <span class="visible-xs">
-                                                <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b>
-                                            </span>
-                                            <p>
-                                                This is a dare <b>owner</b> comment
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2 thumb-keeper hidden-xs">
-                                        <div class="thumb-container">
-                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail comment-thumbnail">
-                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                            </a>
-                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="comment">
-                                    <div class="col-sm-12"><br></div>
-                                    <div class="col-sm-2 thumb-keeper hidden-xs">
-                                        <div class="thumb-container">
-                                            <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail comment-thumbnail">
-                                                <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                            </a>
-                                            <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="bubble-left">
-                                            <div class="pointer">
+                                        {% endif %}
+                                        <div class="col-sm-10">
+                                            <div class="bubble-{{ dare.Owner == comment.User ? 'right' : 'left' }}">
+                                                <div class="pointer">
+                                                </div>
+                                                <span class="visible-xs">
+                                                    <b><a href="{{ path('zdrw_user', {name: comment.User}) }}">{{ comment.User.nickname }}</a></b>
+                                                </span>
+                                                <p>
+                                                    {{ comment.comment }}
+                                                </p>
                                             </div>
-                                            <span class="visible-xs">
-                                                <b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b>
-                                            </span>
-                                            <p>
-                                                This is a random user comment
-                                            </p>
                                         </div>
-                                    </div>
-                                </article>
+                                        {% if dare.Owner == comment.User %}
+                                            <div class="col-sm-2 thumb-keeper hidden-xs">
+                                                <div class="thumb-container">
+                                                    <a href="{{ path('zdrw_user', {name: comment.User}) }}" class="thumbnail comment-thumbnail">
+                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                                    </a>
+                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User}) }}">{{ comment.User.nickname }}</a></b></div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </article>
+                                {% endfor %}
                             </div>
                         </div>
                     </article>

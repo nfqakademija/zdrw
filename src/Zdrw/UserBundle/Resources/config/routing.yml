@@ -13,6 +13,11 @@ zdrw_like:
         id: "^\d+$"
     condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
 
+zdrw_comment:
+    path:     /comment
+    defaults: { _controller: ZdrwUserBundle:Social:comment }
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
 zdrw_test:
     path:     /test
     defaults: { _controller: ZdrwUserBundle:Social:test}

@@ -11,7 +11,7 @@ class OfferType extends AbstractType
         $builder
             ->add('title', 'text', array('attr' => array('maxlength' => 50)))
             ->add('description', 'textarea', array('attr' => array('maxlength' => 500)))
-            ->add('longDesc', 'textarea', array('attr' => array('maxlength' => 1000)))
+            ->add('longDesc', 'textarea', array('attr' => array('maxlength' => 1500)))
             ->add('categoryId', 'hidden', array('data' => 1))
             ->add('status', 'hidden', array('data' => 1))
             ->add('views', 'hidden', array('data' => 1))

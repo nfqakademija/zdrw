@@ -18,3 +18,26 @@
         });
     });
 })(jQuery);
+/*jshint unused:false*/
+function commentDare(ajaxlink){
+    'use strict';
+    var form = $('#commentForm');
+    var text = form.find('textarea[name="commentText"]').val();
+    if (text && text !== '') {
+        var id = form.find('input[name="dare-id"]').val();
+        form.hide();
+        $('#loading-bar').show();
+        $.ajax({
+            type: 'POST',
+            url: ajaxlink,
+            data: {text: text, id: id},
+            success: function (response) {
+                if (response === 'success') {
+                    $('textarea[name="commentText"]').val('');
+                    $('#successBox').show();
+                    $('#loading-bar').hide();
+                }
+            }
+        });
+    }
+}
