@@ -102,6 +102,13 @@ class Offer
     private $views;
 
     /**
+    * @var integer
+    *
+    * @ORM\Column(name="participant_id", type="integer", nullable=true)
+    */
+    private $participantId = null;
+
+    /**
      * Get id
      *
      * @return integer
