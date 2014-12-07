@@ -99,6 +99,7 @@ class DefaultController extends Controller
         $participant->setPoints($partPoints);
 
         $dare->setStatus(5);
+        $dare->setStartDate(new \DateTime('now'));
 
         $not1 = new Notification();
         $not1->setUser($participant);
@@ -190,6 +191,21 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method to get 5 dares
+     *
+     * @return array
+     */
+    private function getDares5()
+    {
+        $dares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'), 5);
+        shuffle($dares);
+        return $dares;
+    }
+
+    /**
      * Method to get all stares
      *
      * @return array
@@ -204,6 +220,21 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method to get 5 stares
+     *
+     * @return array
+     */
+    private function getStares5()
+    {
+        $stares = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Offer')
+            ->findBy(array('status' => 5), array('id' => 'desc'), 5);
+        shuffle($stares);
+        return $stares;
+    }
+
+    /**
      * Method to render the main project page
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -211,9 +242,9 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
-            findBy(array('status' => array(1, 2)), array('id' => 'desc'), 2);
+            findBy(array('status' => array(1, 2)), array('id' => 'desc'), 4);
         $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
-            findBy(array('status' => 5), array('id' => 'desc'), 2);
+            findBy(array('status' => 5), array('startDate' => 'desc'), 6);
         return $this->render(
             "ZdrwOffersBundle:Default:index.html.twig",
             array('dares' => $dares, 'stares' => $stares, 'user' => $this->getUser()
@@ -229,7 +260,7 @@ class DefaultController extends Controller
     public function daresAction()
     {
         $dares = $this->getDares();
-        $stares = $this->getStares();
+        $stares = $this->getStares5();
         return $this->render(
             'ZdrwOffersBundle:Default:dares.html.twig',
             array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
@@ -268,7 +299,7 @@ class DefaultController extends Controller
             $reward += $r->getPoints();
         }
         $stares = $manager->getRepository('ZdrwOffersBundle:Offer')->
-            findBy(array('status' => 5), array('id' => 'desc'), 3);
+            findBy(array('status' => 5), array('startDate' => 'desc'), 3);
         return $this->render(
             "ZdrwOffersBundle:Default:dare.html.twig",
             array(
@@ -285,7 +316,7 @@ class DefaultController extends Controller
      */
     public function newDareAction(Request $request)
     {
-        $stares = $this->getStares();
+        $stares = $this->getStares5();
 
         $user = $this->getUser();
         if ($user != null) {
@@ -294,7 +325,9 @@ class DefaultController extends Controller
             $form = $this->createForm(new OfferType(), $offer);
             $form->handleRequest($request);
 
-            if ($form->isValid() && (strlen($offer->getDescription()) <= 500) && (strlen($offer->getLongDesc()) <= 1000)) {
+            if ($form->isValid() &&
+                (strlen($offer->getDescription()) <= 500) &&
+                (strlen($offer->getLongDesc()) <= 1000)) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($offer);
                 $em->flush();
@@ -318,7 +351,7 @@ class DefaultController extends Controller
      */
     public function staresAction()
     {
-        $dares = $this->getDares();
+        $dares = $this->getDares5();
         $stares = $this->getStares();
         return $this->render(
             'ZdrwOffersBundle:Default:stares.html.twig',
@@ -353,7 +386,9 @@ class DefaultController extends Controller
     public function userAction($name)
     {
         $user= $this->getUser();
-        $currentUser = $this->getDoctrine()->getRepository('ZdrwUserBundle:User')->findOneBy(array("username" => $name));
+        $currentUser = $this->getDoctrine()
+            ->getRepository('ZdrwUserBundle:User')
+            ->findOneBy(array("username" => $name));
         $dares = $this->getUserDares($currentUser->getId());
         $stares = $this->getUserPerformedDares($currentUser->getId());
         return $this->render(

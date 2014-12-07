@@ -1,0 +1,41 @@
+@media screen and (max-width: 767px) {
+  .stare-height{
+    height: auto;
+  }
+  .stare-height-index{
+    height: auto;
+  }
+}
+
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .stare-height{
+    height: 300px;
+  }
+  .stare-height-index{
+    height: 325px;
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .stare-height{
+    height: 280px;
+  }
+  .stare-height-index{
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .stare-height{
+    height: 250px;
+  }
+  .stare-height-index{
+    height: 260px;
+  }
+}
+
+.popover {
+  min-width: 300px;
+  min-height: 260px;
+}

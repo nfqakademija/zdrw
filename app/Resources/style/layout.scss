@@ -6,6 +6,8 @@
 @import "seachBar";
 @import "qoutes";
 @import "comments";
+@import "articles";
+@import "staresHover";
 
 $bg-color: rgba(214, 211, 196, 0.50);
 $article-color: #E0DDD4;
@@ -37,8 +39,17 @@ video{
   width: 100%;
   margin-bottom: 5px;
 }
+.list-group-item{
+  cursor: pointer;
+  h4{
+    overflow: hidden;
+  }
+  p{
+    overflow: hidden;
+  }
+}
 a{
-  color: #6F6E6B;
+  color: #525046;
 }
 a:hover{
   text-decoration: none;
@@ -63,7 +74,7 @@ h1,h2,h3,h4,h5,h6{
   margin: 0px 0px 5px 0px;
 }
 h1{
-  color: #0da1ae;
+  color: #eae8c7;
   font: 40px;
 }
 .panel-body{
@@ -108,15 +119,30 @@ h1{
 .thumb-container{
   margin-right: 10px;
 }
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .thumb-container-stare{
+    margin-right: 0px;
+  }
+}
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+.thumb-container-index{
+    margin-right: 10px;
+  }
+}
 .stare-article,
 .dare-article{
-  min-height: 100px;
   h4 small{
     font-size: 8pt;
   }
+  p, h4{
+    overflow: hidden;
+  }
+  min-height: 100px;
   background-color: $article-color;
   padding: 10px;
+  overflow: hidden;
 }
+
 .dare-article:hover{
   background-color: $light;
 }
@@ -150,7 +176,7 @@ textarea{
   max-width: 65px;
   max-height: 65px;
 }
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
   .dividers-left{
     border-right: 1px solid $light;
     margin-top: -15px;
@@ -195,4 +221,8 @@ textarea{
 }
 .tabbable a{
   color: #69B2B2;
+}
+.st{
+  position:relative;
+  z-index: 1001;
 }

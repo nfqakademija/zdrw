@@ -38,10 +38,10 @@
                         <div class="tab-pane" id="B">
                             <ul class="list-group profile-list">
                                 {% for dare in dares %}
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" onclick="location.href='{{ path('zdrw_dare', { id: dare.id }) }}';">
                                         <h4>
-                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                             <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
+                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                         </h4>
                                         <p>{{ dare.description }}</p>
                                     </li>
@@ -51,10 +51,10 @@
                         <div class="tab-pane" id="C">
                             <ul class="list-group profile-list">
                                 {% for stare in stares %}
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
                                         <h4>
-                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
                                             <small class="pull-right">{{ stare.startDate | date("Y-d-m H:i") }}</small>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
                                         </h4>
                                         <p>{{ stare.description }}</p>
                                     </li>

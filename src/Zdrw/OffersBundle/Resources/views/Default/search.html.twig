@@ -1,9 +1,9 @@
 {% extends "ZdrwOffersBundle::layout.html.twig" %}
 
 {% block content %}
+
     <div class="container page-content">
         <section class="col-md-6 primary-section">
-            <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create new</button></a>
             <h1>Dares</h1>
             <div class="primary-content">
                 <div class="row">
@@ -21,10 +21,10 @@
                                     </div>
                                     <div class="col-sm-9 col-without-padding">
                                         <h4>
-                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
                                             <small class="pull-right">{{ dare.startDate | date("Y-d-m H:i") }}</small>
+                                            <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.description|length > 50 ? dare.description|slice(0, 50) ~ '...' : dare.description  }}</a>
                                         </h4>
-                                        <p>{{ dare.description|length > 200 ? stare.description|slice(0, 200) ~ '...' : dare.description  }}</p>
+                                        <p>{{ dare.description|length > 200 ? dare.description|slice(0, 200) ~ '...' : dare.description  }}</p>
                                     </div>
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
@@ -52,28 +52,35 @@
             <div class="secondary-content">
                 <div class="row">
                     {% for stare in stares %}
-                        <article class="col-lg-6 col-sm-6 col-xs-12 articles">
-                            <div class="dare-article">
+                        <article class="col-lg-6 col-md-12 col-sm-6 col-xs-12 articles cuadro_intro_hover">
+                            <div class="stare-article stare-height-index">
                                 <div class="row">
-                                    <div class="col-sm-12 col-without-padding">
+                                    <div class="col-lg-12 col-md-6 col-sm-12 col-without-padding">
+                                        <div class="thumb-container-index">
                                             <a href="#" class="thumbnail stare-thumbnail">
-                                                <img src="../../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
+                                                <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="stare-img-index img-responsive" alt="" />
                                             </a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-12 col-without-padding">
-                                        <h4>
+                                    <div class="col-lg-12 col-md-6 col-sm-12 col-without-padding">
+                                        <h4 class="hidden-lg hidden-sm">
                                             <small class="pull-right">
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
                                             </small><br>
-                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
                                         </h4>
-                                    </div>
-                                    <div class="col-sm-12 col-without-padding">
-                                        <p>{{ stare.description|length > 100 ? stare.description|slice(0, 10) ~ '...' : stare.description  }}</p>
-                                        <div class="pull-right">
-                                            <small>Views: {{ stare.views }}</small>
-                                            <button class="btn btn-success btn-xs">Like</button>
-                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                        <p class="visible-md">{{ stare.description|length > 150 ? stare.description|slice(0, 150) ~ '...' : stare.description  }}</p>
+                                        <div class="caption caption-index visible-lg visible-sm">
+                                            <div class="blur"></div>
+                                            <div class="caption-text">
+                                                <h4>
+                                                    <small class="pull-right">
+                                                        {{ stare.startDate | date("Y-d-m H:i") }}
+                                                    </small><br>
+                                                    <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
+                                                </h4>
+                                                <p>{{ stare.description|length > 150 ? stare.description|slice(0, 150) ~ '...' : stare.description  }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -91,4 +98,7 @@
             </div>
         </section>
     </div>
+
+
+
 {% endblock %}

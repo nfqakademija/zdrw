@@ -7,28 +7,32 @@
             <div class="primary-content">
                 <div class="row">
                 {% for stare in stares %}
-                    <article class="col-lg-4 col-sm-6 col-xs-12 articles">
-                        <div class="dare-article">
+                    <article class="col-lg-4 col-sm-6 col-xs-12 articles cuadro_intro_hover">
+                        <div class="stare-article stare-height">
                             <div class="row">
                                 <div class="col-sm-12 col-without-padding">
                                     <a href="#" class="thumbnail stare-thumbnail">
-                                        <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
+                                        <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="stare-img img-responsive" alt="" />
                                     </a>
                                 </div>
                                 <div class="col-sm-12 col-without-padding">
-                                    <h4>
+                                    <h4 class="visible-xs">
                                         <small class="pull-right">
                                             {{ stare.startDate | date("Y-d-m H:i") }}
                                         </small><br>
-                                        <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                        <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
                                     </h4>
-                                </div>
-                                <div class="col-sm-12 col-without-padding">
-                                    <p>{{ stare.description|length > 100 ? stare.description|slice(0, 100) ~ '...' : stare.description  }}</p>
-                                    <div class="pull-right">
-                                        <small>Views: {{ stare.views }}</small>
-                                        <button class="btn btn-success btn-xs">Like</button>
-                                        <button class="btn btn-warning btn-xs">Comment</button>
+                                    <div class="caption hidden-xs">
+                                        <div class="blur"></div>
+                                        <div class="caption-text">
+                                            <h4>
+                                                <small class="pull-right">
+                                                    {{ stare.startDate | date("Y-d-m H:i") }}
+                                                </small><br>
+                                                <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
+                                            </h4>
+                                            <p>{{ stare.description|length > 150 ? stare.description|slice(0, 150) ~ '...' : stare.description  }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +70,7 @@
                                         <small class="pull-right">
                                             {{ dare.startDate | date("Y-d-m H:i") }}
                                         </small><br>
-                                        <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}</a>
+                                        <a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.description|length > 50 ? dare.description|slice(0, 50) ~ '...' : dare.description  }}</a>
                                     </h4>
                                     <p>{{ dare.description|length > 100 ? dare.description|slice(0, 100) ~ '...' : dare.description  }}</p>
                                 </div>

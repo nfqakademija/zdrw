@@ -11,23 +11,21 @@
                             {{ form_start(form) }}
                             {{ form_errors(form) }}
                             <div>
-                                <span class="control-label">{{ form_label(form.title) }}:</span>
+                                <span class="control-label">{{ form_label(form.title) }} (<span class="text-info">Maximum 50 symbols</span>):</span>
                                 {{ form_errors(form.title) }}
                                 {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             <br>
                             <div>
-                                <span class="control-label">{{ form_label(form.description) }}:</span>
+                                <span class="control-label">{{ form_label(form.description, 'Short description') }} (<span class="text-info">Maximum 500 symbols</span>):</span>
                                 {{ form_errors(form.description) }}
                                 {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                                <span>Maximum 500 symbols</span>
                             </div>
                             <br>
                             <div>
-                                <span class="control-label">{{ form_label(form.longDesc, 'Long description') }}:</span>
+                                <span class="control-label">{{ form_label(form.longDesc, 'Long description') }} (<span class="text-info">Maximum 1000 symbols</span>):</span>
                                 {{ form_errors(form.longDesc) }}
                                 {{ form_widget(form.longDesc, {'attr': {'class': 'form-control'}}) }}
-                                <span>Maximum 1000 symbols</span>
                             </div>
                             <div>
                                 <br>
@@ -56,28 +54,23 @@
                         <article class="col-md-12 articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-6 thumb-keeper col-without-padding">
+                                    <div class="col-sm-6 col-md-12 col-lg-6 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
                                             <a href="#" class="thumbnail stare-thumbnail">
                                                 <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-without-padding">
+                                    <div class="col-sm-6 col-md-12 col-lg-6 col-without-padding">
                                         <h4>
                                             <small class="pull-right">
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
                                             </small><br>
-                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
                                         </h4>
-                                        <p class="hidden-xs">{{ stare.description|length > 100 ? stare.description|slice(0, 100) ~ '...' : stare.description  }}</p>
                                     </div>
-                                    <div class="col-sm-12 col-without-padding">
-                                        <div class="pull-right">
-                                            <small>Views: {{ stare.views }}</small>
-                                            <button class="btn btn-success btn-xs">Like</button>
-                                            <button class="btn btn-warning btn-xs">Comment</button>
-                                        </div>
+                                    <div class="col-md-12 col-sm-6 col-without-padding">
+                                        <p class="shortDesc hidden-xs">{{ stare.description|length > 70 ? stare.description|slice(0, 70) ~ '...' : stare.description  }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -18,9 +18,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-10 col-without-padding">
-                                    <h4><a href="{{ path('zdrw_dare', { id: dare.id }) }}">{{ dare.title }}<small class="pull-right">
-                                                {{ dare.startDate | date("Y-d-m H:i") }}
-                                            </small></a></h4>
+                                    <h4>
+                                        <small class="pull-right">
+                                            {{ dare.startDate | date("Y-d-m H:i") }}
+                                        </small>
+                                        {{ dare.title }}
+                                    </h4>
                                     <p class="shortDesc">{{ dare.description }}</p>
                                     <p>{{ dare.longDesc }}</p>
                                     {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (dare.status == 5) or (user and dare.status == 4 and is_granted('ROLE_ADMIN'))%}
@@ -231,28 +234,23 @@
                         <article class="col-md-12 articles">
                             <div class="dare-article">
                                 <div class="row">
-                                    <div class="col-sm-6 thumb-keeper col-without-padding">
+                                    <div class="col-sm-6 col-md-12 col-lg-6 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
                                             <a href="#" class="thumbnail stare-thumbnail">
-                                                <img src="../../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
+                                                <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-without-padding">
+                                    <div class="col-sm-6 col-md-12 col-lg-6 col-without-padding">
                                         <h4>
                                             <small class="pull-right">
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
                                             </small><br>
-                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
+                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
                                         </h4>
-                                        <p class="hidden-xs">{{ stare.description|length > 100 ? stare.description|slice(0, 100) ~ '...' : stare.description  }}</p>
                                     </div>
-                                    <div class="col-sm-12 col-without-padding">
-                                        <div class="pull-right">
-                                            <small>Views: {{ stare.views }}</small>
-                                            <button class="btn btn-success btn-xs">Like</button>
-                                            <button class="btn btn-warning btn-xs">Comment</button>
-                                        </div>
+                                    <div class="col-md-12 col-sm-6 col-without-padding">
+                                        <p class="shortDesc hidden-xs">{{ stare.description|length > 70 ? stare.description|slice(0, 70) ~ '...' : stare.description  }}</p>
                                     </div>
                                 </div>
                             </div>

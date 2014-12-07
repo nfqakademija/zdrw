@@ -9,7 +9,7 @@ class OfferType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text')
+            ->add('title', 'text', array('attr' => array('maxlength' => 50)))
             ->add('description', 'textarea', array('attr' => array('maxlength' => 500)))
             ->add('longDesc', 'textarea', array('attr' => array('maxlength' => 1000)))
             ->add('categoryId', 'hidden', array('data' => 1))

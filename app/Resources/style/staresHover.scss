@@ -1,0 +1,103 @@
+.cuadro_intro_hover{
+  padding: 0px;
+  overflow: hidden;
+}
+.cuadro_intro_hover img{
+  z-index: 4;
+}
+.cuadro_intro_hover .caption{
+  position: absolute;
+  top:0px;
+  -webkit-transition:all 0.3s ease-in-out;
+  -moz-transition:all 0.3s ease-in-out;
+  -o-transition:all 0.3s ease-in-out;
+  -ms-transition:all 0.3s ease-in-out;
+  transition:all 0.3s ease-in-out;
+  width: 100%;
+}
+.cuadro_intro_hover .blur{
+  outline: 3px solid rgba(224, 221, 212, 0.81);
+  background-color: rgba(224, 221, 212, 0.81);
+  height: 250px;
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+}
+.cuadro_intro_hover .caption-text{
+  z-index: 10;
+  position: absolute;
+  height: 300px;
+  top:-20px;
+  padding-top: 20px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .stare-img-index{
+    min-height: 211px;
+    max-height: 211px;
+  }
+  .stare-img{
+    min-height: 201px;
+    max-height: 201px;
+  }
+  .cuadro_intro_hover:hover .caption{
+    opacity: 1;
+    transform: translateY(-216px);
+    -ms-transform:translateY(-216px);
+    -o-transform:translateY(-216px);
+  }
+  .cuadro_intro_hover:hover .caption-index{
+    opacity: 1;
+    transform: translateY(-228px);
+    -ms-transform:translateY(-228px);
+    -o-transform:translateY(-228px);
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .stare-img-index{
+    min-height: 123px;
+    max-height: 123px;
+  }
+  .stare-img{
+    min-height: 167px;
+    max-height: 167px;
+  }
+  .cuadro_intro_hover:hover .caption{
+    opacity: 1;
+    transform: translateY(-182px);
+    -ms-transform:translateY(-182px);
+    -o-transform:translateY(-182px);
+  }
+  .cuadro_intro_hover:hover .caption-index{
+    transform: translateY(-122px);
+    -ms-transform:translateY(-122px);
+    -o-transform:translateY(-122px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .stare-img-index{
+    min-height: 145px;
+    max-height: 145px;
+  }
+  .stare-img{
+    min-height: 127px;
+    max-height: 127px;
+  }
+  .cuadro_intro_hover:hover .caption{
+    opacity: 1;
+    transform: translateY(-142px);
+    -ms-transform:translateY(-142px);
+    -o-transform:translateY(-142px);
+  }
+  .cuadro_intro_hover:hover .caption-index{
+    transform: translateY(-163px);
+    -ms-transform:translateY(-163px);
+    -o-transform:translateY(-163px);
+  }
+}
