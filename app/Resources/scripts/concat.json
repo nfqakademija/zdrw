@@ -3,7 +3,8 @@
         "addNumber.js",
         "uploadVideo.js",
         "qoutes.js",
-        "stares.js"
+        "stares.js",
+        "social.js"
     ],
     "app.js": [
         "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js",

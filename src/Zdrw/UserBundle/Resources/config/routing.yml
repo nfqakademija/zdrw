@@ -6,6 +6,17 @@ zdrw_profile:
     path:     /profile/
     defaults: { _controller: ZdrwUserBundle:Profile:show }
 
+zdrw_like:
+    path:     /like/{id}
+    defaults: { _controller: ZdrwUserBundle:Social:like, id:1}
+    requirements:
+        id: "^\d+$"
+    condition: "request.headers.get('X-Requested-With') == 'XMLHttpRequest'"
+
+zdrw_test:
+    path:     /test
+    defaults: { _controller: ZdrwUserBundle:Social:test}
+
 zdrw_user:
     path:     /user/{name}
     defaults: { _controller: ZdrwOffersBundle:Default:user}
