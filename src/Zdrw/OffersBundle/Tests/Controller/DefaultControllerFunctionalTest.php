@@ -32,7 +32,7 @@ class DefaultControllerFunctionalTest extends setup
     {
         $setup = $this->loginForTest();
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1')->link();
+        $link = $crawler->selectLink('With status 1. Number - 20')->link();
         $crawler = $setup->client->click($link);
         $this->assertGreaterThan(0, $crawler->filter('.i-did-it:contains("I did it")')->count());
     }
