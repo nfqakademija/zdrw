@@ -226,6 +226,39 @@
                                         {% endif %}
                                     </article>
                                 {% endfor %}
+                                <article class="comment hidden-msg" id="comment-template">
+                                    <div class="col-sm-12"><br></div>
+                                    {% if dare.Owner != user %}
+                                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                                            <div class="thumb-container">
+                                                <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
+                                                    <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                                </a>
+                                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-sm-10">
+                                        <div class="bubble-{{ dare.Owner == user ? 'right' : 'left' }}">
+                                            <div class="pointer">
+                                            </div>
+                                                <span class="visible-xs">
+                                                    <b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b>
+                                                </span>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    {% if dare.Owner == user %}
+                                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                                            <div class="thumb-container">
+                                                <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
+                                                    <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
+                                                </a>
+                                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </article>
                             </div>
                         </div>
                     </article>
