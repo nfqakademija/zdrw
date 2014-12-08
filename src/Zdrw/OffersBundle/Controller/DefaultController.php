@@ -192,60 +192,30 @@ class DefaultController extends Controller
     }
 
     /**
-     * Method to get all dares
+     * Method to get dares
      *
      * @return array
      */
-    private function getDares()
+    private function getDares($limit = null, $offset = 0)
     {
         $dares = $this
             ->getDoctrine()
             ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'));
+            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'), $limit, $offset);
         return $dares;
     }
 
     /**
-     * Method to get 5 dares
+     * Method to get stares
      *
      * @return array
      */
-    private function getDares5()
-    {
-        $dares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'), 5);
-        shuffle($dares);
-        return $dares;
-    }
-
-    /**
-     * Method to get all stares
-     *
-     * @return array
-     */
-    private function getStares()
+    private function getStares($limit = null, $offset = 0)
     {
         $stares = $this
             ->getDoctrine()
             ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => 5), array('id' => 'desc'));
-        return $stares;
-    }
-
-    /**
-     * Method to get 5 stares
-     *
-     * @return array
-     */
-    private function getStares5()
-    {
-        $stares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => 5), array('id' => 'desc'), 5);
-        shuffle($stares);
+            ->findBy(array('status' => 5), array('id' => 'desc'), $limit, $offset);
         return $stares;
     }
 
@@ -275,7 +245,7 @@ class DefaultController extends Controller
     public function daresAction()
     {
         $dares = $this->getDares();
-        $stares = $this->getStares5();
+        $stares = $this->getStares(5);
         return $this->render(
             'ZdrwOffersBundle:Default:dares.html.twig',
             array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
@@ -333,7 +303,7 @@ class DefaultController extends Controller
      */
     public function newDareAction(Request $request)
     {
-        $stares = $this->getStares5();
+        $stares = $this->getStares(5);
 
         $user = $this->getUser();
         if ($user != null) {
@@ -368,7 +338,7 @@ class DefaultController extends Controller
      */
     public function staresAction()
     {
-        $dares = $this->getDares5();
+        $dares = $this->getDares(5);
         $stares = $this->getStares();
         return $this->render(
             'ZdrwOffersBundle:Default:stares.html.twig',
