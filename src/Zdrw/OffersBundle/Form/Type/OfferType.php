@@ -12,6 +12,9 @@ class OfferType extends AbstractType
             ->add('title', 'text', array('attr' => array('maxlength' => 50)))
             ->add('description', 'textarea', array('attr' => array('maxlength' => 500)))
             ->add('longDesc', 'textarea', array('attr' => array('maxlength' => 1500)))
+            ->add('rewards', 'text', array(
+                'mapped' => false
+                ))
             ->add('categoryId', 'hidden', array('data' => 1))
             ->add('status', 'hidden', array('data' => 1))
             ->add('views', 'hidden', array('data' => 1))

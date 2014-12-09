@@ -23,16 +23,41 @@
                             </div>
                             <br>
                             <div>
-                                <span class="control-label">{{ form_label(form.longDesc, 'Long description') }} (<span class="text-info">Maximum 1000 symbols</span>):</span>
+                                <span class="control-label">{{ form_label(form.longDesc, 'Long description') }} (<span class="text-info">Maximum 1500 symbols</span>):</span>
                                 {{ form_errors(form.longDesc) }}
                                 {{ form_widget(form.longDesc, {'attr': {'class': 'form-control'}}) }}
-                                <span>Maximum 1500 symbols</span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span class="control-label">{{ form_label(form.rewards, 'Points giving') }}:</span>
+                                    {{ form_errors(form.rewards) }}
+                                    <div class="input-group number-spinner">
+                                        <span class="input-group-btn">
+                                            <button  type="button" class="btn btn-default minus"><span class="glyphicon glyphicon-minus"></span></button>
+                                        </span>
+                                        {{ form_widget(form.rewards, {'attr': {'class': 'text-center form-control', 'size': '4', 'pattern': '\\d*', 'id': 'points', 'value': '0'}}) }}
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default plus"><span class="glyphicon glyphicon-plus"></span></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <br>
+                                    {% if errorMsg == 1 %}
+                                        <div class="alert alert-danger">
+                                            <p>You don't have enough points</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                             <div>
                                 <br>
                                 {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
                                 <br>
                                 <br>
+
+                                {{ form_rest(form) }}
                                 {{ form_end(form) }}
                             </div>
                         </div>

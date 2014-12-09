@@ -1,13 +1,27 @@
 .font-4{
+  font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
   font-size: 26pt;
-  font-family: 'Tangerine', serif;
   text-align: center;
-  color: #FFFFFF;
-  text-shadow: 1px 1px 3px #e2e2e2;
+  color: #f7f7f7;
 }
-
+.font-5{
+  font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 3.75em;
+  letter-spacing: .05em;
+  line-height: 1.1em;
+  margin:0px;
+  color: #f7f7f7;
+}
+.specific-word{
+  color: #0fb4c6;
+}
+.or{
+  color: #b4e6ef;
+}
 .carousel-inner{
-  min-height:200px;
+  min-height:140px;
 }
 
 .author{
@@ -37,12 +51,14 @@
 {
   font-size:45pt;
   left: -40px;
+  margin-top: -30px;
 }
 /* Next button  */
 #quote-carousel .carousel-control.right
 {
   font-size:45pt;
   right: -40px !important;
+  margin-top: -30px;
 }
 /* Changes the position of the indicators */
 #quote-carousel .carousel-indicators

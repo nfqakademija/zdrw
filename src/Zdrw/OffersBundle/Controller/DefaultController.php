@@ -315,26 +315,46 @@ class DefaultController extends Controller
         $stares = $this->getStares(5);
 
         $user = $this->getUser();
+        $errorMsg = 0;
         if ($user != null) {
             $offer = new Offer();
+            $reward = new Reward();
             $offer->setOwner($user);
             $form = $this->createForm(new OfferType(), $offer);
             $form->handleRequest($request);
 
-            if ($form->isValid() &&
-                (strlen($offer->getDescription()) <= 500) &&
-                (strlen($offer->getLongDesc()) <= 1500)) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($offer);
-                $em->flush();
+            $thisOffer = $form->getData();
+            $reward->setOffer($thisOffer);
+            $reward->setUser($user);
+            $givenReward = $form['rewards']->getData();
 
-                return $this->redirect($this->generateUrl('zdrw_dares'));
+            $userPoints = $user->getPoints();
+
+            if ($userPoints >= $givenReward) {
+                $reward->setPoints($givenReward);
+                $reward->setOffer($thisOffer);
+                $user->setPoints($userPoints - $givenReward);
+
+                if ($form->isValid() &&
+                    (strlen($offer->getDescription()) <= 500) &&
+                    (strlen($offer->getLongDesc()) <= 1500)
+                ) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($offer);
+                    $em->persist($reward);
+                    $em->persist($user);
+                    $em->flush();
+
+                    return $this->redirect($this->generateUrl('zdrw_dares'));
+                }
+            } elseif ($userPoints < $givenReward) {
+                $errorMsg = 1;
             }
         }
         return $this->render(
             "ZdrwOffersBundle:Default:newDare.html.twig",
             array(
-            'form' => $form->createView(), 'stares' => $stares, 'user' => $user
+            'form' => $form->createView(), 'stares' => $stares, 'user' => $user, 'errorMsg' => $errorMsg
             )
         );
     }
