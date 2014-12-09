@@ -173,15 +173,20 @@
                         <br>
                         <div class="stare-article">
                             <div class="row" id="comments">
-                                <article class="comment">
-                                    <span class="lead">Comments</span>
-                                </article>
+                                <div class="col-sm-12">
+                                    <span class="comments font-2">Comments</span>
+                                </div>
                                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                     <form id="commentForm">
-                                        <textarea name="commentText"></textarea>
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="commentText"></textarea>
+                                        </div>
                                         <input type="hidden" value="{{ dare.id }}" name="dare-id">
-                                        <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success" value="Comment" />
-                                    </form>
+                                        <div class="col-sm-offset-8 col-sm-4">
+                                            <br>
+                                            <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success btn-block pull-right" value="Comment" />
+                                        </div>
+                                    </form><br><br>
                                     <div class="spinner hidden-msg" id="loading-bar">
                                         <div class="rect1"></div>
                                         <div class="rect2"></div>
@@ -189,6 +194,7 @@
                                         <div class="rect4"></div>
                                         <div class="rect5"></div>
                                     </div>
+                                    <br>
                                     <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
                                 {% endif %}
                                 {% for comment in comments %}
