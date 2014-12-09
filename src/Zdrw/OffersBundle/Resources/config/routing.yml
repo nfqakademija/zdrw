@@ -2,8 +2,8 @@ zdrw_index:
     path:     /
     defaults: { _controller: ZdrwOffersBundle:Default:index }
 zdrw_dares:
-    path:     /dares
-    defaults: { _controller: ZdrwOffersBundle:Default:dares }
+    path:     /dares/{page}
+    defaults: { _controller: ZdrwOffersBundle:Default:dares, page: 1}
 zdrw_dare:
     path:     /dare/{id}
     defaults: { _controller: ZdrwOffersBundle:Default:dare }

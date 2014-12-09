@@ -43,4 +43,14 @@ class OfferRepository extends EntityRepository
             ->getResult();
         return $dares;
     }
+
+    public function countDares()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.status = 1 OR a.status = 2')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
 }

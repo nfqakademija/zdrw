@@ -242,13 +242,22 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function daresAction()
+    public function daresAction($page)
     {
-        $dares = $this->getDares();
+        $limit = 6;
+        $page--;
+        $dares = $this->getDares($limit, $page*$limit);
         $stares = $this->getStares(5);
+        $count = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->countDares();
+
         return $this->render(
             'ZdrwOffersBundle:Default:dares.html.twig',
-            array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
+            array(
+                'dares' => $dares,
+                'stares' => $stares,
+                'user'=> $this->getUser(),
+                'page'=> ++$page,
+                'total' => ceil($count/$limit)
             )
         );
     }

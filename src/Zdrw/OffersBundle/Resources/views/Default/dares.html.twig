@@ -46,6 +46,23 @@
                     {% endfor %}
                 </div>
             </div>
+            <div>
+                {{ page }} {{ total }}
+                <br>
+                {% if page > 1 %}
+                    <a href="{{ path('zdrw_dares', {page: page-1}) }}">Previous</a>
+                {% endif %}
+                {% for i in 1..total %}
+                    {% if i == page %}
+                        <b>{{ i }}</b>
+                    {% else %}
+                        <a href="{{ path('zdrw_dares', {page: i}) }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page < total %}
+                    <a href="{{ path('zdrw_dares', {page: page+1}) }}">Next</a>
+                {% endif %}
+            </div>
         </section>
         <section class="col-md-4 secondary-section">
             <h1>Stares</h1>
