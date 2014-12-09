@@ -28,9 +28,8 @@
                                     </div>
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
-                                            <small>Views: {{ dare.views }}</small>
-                                            <button class="btn btn-success btn-xs">Like</button>
-                                            <button class="btn btn-warning btn-xs">Comment</button>
+                                            <small>Likes: {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
+                                            <small>Comments: {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
                                         </div>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ use Zdrw\OffersBundle\Entity\Offer;
 use Zdrw\OffersBundle\Entity\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller managing the offers
@@ -219,6 +220,14 @@ class DefaultController extends Controller
         return $stares;
     }
 
+    public function getOfferLikesAction($id)
+    {
+        return new Response($count = $this->getDoctrine()->getRepository('ZdrwUserBundle:Like')->countByOffer($id));
+    }
+    public function getOfferCommentsAction($id)
+    {
+        return new Response($count = $this->getDoctrine()->getRepository('ZdrwUserBundle:Comment')->countByOffer($id));
+    }
     /**
      * Method to render the main project page
      *
@@ -226,13 +235,14 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
-            findBy(array('status' => array(1, 2)), array('id' => 'desc'), 4);
-        $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
-            findBy(array('status' => 5), array('startDate' => 'desc'), 6);
+        $dares = $this->getDares(4);
+        $stares = $this->getStares(6);
         return $this->render(
             "ZdrwOffersBundle:Default:index.html.twig",
-            array('dares' => $dares, 'stares' => $stares, 'user' => $this->getUser()
+            array(
+                'dares' => $dares,
+                'stares' => $stares,
+                'user' => $this->getUser()
             )
         );
     }

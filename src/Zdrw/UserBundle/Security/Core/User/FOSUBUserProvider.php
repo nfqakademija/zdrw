@@ -64,6 +64,7 @@ class FOSUBUserProvider extends BaseClass
                 $user->setAvatar($response->getProfilePicture());
                 $user->setEmail($email);
                 $user->setPassword("none");
+                $user->setPoints(100);
                 $user->setEnabled(true);
             }
             else
