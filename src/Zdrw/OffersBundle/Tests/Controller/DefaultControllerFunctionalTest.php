@@ -53,7 +53,7 @@ class DefaultControllerFunctionalTest extends setup
         $setup = $this->loginForTest();
         $setup->client->followRedirects(true);
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 18')->link();
+        $link = $crawler->selectLink('With status 1. Number - 50')->link();
         $crawler = $setup->client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton("I'll do it");
@@ -67,7 +67,7 @@ class DefaultControllerFunctionalTest extends setup
         $setup = $this->loginForTest();
         $setup->client->followRedirects(true);
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 17')->link();
+        $link = $crawler->selectLink('With status 1. Number - 49')->link();
         $crawler = $setup->client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton("Add");
@@ -81,7 +81,7 @@ class DefaultControllerFunctionalTest extends setup
         $setup = $this->loginForTest();
         $setup->client->followRedirects(true);
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 17')->link();
+        $link = $crawler->selectLink('With status 1. Number - 49')->link();
         $crawler = $setup->client->click($link);
 
         $buttonCrawlerNode = $crawler->selectButton("Add");
@@ -184,7 +184,7 @@ class DefaultControllerFunctionalTest extends setup
     {
         $setup = $this->loginForTest();
         $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 20')->link();
+        $link = $crawler->selectLink('With status 1. Number - 47')->link();
         $crawler = $setup->client->click($link);
         $this->assertGreaterThan(0, $crawler->filter('.i-did-it:contains("I did it")')->count());
     }

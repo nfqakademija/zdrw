@@ -195,6 +195,8 @@ class DefaultController extends Controller
     /**
      * Method to get dares
      *
+     * @param $limit
+     * @param $offset
      * @return array
      */
     private function getDares($limit = null, $offset = 0)
@@ -209,6 +211,8 @@ class DefaultController extends Controller
     /**
      * Method to get stares
      *
+     * @param $limit
+     * @param $offset
      * @return array
      */
     private function getStares($limit = null, $offset = 0)
