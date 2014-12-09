@@ -2,19 +2,12 @@
 
 namespace Zdrw\UserBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 
 class ProfileFormType extends BaseType
 {
 
-    public function getParent()
-    {
-        return 'fos_user_profile';
-    }
     public function getName()
     {
         return 'zdrw_profile';
