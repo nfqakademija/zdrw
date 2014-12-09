@@ -20,8 +20,8 @@
 
                             <form method="post" action="{{ path('zdrw_search') }}" role="search" id="custom-search-form" class="form-search form-horizontal pull-right">
                                 <div class="input-append span12">
-                                    <input type="text" class="search-query mac-style" name="keyword" class="form-control"  placeholder="Search" >
-                                    <button name="search" type="submit">
+                                    <input type="text" class="search-query mac-style" name="keyword" class="form-control" placeholder="Search" >
+                                    <button type="submit" name="search" value="search">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </div>
@@ -55,8 +55,8 @@
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <p class="text-left"><strong>{{ userInfo.name }}</strong></p>
-                                                    <p class="text-left small">{{ userInfo.email }}</p>
+                                                    <p class="text-left"><strong>{{ userInfo.nick }}</strong></p>
+                                                    <p class="text-left">Notifications</p>
                                                     <p class="text-left">
                                                         <a href="{{ path("zdrw_profile") }}" class="btn btn-primary btn-block btn-sm">Profile</a>
                                                     </p>

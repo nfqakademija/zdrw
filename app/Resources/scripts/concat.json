@@ -4,7 +4,8 @@
         "uploadVideo.js",
         "qoutes.js",
         "stares.js",
-        "social.js"
+        "social.js",
+        "notification.js"
     ],
     "app.js": [
         "../../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"

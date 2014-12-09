@@ -9,11 +9,13 @@ class UserInfoProvider
         $name = $user->getUsername();
         $nick = $user->getNickname();
         $email = $user->getEmail();
+        $points = $user->getPoints();
         return array(
             'id' => $id,
             'name' => $name,
             'nick' => $nick,
-            'email' => $email
+            'email' => $email,
+            'points' => $points
         );
     }
 }

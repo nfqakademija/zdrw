@@ -180,7 +180,7 @@
                                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                     <form id="commentForm">
                                         <div class="col-sm-12">
-                                            <textarea class="form-control" name="commentText"></textarea>
+                                            <textarea class="form-control" maxlength="300" name="commentText"></textarea>
                                         </div>
                                         <input type="hidden" value="{{ dare.id }}" name="dare-id">
                                         <div class="col-sm-offset-8 col-sm-4">

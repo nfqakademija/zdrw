@@ -2,7 +2,9 @@
 
 namespace Zdrw\UserBundle\Controller;
 
+use Proxies\__CG__\Zdrw\OffersBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Zdrw\OffersBundle\Controller\DefaultController;
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use FOS\UserBundle\Model\UserInterface;
@@ -35,6 +37,26 @@ class ProfileController extends DefaultController
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares
         ));
+    }
+
+    /**
+     * Method updating notification to seen
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function seenAction(Request $request)
+    {
+        $id = $request->request->get('id');
+        $notification = $this
+            ->getDoctrine()
+            ->getRepository('ZdrwOffersBundle:Notification')
+            ->find(array('id' => $id));
+        $notification->setSeen(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($notification);
+        $em->flush();
+        return new Response();
     }
 
     /**

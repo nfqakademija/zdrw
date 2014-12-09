@@ -6,7 +6,7 @@
             <article class="profile">
                 <span class="thumbnail profile-thumbnail"><img src="http://placehold.it/260x180" alt=""></span>
                 <p class="panel panel-body articles">
-                    <b class="font-1">{{ currentUser.username }}</b><br>
+                    <b class="font-1">{{ currentUser.nickname }}</b><br>
                 </p>
             </article>
         </section>
@@ -20,6 +20,11 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="B">
                         <ul class="list-group profile-list">
+                            {% if dares == null %}
+                                <li class="list-group-item text-center empty">
+                                    User doesn't have any posted dares
+                                </li>
+                            {% endif %}
                             {% for dare in dares %}
                                 <li class="list-group-item">
                                     <h4>
@@ -33,6 +38,11 @@
                     </div>
                     <div class="tab-pane" id="C">
                         <ul class="list-group profile-list">
+                            {% if stares == null %}
+                                <li class="list-group-item text-center empty">
+                                    User doesn't have any accepted challenges
+                                </li>
+                            {% endif %}
                             {% for stare in stares %}
                                 <li class="list-group-item">
                                     <h4>

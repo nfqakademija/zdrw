@@ -42,11 +42,11 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
             $offer2->setLongDesc('My very very long description. Lorem ipsum dolor sit amet, consectetur adipiscing.');
             $offer2->setCategoryId(1);
             $offer2->setStatus(3);
-            $offer2->setParticipant($user);
+            $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));
+            $offer2->setParticipant($user2);
             $offer2->setFinishDate(new \DateTime('tomorrow'));
             $offer2->setViews(0);
-            $user2 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'admin'));
-            $offer2->setOwner($user2);
+            $offer2->setOwner($user);
             $manager->persist($offer2);
         }
 
@@ -64,6 +64,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
             $offer3->setViews(0);
             $user3 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
             $offer3->setOwner($user3);
+            $offer3->setParticipant($user);
             $manager->persist($offer3);
         }
 
@@ -79,6 +80,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
             $offer4->setStatus(4);
             $offer4->setFinishDate(new \DateTime('tomorrow'));
             $offer4->setViews(0);
+            $offer4->setParticipant($user);
             $user4 = $manager->getRepository('ZdrwUserBundle:User')->findOneBy(array('username' => 'TestUser1'));
             $offer4->setOwner($user4);
             $manager->persist($offer4);

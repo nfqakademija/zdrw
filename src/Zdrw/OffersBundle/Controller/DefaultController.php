@@ -275,25 +275,25 @@ class DefaultController extends Controller
     /**
      * Method to render certain dare page
      *
+     * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function dareAction($id)
+    public function dareAction(Request $request, $id)
     {
-        $post = Request::createFromGlobals();
         $user = $this->getUser();
         $manager = $this->getDoctrine()->getManager();
         $dare = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $id));
         $pointsMsg = false;
         if (($user != null)) {
-            if ($post->request->has('decline')) {
+            if ($request->request->has('decline')) {
                 $this->declineVideo($user, $dare, $manager);
-            } elseif ($post->request->has('accept')) {
+            } elseif ($request->request->has('accept')) {
                 $this->acceptVideo($user, $dare, $manager);
-            } elseif ($post->request->has('reservation')) {
+            } elseif ($request->request->has('reservation')) {
                 $this->makeReservation($user, $dare, $manager);
-            } elseif ($post->request->has('add')) {
-                $points = $post->request->get('points');
+            } elseif ($request->request->has('add')) {
+                $points = $request->request->get('points');
                 $pointsMsg = $this->addPoints($user, $points, $dare, $manager);
             }
         }
@@ -347,6 +347,7 @@ class DefaultController extends Controller
 
                 if ($form->isValid() &&
                     (strlen($offer->getDescription()) <= 500) &&
+                    (strlen($offer->getTitle()) <= 50) &&
                     (strlen($offer->getLongDesc()) <= 1500)
                 ) {
                     $em = $this->getDoctrine()->getManager();
@@ -404,7 +405,7 @@ class DefaultController extends Controller
         $notifications = $this
             ->getDoctrine()
             ->getRepository('ZdrwOffersBundle:Notification')
-            ->findBy(array("user" => $id));
+            ->findBy(array("user" => $id), array('id' => 'desc'));
         return $notifications;
     }
 
@@ -423,6 +424,7 @@ class DefaultController extends Controller
             ->findOneBy(array("username" => $name));
         $dares = $this->getUserDares($currentUser->getId());
         $stares = $this->getUserPerformedDares($currentUser->getId());
+
         return $this->render(
             'ZdrwUserBundle:Profile:user.html.twig',
             array(
@@ -434,14 +436,15 @@ class DefaultController extends Controller
     /**
      * Method to search dares and stares
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function searchAction()
+    public function searchAction(Request $request)
     {
-        $post = Request::createFromGlobals();
-
-        if ($post->request->has('search')) {
-            $keyword = $post->request->get('keyword');
+        $dares = array();
+        $stares = array();
+        if ($request->request->has('search')) {
+            $keyword = $request->request->get('keyword');
             $manager = $this->getDoctrine()->getManager()->getRepository('ZdrwOffersBundle:Offer');
             $dares = $manager->searchForDares($keyword);
             $stares = $manager->searchForStares($keyword);
