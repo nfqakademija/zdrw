@@ -8,9 +8,9 @@
                 <article class="profile">
                     <a href="#" class="thumbnail profile-thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
                     <p class="panel panel-body articles">
-                        <b class="font-2">{{ userInfo.nick }}</b><br>
-                        <b class="font-1">{{ userInfo.name }}</b><br>
-                        {{ userInfo.email }}
+                        <b class="font-3">{{ userInfo.nick }}</b><br>
+                        <span class="font-1">Points: <b>{{ userInfo.points }}</b></span><br>
+                        <span class="font-1">{{ userInfo.email }}</span>
                         <br><br>
                         <a class="text-info" href="{{ path('fos_user_profile_edit') }}">Edit profile info</a>
                     </p>
@@ -27,8 +27,13 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="A">
                             <ul class="list-group profile-list">
+                                {% if notifications == null %}
+                                <li class="list-group-item text-center empty">
+                                    You don't have any notifications
+                                </li>
+                                {% endif %}
                                 {% for n in notifications %}
-                                    <li class="list-group-item">
+                                    <li class="list-group-item notification {{ n.seen == 0 ? 'newNotification' : '' }}" data-id="{{ n.id }}" data-url="{{ path('zdrw_seen') }}">
                                         <p>{{ n.notification | raw }}</p>
                                         <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
                                         <br>
@@ -38,6 +43,11 @@
                         </div>
                         <div class="tab-pane" id="B">
                             <ul class="list-group profile-list">
+                                {% if dares == null %}
+                                    <li class="list-group-item text-center empty">
+                                        You don't have any posted dares
+                                    </li>
+                                {% endif %}
                                 {% for dare in dares %}
                                     <li class="list-group-item" onclick="location.href='{{ path('zdrw_dare', { id: dare.id }) }}';">
                                         <h4>
@@ -51,6 +61,11 @@
                         </div>
                         <div class="tab-pane" id="C">
                             <ul class="list-group profile-list">
+                                {% if stares == null %}
+                                    <li class="list-group-item text-center empty">
+                                        You don't have any accepted challenges
+                                    </li>
+                                {% endif %}
                                 {% for stare in stares %}
                                     <li class="list-group-item" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
                                         <h4>

@@ -379,7 +379,7 @@ class DefaultController extends Controller
         $notifications = $this
             ->getDoctrine()
             ->getRepository('ZdrwOffersBundle:Notification')
-            ->findBy(array("user" => $id));
+            ->findBy(array("user" => $id), array('id' => 'desc'));
         return $notifications;
     }
 
@@ -398,6 +398,7 @@ class DefaultController extends Controller
             ->findOneBy(array("username" => $name));
         $dares = $this->getUserDares($currentUser->getId());
         $stares = $this->getUserPerformedDares($currentUser->getId());
+
         return $this->render(
             'ZdrwUserBundle:Profile:user.html.twig',
             array(
