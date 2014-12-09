@@ -37,6 +37,7 @@ function commentDare(ajaxlink){
                     $('#successBox').show();
                     $('#comment-template').clone().removeAttr('id').show().insertAfter('#successBox').find('p').text(text);
                     $('#loading-bar').hide();
+                    form.show();
                 }
             }
         });
