@@ -4,6 +4,8 @@ zdrw_index:
 zdrw_dares:
     path:     /dares/{page}
     defaults: { _controller: ZdrwOffersBundle:Default:dares, page: 1}
+    requirements:
+        page: "^\d+$"
 zdrw_dare:
     path:     /dare/{id}
     defaults: { _controller: ZdrwOffersBundle:Default:dare }
@@ -11,8 +13,10 @@ zdrw_new_dare:
     path:     /new
     defaults: { _controller: ZdrwOffersBundle:Default:newDare}
 zdrw_stares:
-    path:     /stares
-    defaults: { _controller: ZdrwOffersBundle:Default:stares }
+    path:     /stares/{page}
+    defaults: { _controller: ZdrwOffersBundle:Default:stares, page: 1}
+    requirements:
+        page: "^\d+$"
 zdrw_upload:
     path:     /upload
     defaults: { _controller: ZdrwOffersBundle:Video:index }

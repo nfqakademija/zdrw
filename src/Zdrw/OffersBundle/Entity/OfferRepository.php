@@ -53,4 +53,14 @@ class OfferRepository extends EntityRepository
             ->getSingleScalarResult()
             ;
     }
+
+    public function countStares()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.status = 5')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
 }
