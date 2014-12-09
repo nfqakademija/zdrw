@@ -48,6 +48,7 @@
                 {% endfor %}
                 </div>
             </div>
+            {% include "ZdrwOffersBundle:Default:paginator.html.twig" with {'page': page, 'link': 'zdrw_stares', 'total': total } %}
         </section>
         <section class="col-md-4 secondary-section">
             <h1>Dares</h1>

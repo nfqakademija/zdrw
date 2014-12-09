@@ -1,0 +1,38 @@
+<div>
+    <br>
+    {% if page > 4 %}
+        {% set dots1 = '...' %}
+        {% set start = page-3 %}
+    {% else %}
+        {%  set start = 1 %}
+        {% set dots1 = '' %}
+    {% endif %}
+    {% if page < total-3 %}
+        {% set dots2 = '...' %}
+        {% set end = page+3 %}
+    {% else %}
+        {% set dots2 = '' %}
+        {% set end = total %}
+    {% endif %}
+    {% if dots1 %}
+        <a href="{{ path('zdrw_dares', {page: 1}) }}">First</a>
+    {% endif %}
+    {% if page > 1 %}
+        <a href="{{ path('zdrw_dares', {page: page-1}) }}">Previous</a>
+    {% endif %}
+    <span>{{ dots1 }}</span>
+    {% for i in start..end %}
+        {% if i == page %}
+            <b>{{ i }}</b>
+        {% else %}
+            <a href="{{ path(link, {page: i}) }}">{{ i }}</a>
+        {% endif %}
+    {% endfor %}
+    <span>{{ dots2 }}</span>
+    {% if page < total %}
+        <a href="{{ path(link, {page: page+1}) }}">Next</a>
+    {% endif %}
+    {% if dots2 %}
+        <a href="{{ path(link, {page: total}) }}">Last</a>
+    {% endif %}
+</div>

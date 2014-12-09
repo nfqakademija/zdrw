@@ -16,7 +16,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
     {
         // First offer
         $sum1 = 0;
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 70; $i++) {
             $sum1++;
             $offer = new Offer();
             $offer->setTitle('With status 5. Number - '.$sum1);
@@ -52,7 +52,7 @@ class LoadOffersData extends AbstractFixture implements OrderedFixtureInterface
 
         // Third offer
         $sum3 = 0;
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             $sum3++;
             $offer3 = new Offer();
             $offer3->setTitle('With status 1. Number - '.$sum3);

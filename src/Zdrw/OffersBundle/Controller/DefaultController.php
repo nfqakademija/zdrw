@@ -242,13 +242,22 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function daresAction()
+    public function daresAction($page)
     {
-        $dares = $this->getDares();
+        $limit = 6;
+        $page--;
+        $dares = $this->getDares($limit, $page*$limit);
         $stares = $this->getStares(5);
+        $count = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->countDares();
+
         return $this->render(
             'ZdrwOffersBundle:Default:dares.html.twig',
-            array('dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
+            array(
+                'dares' => $dares,
+                'stares' => $stares,
+                'user'=> $this->getUser(),
+                'page'=> ++$page,
+                'total' => ceil($count/$limit)
             )
         );
     }
@@ -356,18 +365,24 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function staresAction()
+    public function staresAction($page)
     {
+        $limit = 12;
+        $page--;
         $dares = $this->getDares(5);
-        $stares = $this->getStares();
+        $stares = $this->getStares($limit, $page*$limit);
+        $count = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->countStares();
         return $this->render(
             'ZdrwOffersBundle:Default:stares.html.twig',
             array(
-                'stares' => $stares, 'dares' => $dares, 'user' => $this->getUser()
+                'stares' => $stares,
+                'dares' => $dares,
+                'user' => $this->getUser(),
+                'page'=> ++$page,
+                'total' => ceil($count/$limit)
             )
         );
     }
-
     /**
      * Method to get user notifications
      *
