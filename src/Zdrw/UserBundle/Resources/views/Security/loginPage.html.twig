@@ -8,13 +8,13 @@
 {% block fos_user_content %}
     <div class="container">
         <div class="row">
-            <div class="col-xs-2"></div>
-            <div class="col-xs-4">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
                 <div class="well">
                     {{ render(controller('ZdrwUserBundle:Security:login')) }}
                 </div>
             </div>
-            <div class="col-xs-4 text-white">
+            <div class="col-sm-4 text-white">
                 <div>
                     <p class="lead">Register now for FREE</p>
                     <span class="glyphicon glyphicon-ok"></span>&nbsp; Post your own dare
@@ -27,7 +27,7 @@
                     <a href="{{ path("fos_user_registration_register") }}" class="btn btn-primary btn-block">Register</a>
                 </div>
             </div>
-            <div class="col-xs-2"></div>
+            <div class="col-sm-2"></div>
         </div>
     </div>
 {% endblock fos_user_content %}

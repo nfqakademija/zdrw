@@ -80,8 +80,8 @@
                                     </div>
                                     <div class="col-sm-12 col-without-padding">
                                         <div class="pull-right">
-                                            <small>Likes: {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
-                                            <small>Comments: {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
+                                            <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
+                                            <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -116,6 +116,9 @@
                                     <div class="col-lg-12 col-md-6 col-sm-12 col-without-padding">
                                         <h4 class="hidden-lg hidden-sm">
                                             <small class="pull-right">
+                                                <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': stare.id})) }}</small>
+                                                <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': stare.id})) }}</small>
+                                                &nbsp;//&nbsp;
                                                 {{ stare.startDate | date("Y-d-m H:i") }}
                                             </small><br>
                                             <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
@@ -126,6 +129,9 @@
                                             <div class="caption-text">
                                                 <h4>
                                                     <small class="pull-right">
+                                                        <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': stare.id})) }}</small>
+                                                        <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': stare.id})) }}</small>
+                                                        &nbsp;//&nbsp;
                                                         {{ stare.startDate | date("Y-d-m H:i") }}
                                                     </small><br>
                                                     <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
