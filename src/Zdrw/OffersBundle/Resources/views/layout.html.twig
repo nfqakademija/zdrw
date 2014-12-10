@@ -17,7 +17,6 @@
                 <div class="navbar-collapse collapse" style="overflow:hidden;">
                     <ul class="nav navbar-nav">
                         <li>
-
                             <form method="post" action="{{ path('zdrw_search') }}" role="search" id="custom-search-form" class="form-search form-horizontal pull-right">
                                 <div class="input-append span12">
                                     <input type="text" class="search-query mac-style" name="keyword" class="form-control"  placeholder="Search" >
@@ -39,10 +38,24 @@
                         <li><a href="{{ path('zdrw_stares') }}">Stares</a></li>
                         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                             {% set userInfo = user_info_provider.userInfo(user) %}
+                                {% if app.request.get('_route') != 'zdrw_profile' %}
+                                    {% if nId > 0 %}
+                                        <li>
+                                            <a href="{{ path('zdrw_profile') }}">
+                                            <span style="font-size:12pt" class="label label-danger">
+                                                {{ nId }}
+                                                <span class="glyphicon glyphicon-bell"></span>
+                                            </span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
                             <li class="dropdown hidden-xs">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                    <strong>{{ userInfo.nick }}</strong>
+                                    <strong>
+                                        {{ userInfo.nick }}
+                                    </strong>
                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -56,7 +69,8 @@
                                                 </div>
                                                 <div class="col-lg-8">
                                                     <p class="text-left"><strong>{{ userInfo.nick }}</strong></p>
-                                                    <p class="text-left">Notifications</p>
+                                                    <p class="text-left">User points: <b>{{ userInfo.points }}</b></p>
+
                                                     <p class="text-left">
                                                         <a href="{{ path("zdrw_profile") }}" class="btn btn-primary btn-block btn-sm">Profile</a>
                                                     </p>

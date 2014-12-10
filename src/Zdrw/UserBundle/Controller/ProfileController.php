@@ -34,8 +34,10 @@ class ProfileController extends DefaultController
         $dares = $this->getUserDares($this->getUser());
         $stares = $this->getUserPerformedDares($this->getUser());
 
+        $nId = $this->unreadNotifications();
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares
+            'nId' => $nId, 'notifications' => $notifications, 'dares' => $dares, 'user' => $user, 'stares' => $stares
         ));
     }
 
@@ -109,9 +111,12 @@ class ProfileController extends DefaultController
             return $response;
         }
 
+        $nId = $this->unreadNotifications();
+
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
+            'nId' => $nId
         ));
     }
 }

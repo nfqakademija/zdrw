@@ -26,7 +26,11 @@
 
     <input class="btn btn-success btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
-
-<a href="{{ path("fb_url") }}">facebook</a>
-<a href="{{ path("google_url") }}">google</a>
+<div class="text-center">
+    <br>
+    or login with &nbsp;
+    <a href="{{ path("fb_url") }}"><img class="fb" src="{{ asset('img/f.png') }}" alt=""></a>
+    <a href="{{ path("google_url") }}"><img class="gplus" src="{{ asset('img/g.png') }}" alt=""></a>
+    <br><br>
+</div>
 {% endblock fos_user_content %}

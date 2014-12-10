@@ -9,6 +9,8 @@ use Zdrw\OffersBundle\Entity\Offer;
 use Zdrw\OffersBundle\Entity\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
+use Zdrw\OffersBundle\Services\UserInfoProvider;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Controller managing the offers
@@ -220,19 +222,35 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method counting unread notifications
+     *
+     * @return int|void
+     */
+    public function unreadNotifications()
+    {
+        $user = $this->getUser();
+        $nId = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')->
+        findBy(array('user' => $user, 'seen' => 0));
+
+        return count($nId);
+    }
+
+    /**
      * Method to render the main project page
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
+        $nId = $this->unreadNotifications();
+
         $dares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
             findBy(array('status' => array(1, 2)), array('id' => 'desc'), 4);
         $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->
             findBy(array('status' => 5), array('startDate' => 'desc'), 6);
         return $this->render(
             "ZdrwOffersBundle:Default:index.html.twig",
-            array('dares' => $dares, 'stares' => $stares, 'user' => $this->getUser()
+            array('nId' => $nId, 'dares' => $dares, 'stares' => $stares, 'user' => $this->getUser()
             )
         );
     }
@@ -244,6 +262,7 @@ class DefaultController extends Controller
      */
     public function daresAction($page)
     {
+        $nId = $this->unreadNotifications();
         $limit = 6;
         $page--;
         $dares = $this->getDares($limit, $page*$limit);
@@ -253,6 +272,7 @@ class DefaultController extends Controller
         return $this->render(
             'ZdrwOffersBundle:Default:dares.html.twig',
             array(
+                'nId' => $nId,
                 'dares' => $dares,
                 'stares' => $stares,
                 'user'=> $this->getUser(),
@@ -270,6 +290,8 @@ class DefaultController extends Controller
      */
     public function dareAction($id)
     {
+        $nId = $this->unreadNotifications();
+
         $post = Request::createFromGlobals();
         $user = $this->getUser();
         $manager = $this->getDoctrine()->getManager();
@@ -298,7 +320,12 @@ class DefaultController extends Controller
         return $this->render(
             "ZdrwOffersBundle:Default:dare.html.twig",
             array(
-            'dare' => $dare, 'stares' => $stares, 'user' => $user, 'reward' => $reward, 'comments' => $comments,
+                'nId' => $nId,
+                'dare' => $dare,
+                'stares' => $stares,
+                'user' => $user,
+                'reward' => $reward,
+                'comments' => $comments,
                 'points' => $pointsMsg
             )
         );
@@ -350,11 +377,17 @@ class DefaultController extends Controller
             } elseif ($userPoints < $givenReward) {
                 $errorMsg = 1;
             }
+
+            $nId = $this->unreadNotifications();
         }
         return $this->render(
             "ZdrwOffersBundle:Default:newDare.html.twig",
             array(
-            'form' => $form->createView(), 'stares' => $stares, 'user' => $user, 'errorMsg' => $errorMsg
+                'nId' => $nId,
+                'form' => $form->createView(),
+                'stares' => $stares,
+                'user' => $user,
+                'errorMsg' => $errorMsg
             )
         );
     }
@@ -367,6 +400,8 @@ class DefaultController extends Controller
      */
     public function staresAction($page)
     {
+        $nId = $this->unreadNotifications();
+
         $limit = 12;
         $page--;
         $dares = $this->getDares(5);
@@ -375,6 +410,7 @@ class DefaultController extends Controller
         return $this->render(
             'ZdrwOffersBundle:Default:stares.html.twig',
             array(
+                'nId' => $nId,
                 'stares' => $stares,
                 'dares' => $dares,
                 'user' => $this->getUser(),
@@ -414,9 +450,12 @@ class DefaultController extends Controller
         $dares = $this->getUserDares($currentUser->getId());
         $stares = $this->getUserPerformedDares($currentUser->getId());
 
+        $nId = $this->unreadNotifications();
+
         return $this->render(
             'ZdrwUserBundle:Profile:user.html.twig',
             array(
+                'nId' => $nId,
                 'user' => $user, 'currentUser' => $currentUser, 'dares' => $dares, 'stares' => $stares
             )
         );
@@ -437,10 +476,13 @@ class DefaultController extends Controller
             $dares = $manager->searchForDares($keyword);
             $stares = $manager->searchForStares($keyword);
         }
+
+        $nId = $this->unreadNotifications();
+
         return $this->render(
             'ZdrwOffersBundle:Default:search.html.twig',
             array(
-                'dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
+                'nId' => $nId, 'dares' => $dares,'stares' => $stares, 'user'=> $this->getUser()
             )
         );
     }

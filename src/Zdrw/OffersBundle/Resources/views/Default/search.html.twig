@@ -7,6 +7,11 @@
             <h1>Dares</h1>
             <div class="primary-content">
                 <div class="row">
+                    {% if dares == null %}
+                        <li class="list-group-item text-center empty">
+                            Nothing was found
+                        </li>
+                    {% endif %}
                     {% for dare in dares %}
                         <article class="articles">
                             <div class="dare-article">
@@ -51,6 +56,11 @@
             <h1>Stares</h1>
             <div class="secondary-content">
                 <div class="row">
+                    {% if stares == null %}
+                        <li class="list-group-item text-center empty">
+                            Nothing was found
+                        </li>
+                    {% endif %}
                     {% for stare in stares %}
                         <article class="col-lg-6 col-md-12 col-sm-6 col-xs-12 articles cuadro_intro_hover">
                             <div class="stare-article stare-height-index">

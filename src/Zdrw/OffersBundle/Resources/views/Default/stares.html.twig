@@ -8,7 +8,7 @@
                 <div class="row">
                 {% for stare in stares %}
                     <article class="col-lg-4 col-sm-6 col-xs-12 articles cuadro_intro_hover">
-                        <div class="stare-article stare-height">
+                        <div class="stare-article stare-height" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
                             <div class="row">
                                 <div class="col-sm-12 col-without-padding">
                                     <a href="#" class="thumbnail stare-thumbnail">
@@ -56,7 +56,7 @@
                 <div class="row">
                 {% for dare in dares %}
                     <article class="articles">
-                        <div class="dare-article">
+                        <div class="dare-article" onclick="location.href='{{ path('zdrw_dare', { id: dare.id }) }}';">
                             <div class="row">
                                 <div class="col-sm-4 thumb-keeper col-without-padding">
                                     <div class="thumb-container">

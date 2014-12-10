@@ -11,7 +11,7 @@
                 <div class="row">
                     {% for dare in dares %}
                         <article class="articles">
-                            <div class="dare-article">
+                            <div class="dare-article" onclick="location.href='{{ path('zdrw_dare', { id: dare.id }) }}';">
                                 <div class="row">
                                     <div class="col-sm-2 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
@@ -54,7 +54,7 @@
                 <div class="row">
                     {% for stare in stares %}
                         <article class="col-md-12 articles">
-                            <div class="dare-article">
+                            <div class="dare-article" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-12 col-lg-6 thumb-keeper col-without-padding">
                                         <div class="thumb-container thumb-container-stare">

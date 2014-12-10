@@ -12,7 +12,7 @@
 $bg-color: rgba(214, 211, 196, 0.50);
 $article-color: #E0DDD4;
 $light: #CDCAB9;
-$font-1: 16pt;
+$font-1: 14pt;
 $font-2: 24pt;
 $font-3: 20pt;
 
@@ -22,11 +22,15 @@ html{
 body{
   height: 100%;
   width: 100%;
-  background: url('../img/back.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #0B7687;
+  @media screen and (min-width: 768px) {
+    background: url('../img/back.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
 }
 video{
   width: 100%;
@@ -131,7 +135,8 @@ h1{
   }
 }
 .stare-article,
-.dare-article{
+.dare-article,
+.certain-dare-article{
   h4 small{
     font-size: 8pt;
   }
@@ -143,9 +148,12 @@ h1{
   padding: 10px;
   overflow: hidden;
 }
-
+.stare-article:hover{
+  cursor: pointer;
+}
 .dare-article:hover{
   background-color: $light;
+  cursor: pointer;
 }
 .shortDesc{
   color: #777777;
@@ -233,4 +241,8 @@ textarea{
 .empty:hover{
   background-color: $article-color;
   cursor: default;
+}
+.fb, .gplus{
+  width:30px;
+  border-radius: 5px;
 }

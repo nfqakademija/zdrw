@@ -55,9 +55,16 @@ class AdminController extends Controller
                     $points = 1;
                 }
             }
+
+            $user = $this->getUser();
+            $nId = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Notification')
+                ->findBy(array('user' => $user, 'seen' => 0));
+            $nId = count($nId);
+
             return $this->render(
                 'ZdrwOffersBundle:Admin:index.html.twig',
                 array(
+                    'nId' => $nId,
                     'user' => $this->getUser(),
                     'stares' => $stares,
                     'form' => $form->createView(),
