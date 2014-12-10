@@ -39,15 +39,17 @@
                         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                             {% set userInfo = user_info_provider.userInfo(user) %}
                                 {% if app.request.get('_route') != 'zdrw_profile' %}
-                                    {% if nId > 0 %}
-                                        <li>
-                                            <a href="{{ path('zdrw_profile') }}">
-                                            <span style="font-size:12pt" class="label label-danger">
-                                                {{ nId }}
-                                                <span class="glyphicon glyphicon-bell"></span>
-                                            </span>
-                                            </a>
-                                        </li>
+                                    {% if nId is defined %}
+                                        {% if nId > 0 %}
+                                            <li>
+                                                <a href="{{ path('zdrw_profile') }}">
+                                                <span style="font-size:12pt" class="label label-danger">
+                                                    {{ nId }}
+                                                    <span class="glyphicon glyphicon-bell"></span>
+                                                </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                     {% endif %}
                                 {% endif %}
                             <li class="dropdown hidden-xs">

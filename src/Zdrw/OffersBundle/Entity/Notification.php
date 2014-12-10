@@ -41,6 +41,13 @@ class Notification
     private $date;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=55)
+     */
+    private $link = 0;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="seen", type="integer")
@@ -157,5 +164,28 @@ class Notification
     public function __construct()
     {
         $this->date = new \DateTime();
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Notification
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 }

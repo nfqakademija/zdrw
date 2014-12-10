@@ -1,25 +1,24 @@
 (function($){
     'use strict';
 
-    $('.notification').on('click', function()
-    {
-        var notification = $(this);
-        var id = $(this).data('id');
-        var url = $(this).data('url');
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: {'id': id},
-            success: function()
-            {
-                notification.css({ backgroundColor: '#E0DDD4' });
+    var notification = $('.notification');
+    var notificationId;
+    var notificationUrl;
 
-                notification.mouseenter(function() {
-                    $(this).css({ backgroundColor: '#CDCAB9' });
-                }).mouseleave(function() {
-                    $(this).css({ backgroundColor: '#E0DDD4' });
+    if (notification.length > 0) {
+        notification.each(function(){
+            notificationId = $(this).data('id');
+            notificationUrl = $(this).data('url');
+            if ($(this).data('seen') === 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: notificationUrl,
+                    data: {'id': notificationId},
+                    success: function()
+                    {
+                    }
                 });
             }
         });
-    });
+    }
 })(jQuery);

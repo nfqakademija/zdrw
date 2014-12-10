@@ -102,13 +102,11 @@ class Offer
     private $views;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="participant_id", type="integer", nullable=true)
-     */
+    * @var integer
+    *
+    * @ORM\Column(name="participant_id", type="integer", nullable=true)
+    */
     private $participantId = null;
-
-
 
     /**
      * Get id
@@ -281,11 +279,10 @@ class Offer
     {
         return $this->participantId;
     }
+
     /**
      * Constructor
      */
-
-
     public function __construct()
     {
         $this->startDate = new \DateTime();

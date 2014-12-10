@@ -6,7 +6,6 @@ use Zdrw\OffersBundle\Entity\Notification;
 use Zdrw\OffersBundle\Entity\Reward;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zdrw\OffersBundle\Entity\Offer;
-use Zdrw\OffersBundle\Entity\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Zdrw\OffersBundle\Form\Type\OfferType;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,16 +61,32 @@ class DefaultController extends Controller
         if ($securityContext->isGranted('ROLE_ADMIN')) {
             $dare->setStatus(1);
 
-            $not1->setNotification("Admin declined your video of confirmation. Now dare is available for everyone");
+            $not1->setNotification("Admin declined your video. Now dare is available for everyone.");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not1->setLink($url);
+
 
             $not2 = new Notification();
             $not2->setUser($dare->getOwner());
-            $not2->setNotification("Admin declined video of confirmation for your dare. Now dare is available for everyone");
+            $not2->setNotification("Admin declined video for your dare. Now dare is available for everyone.");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not2->setLink($url);
             $manager->persist($not2);
 
         } elseif ($user == $dare->getOwner()) {
             $dare->setStatus(4);
-            $not1->setNotification("Dare owner declined your video of confirmation. Website admins will review your video.");
+            $not1->setNotification("Dare owner declined your video. Website admins will review your video one more time.");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not1->setLink($url);
         }
         $manager->persist($not1);
         $manager->flush();
@@ -107,15 +122,35 @@ class DefaultController extends Controller
         $not2 = new Notification();
 
         if ($securityContext->isGranted('ROLE_ADMIN')) {
-            $not1->setNotification("Admin accepted your video of confirmation. You got " . $reward . " points. Congratulations!");
+            $not1->setNotification("Admin accepted your video after the owner declined it. You got " . $reward . " points. Congratulations!");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not1->setLink($url);
 
             $not2->setUser($dare->getOwner());
-            $not2->setNotification("Admin have accepted video of your offer");
+            $not2->setNotification("Admin have accepted video of your offer.");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not2->setLink($url);
         } elseif ($user == $dare->getOwner()) {
-            $not1->setNotification("Dare owner accepted your video of confirmation. You got " . $reward . " points. Congratulations!");
+            $not1->setNotification("Dare owner accepted your video. You got " . $reward . " points. Congratulations!");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not1->setLink($url);
 
             $not2->setUser($user);
             $not2->setNotification("You have accepted video of your offer");
+            $url = $this->container->get('router')->generate(
+                'zdrw_dare',
+                array('id' => $dare->getId())
+            );
+            $not2->setLink($url);
         }
         $manager->persist($not1);
         $manager->persist($not2);
@@ -136,7 +171,7 @@ class DefaultController extends Controller
 
         $not1 = new Notification();
         $not1->setUser($user);
-        $not1->setNotification("You have reserved offer. Do not forget to upload video to prove offer completion");
+        $not1->setNotification("You have reserved offer. Do not forget to upload video to prove offer completion!");
         $manager->persist($not1);
 
         $not2 = new Notification();
@@ -352,58 +387,63 @@ class DefaultController extends Controller
      */
     public function newDareAction(Request $request)
     {
-        $stares = $this->getStares(5);
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('ROLE_USER')) {
+            $stares = $this->getStares(5);
+            $user = $this->getUser();
+            $errorMsg = 0;
+            if ($user != null) {
+                $offer = new Offer();
+                $reward = new Reward();
+                $offer->setOwner($user);
+                $form = $this->createForm(new OfferType(), $offer);
+                $form->handleRequest($request);
 
-        $user = $this->getUser();
-        $errorMsg = 0;
-        if ($user != null) {
-            $offer = new Offer();
-            $reward = new Reward();
-            $offer->setOwner($user);
-            $form = $this->createForm(new OfferType(), $offer);
-            $form->handleRequest($request);
-
-            $thisOffer = $form->getData();
-            $reward->setOffer($thisOffer);
-            $reward->setUser($user);
-            $givenReward = $form['rewards']->getData();
-
-            $userPoints = $user->getPoints();
-
-            if ($userPoints >= $givenReward) {
-                $reward->setPoints($givenReward);
+                $thisOffer = $form->getData();
                 $reward->setOffer($thisOffer);
-                $user->setPoints($userPoints - $givenReward);
+                $reward->setUser($user);
+                $givenReward = $form['rewards']->getData();
 
-                if ($form->isValid() &&
-                    (strlen($offer->getDescription()) <= 500) &&
-                    (strlen($offer->getTitle()) <= 50) &&
-                    (strlen($offer->getLongDesc()) <= 1500)
-                ) {
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($offer);
-                    $em->persist($reward);
-                    $em->persist($user);
-                    $em->flush();
+                $userPoints = $user->getPoints();
 
-                    return $this->redirect($this->generateUrl('zdrw_dares'));
+                if ($userPoints >= $givenReward) {
+                    $reward->setPoints($givenReward);
+                    $reward->setOffer($thisOffer);
+                    $user->setPoints($userPoints - $givenReward);
+
+                    if ($form->isValid() &&
+                        (strlen($offer->getDescription()) <= 500) &&
+                        (strlen($offer->getTitle()) <= 50) &&
+                        (strlen($offer->getLongDesc()) <= 1500)
+                    ) {
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($offer);
+                        $em->persist($reward);
+                        $em->persist($user);
+                        $em->flush();
+
+                        return $this->redirect($this->generateUrl('zdrw_dares'));
+                    }
+                } elseif ($userPoints < $givenReward) {
+                    $errorMsg = 1;
                 }
-            } elseif ($userPoints < $givenReward) {
-                $errorMsg = 1;
-            }
 
-            $nId = $this->unreadNotifications();
+                $nId = $this->unreadNotifications();
+            }
+            return $this->render(
+                "ZdrwOffersBundle:Default:newDare.html.twig",
+                array(
+                    'nId' => $nId,
+                    'form' => $form->createView(),
+                    'stares' => $stares,
+                    'user' => $user,
+                    'errorMsg' => $errorMsg
+                )
+            );
+        } else {
+            return $this->redirect($this->generateUrl('zdrw_dares'));
         }
-        return $this->render(
-            "ZdrwOffersBundle:Default:newDare.html.twig",
-            array(
-                'nId' => $nId,
-                'form' => $form->createView(),
-                'stares' => $stares,
-                'user' => $user,
-                'errorMsg' => $errorMsg
-            )
-        );
+
     }
 
 

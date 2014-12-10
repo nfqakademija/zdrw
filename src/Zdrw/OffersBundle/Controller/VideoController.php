@@ -53,7 +53,8 @@ class VideoController extends Controller
                             'zdrw_dare',
                             array('id' => $offer->getId())
                         );
-                        $notification->setNotification("User " . $owner->getNickname() . " completed your challenge. You can view the video and approve <a href='" . $url . "'>here</a>");
+                        $notification->setNotification("User " . $user->getNickname() . " completed your challenge. You can view the video and approve <a href='" . $url . "'>here</a>");
+                        $notification->setLink($url);
                         $manager->persist($notification);
                         $manager->flush();
 

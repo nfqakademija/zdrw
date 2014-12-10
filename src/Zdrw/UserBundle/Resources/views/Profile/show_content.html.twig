@@ -36,7 +36,10 @@
                                 </li>
                                 {% endif %}
                                 {% for n in notifications %}
-                                    <li class="list-group-item notification {{ n.seen == 0 ? 'newNotification' : '' }}" data-id="{{ n.id }}" data-url="{{ path('zdrw_seen') }}">
+                                    <li class="list-group-item notification" data-seen="{{ n.seen == 0 ? 0 : 1 }}" data-id="{{ n.id }}" data-url="{{ path('zdrw_seen') }} " onclick="location.href='{{ n.link }}';">
+                                        {% if n.seen == 0 %}
+                                            <span class="pull-right label label-danger">New</span>
+                                        {% endif %}
                                         <p>{{ n.notification | raw }}</p>
                                         <br><small class="pull-right">{{ n.date | date("Y-d-m H:i:s") }}</small>
                                         <br>

@@ -38,7 +38,12 @@ $state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
 
 $hr-border: #C1B7AB;
 $well-border: #c0c0c0;
+
+$list-group-bg: $article-color;
+$list-group-border: #c0c0c0;
+
 $panel-bg: $article-color;
+$panel-default-border: $light;
 $modal-content-bg: $article-color;
 
 $pagination-bg: $article-color;
