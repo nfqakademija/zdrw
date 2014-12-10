@@ -24,6 +24,7 @@ class OfferRepository extends EntityRepository
                 'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
                 AND p.status IN(1,2)'
             )->setParameter('keyword', '%'.$keyword.'%')
+            ->setMaxResults(12)
             ->getResult();
         return $dares;
     }
@@ -40,6 +41,7 @@ class OfferRepository extends EntityRepository
                 'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
                 AND p.status = 5'
             )->setParameter('keyword', '%'.$keyword.'%')
+            ->setMaxResults(16)
             ->getResult();
         return $dares;
     }
