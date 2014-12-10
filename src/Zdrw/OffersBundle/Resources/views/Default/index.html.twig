@@ -54,7 +54,9 @@
         </section>
         <section class="col-md-6 primary-section">
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                <a href="{{ path('zdrw_new_dare') }}"><button class="btn btn-info pull-right"><span class="glyphicon glyphicon-plus"></span> Create your own</button></a>
+                <a class="btn btn-info pull-right" href="{{ path('zdrw_new_dare') }}"><span class="glyphicon glyphicon-plus"></span> Create your own</a>
+            {% else %}
+            <a class="btn btn-success pull-right login-link" data-link="{{ path("zdrw_login") }}" href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-plus"></span> Login and create your own</a>
             {% endif %}
             <h1>Dares</h1>
             <div class="primary-content">
