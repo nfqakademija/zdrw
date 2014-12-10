@@ -23,7 +23,7 @@ html{
 body{
   height: 100%;
   width: 100%;
-  background-color: #0B7687;
+  background-color: #0A606E;
   @media screen and (min-width: 768px) {
     background: url('../img/back.png') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -35,7 +35,27 @@ body{
 }
 .video-js{
   width: 100% !important;
-  height: 100% !important;
+
+  @media screen and (max-width: 471px) {
+    height: 175px !important;
+  }
+
+  @media screen and (max-width: 767px) and (min-width: 480px) {
+    height: 280px !important;
+  }
+
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    height: 353px !important;
+  }
+
+  @media screen and (max-width: 1199px) and (min-width: 992px) {
+    height: 300px !important;
+  }
+
+  @media screen and (min-width: 1200px) {
+    height: 353px !important;
+  }
+
   min-height: 150px;
 }
 .proof-btns{
