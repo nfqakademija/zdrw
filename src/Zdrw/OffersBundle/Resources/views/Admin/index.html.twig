@@ -7,7 +7,7 @@
             <h1>Points addition</h1>
             <div class="primary-content">
                 <div class="articles">
-                    <div class="stare-article col-md ">
+                    <div class="stare-article">
                         {{ form_start(form) }}
 
                         {{ form_label(form.nickname) }}
@@ -35,7 +35,7 @@
             <div class="primary-content">
                 <ul class="list-group profile-list">
                     {% for stare in stares %}
-                        <li class="list-group-item">
+                        <li class="list-group-item" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
                             <h4>
                                 <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title }}</a>
                             </h4>

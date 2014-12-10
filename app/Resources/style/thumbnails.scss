@@ -1,0 +1,48 @@
+.thumb-container{
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .thumb-container-stare{
+    margin-right: 0px;
+  }
+}
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .thumb-container-index{
+    margin-right: 10px;
+  }
+}
+
+.thumb-keeper{
+  padding: 0px;
+}
+.thumbnail{
+  margin-bottom: 5px;
+}
+
+.dare-thumbnail{
+  margin: 0px auto 5px;
+  max-width: 100px;
+  max-height: 100px;
+}
+.stare-thumbnail{
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 80px;
+  max-width: 350px;
+}
+.profile-thumbnail{
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 80px;
+  max-width: 210px;
+}
+.comment-thumbnail{
+  margin: 0px auto 5px;
+  max-width: 65px;
+  max-height: 65px;
+}
+.navbar-thumbnail{
+  max-width: 80px;
+  max-height: 80px;
+}

@@ -12,7 +12,7 @@
             data: {'id': id},
             success: function()
             {
-                notification.css({ backgroundColor: '#CDCAB9' });
+                notification.css({ backgroundColor: '#E0DDD4' });
 
                 notification.mouseenter(function() {
                     $(this).css({ backgroundColor: '#CDCAB9' });

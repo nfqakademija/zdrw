@@ -35,7 +35,7 @@ function commentDare(ajaxlink){
                 if (response === 'success') {
                     $('textarea[name="commentText"]').val('');
                     $('#successBox').show();
-                    $('#comment-template').clone().removeAttr('id').show().appendTo('#into').find('p').text(text);
+                    $('#comment-template').clone().removeAttr('id').show().prependTo('#into').find('p').text(text);
                     $('#loading-bar').hide();
                     form.show();
                 }

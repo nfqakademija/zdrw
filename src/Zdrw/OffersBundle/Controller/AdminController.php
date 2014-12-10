@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function indexAction(Request $request)
     {
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 4));
+            $stares = $this->getDoctrine()->getRepository('ZdrwOffersBundle:Offer')->findBy(array('status' => 4), array('id' => 'desc'));
             $points = 0;
             $userPoints = 0;
             $userNick = 0;

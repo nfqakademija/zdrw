@@ -8,6 +8,7 @@
 @import "comments";
 @import "articles";
 @import "staresHover";
+@import "thumbnails";
 
 $bg-color: rgba(214, 211, 196, 0.50);
 $article-color: #E0DDD4;
@@ -121,19 +122,7 @@ h1{
 .articles:last-child{
   padding-bottom: 20px
 }
-.thumb-container{
-  margin-right: 10px;
-}
-@media screen and (max-width: 1199px) and (min-width: 992px) {
-  .thumb-container-stare{
-    margin-right: 0px;
-  }
-}
-@media screen and (max-width: 1199px) and (min-width: 992px) {
-.thumb-container-index{
-    margin-right: 10px;
-  }
-}
+
 .stare-article,
 .dare-article,
 .certain-dare-article{
@@ -163,28 +152,7 @@ textarea{
   max-width: 100%;
   min-height: 100px;
 }
-.dare-thumbnail{
-  margin: 0px auto 5px;
-  max-width: 100px;
-  max-height: 100px;
-}
-.stare-thumbnail{
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 80px;
-  max-width: 350px;
-}
-.profile-thumbnail{
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 80px;
-  max-width: 260px;
-}
-.comment-thumbnail{
-  margin: 0px auto 5px;
-  max-width: 65px;
-  max-height: 65px;
-}
+
 @media screen and (min-width: 768px) {
   .dividers-left{
     border-right: 1px solid $light;
@@ -222,12 +190,7 @@ textarea{
   width: 100%;
   float:right;
 }
-.thumb-keeper{
-  padding: 0px;
-}
-.thumbnail{
-  margin-bottom: 5px;
-}
+
 .tabbable a{
   color: #69B2B2;
 }
@@ -245,4 +208,11 @@ textarea{
 .fb, .gplus{
   width:30px;
   border-radius: 5px;
+}
+
+.pagination .disable span,
+.pagination .disable span:hover {
+  color: #999999;
+  background-color: $article-color;
+  cursor: default;
 }

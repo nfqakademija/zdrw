@@ -6,13 +6,14 @@
         <div class="container page-content">
             <section class="col-md-3 profile-section">
                 <article class="profile">
-                    <a href="#" class="thumbnail profile-thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+                    <a href="#" class="thumbnail profile-thumbnail image-profile"><img src="{{ asset('img/avatar.png') }}" alt="Profile picture"></a>
                     <p class="panel panel-body articles">
                         <b class="font-3">{{ userInfo.nick }}</b><br>
                         <span class="font-1">Points: <b>{{ userInfo.points }}</b></span><br>
                         <span class="font-1">{{ userInfo.email }}</span>
                         <br>
                         {% if userInfo.name|length < 20 %}
+                            <br>
                             <a class="text-info" href="{{ path('fos_user_profile_edit') }}">Edit profile info</a>
                         {% endif %}
                     </p>

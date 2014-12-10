@@ -1,5 +1,7 @@
 <div>
     <br>
+    <nav class="text-center">
+        <ul class="pagination">
     {% if page > 4 %}
         {% set dots1 = '...' %}
         {% set start = page-3 %}
@@ -15,24 +17,30 @@
         {% set end = total %}
     {% endif %}
     {% if dots1 %}
-        <a href="{{ path('zdrw_dares', {page: 1}) }}">First</a>
+        <li><a href="{{ path('zdrw_dares', {page: 1}) }}">First</a></li>
     {% endif %}
     {% if page > 1 %}
-        <a href="{{ path('zdrw_dares', {page: page-1}) }}">Previous</a>
+        <li><a href="{{ path('zdrw_dares', {page: page-1}) }}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
     {% endif %}
-    <span>{{ dots1 }}</span>
+    {% if dots1 %}
+        <li class="disable"><span>{{ dots1 }}</span></li>
+    {% endif %}
     {% for i in start..end %}
         {% if i == page %}
-            <b>{{ i }}</b>
+            <li class="active"><a href="#"><b>{{ i }}</b></a></li>
         {% else %}
-            <a href="{{ path(link, {page: i}) }}">{{ i }}</a>
+            <li><a href="{{ path(link, {page: i}) }}">{{ i }}</a></li>
         {% endif %}
     {% endfor %}
-    <span>{{ dots2 }}</span>
+    {% if dots2 %}
+        <li class="disable"><span>{{ dots2 }}</span></li>
+    {% endif %}
     {% if page < total %}
-        <a href="{{ path(link, {page: page+1}) }}">Next</a>
+        <li><a href="{{ path(link, {page: page+1}) }}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
     {% endif %}
     {% if dots2 %}
-        <a href="{{ path(link, {page: total}) }}">Last</a>
+        <li><a href="{{ path(link, {page: total}) }}">Last</a></li>
     {% endif %}
+        </ul>
+    </nav>
 </div>
