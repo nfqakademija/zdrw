@@ -183,7 +183,11 @@
                                             <textarea class="form-control" maxlength="300" name="commentText"></textarea>
                                         </div>
                                         <input type="hidden" value="{{ dare.id }}" name="dare-id">
-                                        <div class="col-sm-offset-8 col-sm-4">
+                                        <div class="col-sm-8">
+                                            <br>
+                                            <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
+                                        </div>
+                                        <div class="col-sm-4">
                                             <br>
                                             <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success btn-block pull-right" value="Comment" />
                                         </div>
@@ -195,8 +199,8 @@
                                         <div class="rect4"></div>
                                         <div class="rect5"></div>
                                     </div>
-                                    <br>
-                                    <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
+
+
                                 {% endif %}
                                 {% for comment in comments %}
                                     <article class="comment">
