@@ -19,7 +19,7 @@
                                     <div class="col-sm-3 thumb-keeper col-without-padding">
                                         <div class="thumb-container">
                                             <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
-                                                <img class="img-responsive" src="{{ asset('img/avatar.png') }}" alt="" />
+                                                <img class="img-responsive" src='{{ 'http' in dare.Owner.avatar ? dare.Owner.avatar : asset('uploads/avatars/'~dare.Owner.avatar) }}' alt="" />
                                             </a>
                                             <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
                                         </div>

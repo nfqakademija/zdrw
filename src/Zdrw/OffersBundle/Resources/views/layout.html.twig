@@ -64,7 +64,7 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <p class="text-center">
-                                                        <img class="hidden-xs img-circle navbar-thumbnail" src="{{ asset('img/avatar.png') }}" alt="Profile picture">
+                                                        <img class="hidden-xs img-circle navbar-thumbnail" alt="Profile picture" src='{{ 'http' in user.avatar ? user.avatar : asset('uploads/avatars/'~user.avatar) }}'/>
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-8">

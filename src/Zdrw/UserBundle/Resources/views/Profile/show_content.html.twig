@@ -6,7 +6,8 @@
         <div class="container page-content">
             <section class="col-md-3 profile-section">
                 <article class="profile">
-                    <a href="#" class="thumbnail profile-thumbnail image-profile"><img src="{{ asset('img/avatar.png') }}" alt="Profile picture"></a>
+                    <a href="#" class="thumbnail profile-thumbnail image-profile"><img class="thumbnail profile-thumbnail image-profile" alt="Profile picture" src='{{ 'http' in user.avatar ? user.avatar : asset('uploads/avatars/'~user.avatar) }}' /></a>
+
                     <p class="panel panel-body articles">
                         <b class="font-3">{{ userInfo.nick }}</b><br>
                         <span class="font-1">Points: <b>{{ userInfo.points }}</b></span><br>
