@@ -21,7 +21,7 @@ class SocialController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $exist = $manager->getRepository('ZdrwUserBundle:Like')->findOneBy(array("offer" => $id, "user" => $user->getId()));
-        if ($exist == null) {
+        if ($exist == null && $user) {
             $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $id));
             if ($offer) {
                 $like = new Like();
@@ -49,7 +49,7 @@ class SocialController extends Controller
         $manager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $exist = $manager->getRepository('ZdrwUserBundle:Like')->findOneBy(array("offer" => $id, "user" => $user->getId()));
-        if ($exist == null) {
+        if ($exist == null && $user) {
             return new Response("Like");
         } else {
             return new Response("Unlike");
@@ -64,7 +64,7 @@ class SocialController extends Controller
     public function commentAction()
     {
         $post = Request::createFromGlobals();
-        if ($post->request->has('id') && $post->request->has('text')) {
+        if ($post->request->has('id') && $post->request->has('text') && (strlen($post->request->get('text')) <= 300)) {
             $manager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
             $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $post->request->get('id')));

@@ -22,6 +22,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userAdmin->setEmail('test@gmail.com');
         $userAdmin->setEnabled(true);
         $userAdmin->addRole('ROLE_ADMIN');
+        $userAdmin->setPoints(500);
 
 
         $user = new User();
@@ -31,6 +32,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setPlainPassword('user');
         $user->setEmail('testUser1@gmail.com');
         $user->setEnabled(true);
+        $user->setPoints(100);
 
         $manager->persist($userAdmin);
         $manager->persist($user);
