@@ -36,7 +36,18 @@ class VideoController extends Controller
                         $path = $this->get('kernel')->getRootDir().'/../web/';
                         $video = $path."uploads/".$fileName;
                         $image = $path."uploads/thumb/".$offerId.".jpg";
-                        shell_exec("ffmpeg -i $video -deinterlace -an -ss 10 -f mjpeg -t 1 -r 1 -y -s 350x260 $image 2>&1");
+
+                        $time =  exec("ffmpeg -i $video 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");
+
+                        $duration = explode(":", $time);
+                        $durationInSeconds = $duration[0]*3600 + $duration[1]*60+ round($duration[2]);
+                        $durationMiddle = $durationInSeconds/2;
+
+                        $minutes = $durationMiddle/60;
+                        $realMinutes = floor($minutes);
+                        $realSeconds = round(($minutes-$realMinutes)*60);
+
+                        exec("ffmpeg -i $video -deinterlace -an -ss $realSeconds -f mjpeg -t 1 -r 1 -y -s 350x260 $image 2>&1");
 
                         $manager = $this->getDoctrine()->getManager();
                         $offer = $manager->getRepository('ZdrwOffersBundle:Offer')->findOneBy(array('id' => $offerId));

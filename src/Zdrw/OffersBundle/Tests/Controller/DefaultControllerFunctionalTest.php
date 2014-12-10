@@ -143,7 +143,7 @@ class DefaultControllerFunctionalTest extends setup
         $buttonCrawlerNode = $crawler->selectButton("Decline video");
         $form = $buttonCrawlerNode->form();
         $crawler = $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('.alert-warning:contains("Dare is completed. Waiting for admin review")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('.alert-warning:contains("Someone has uploaded video for this dare. Owner rejected video, waiting for admin review")')->count());
     }
 
     public function testNewDare1()

@@ -4,7 +4,7 @@
     <div class="container page-content">
         <section class="col-md-3 profile-section">
             <article class="profile">
-                <span class="thumbnail profile-thumbnail"><img src="{{ asset('img/avatar.png') }}" alt=""></span>
+                <span class="thumbnail profile-thumbnail"><img alt="Profile picture" src='{{ 'http' in currentUser.avatar ? currentUser.avatar : asset('uploads/avatars/'~currentUser.avatar) }}' /></span>
                 <p class="panel panel-body articles">
                     <b class="font-1">{{ currentUser.nickname }}</b><br>
                 </p>
