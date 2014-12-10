@@ -8,13 +8,13 @@
             url: like.data('path'),
             data: {id: 1},
             success: function(response)
+            {
+                if (response === 'success')
                 {
-                    if (response === 'success')
-                    {
-                        var text = like.text();
-                        like.text(text === 'Like' ? 'Unlike' : 'Like');
-                    }
+                    var text = like.text();
+                    like.text(text === 'Like' ? 'Unlike' : 'Like');
                 }
+            }
         });
     });
 })(jQuery);
@@ -35,9 +35,7 @@ function commentDare(ajaxlink){
                 if (response === 'success') {
                     $('textarea[name="commentText"]').val('');
                     $('#successBox').show();
-                    $('#comment-template').clone().removeAttr('id').show();
-                    $('#successBox').parent().find('p').text(text);
-
+                    $('#comment-template').clone().removeAttr('id').show().appendTo('#into').find('p').text(text);
                     $('#loading-bar').hide();
                     form.show();
                 }
