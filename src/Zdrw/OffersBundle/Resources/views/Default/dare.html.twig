@@ -2,328 +2,328 @@
 
 {% block content %}
     <div class="container page-content" xmlns="http://www.w3.org/1999/html">
-        <section class="col-md-8 box primary-section">
-            <h1>Dares</h1>
-            <div class="primary-content">
-                <div class="row">
-                    <article class="articles">
-                        <div class="certain-dare-article">
-                            <div class="row">
-                                <div class="col-sm-2 thumb-keeper">
-                                    <div class="thumb-container">
-                                        <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
-                                            <img class="img-responsive" src='{{ 'http' in dare.Owner.avatar ? dare.Owner.avatar : asset('uploads/avatars/'~dare.Owner.avatar) }}' alt="" />
-                                        </a>
-                                        <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+    <section class="col-md-8 box primary-section">
+    <h1>Dares</h1>
+    <div class="primary-content">
+    <div class="row">
+    <article class="articles">
+    <div class="certain-dare-article">
+        <div class="row">
+            <div class="col-sm-2 thumb-keeper">
+                <div class="thumb-container">
+                    <a href="{{ path('zdrw_user', {name: dare.Owner}) }}" class="thumbnail dare-thumbnail">
+                        <img class="img-responsive" src='{{ 'http' in dare.Owner.avatar ? dare.Owner.avatar : asset('uploads/avatars/'~dare.Owner.avatar) }}' alt="" />
+                    </a>
+                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: dare.Owner}) }}">{{ dare.Owner.nickname }}</a></b></div>
+                </div>
+            </div>
+            <div class="col-sm-10 col-without-padding">
+                <h4>
+                    <small class="pull-right">
+                        {{ dare.startDate | date("Y-d-m H:i") }}
+                    </small>
+                    {{ dare.title }}
+                </h4>
+                <p class="shortDesc">{{ dare.description }}</p>
+                <p>{{ dare.longDesc }}</p>
+                {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (dare.status == 5) or (user and dare.status == 4 and is_granted('ROLE_ADMIN'))%}
+                    <div class="well">
+                        <h2 class="lead">Challenge fulfilment proof</h2>
+                        <video preload="auto" height="360" width="520" poster="../../uploads/thumb/{{ dare.id }}.jpg" class="video-js vjs-default-skin vjs-big-play-centered" id="video" data-setup='{}' controls>
+                            <source src="../../uploads/{{ dare.video }}" type='video/mp4'/>
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser
+                                that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
+                        </video>
+                        {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (user and dare.status == 4 and is_granted('ROLE_ADMIN')) %}
+                            <form method="post">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="submit" class="btn btn-success proof-btn" name="accept" value="Accept video">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="submit" class="btn btn-danger proof-btn" name="decline" value="Decline video">
                                     </div>
                                 </div>
-                                <div class="col-sm-10 col-without-padding">
-                                    <h4>
-                                        <small class="pull-right">
-                                            {{ dare.startDate | date("Y-d-m H:i") }}
-                                        </small>
-                                        {{ dare.title }}
-                                    </h4>
-                                    <p class="shortDesc">{{ dare.description }}</p>
-                                    <p>{{ dare.longDesc }}</p>
-                                    {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (dare.status == 5) or (user and dare.status == 4 and is_granted('ROLE_ADMIN'))%}
-                                        <div class="well">
-                                        <h2 class="lead">Challenge fulfilment proof</h2>
-                                        <video preload="auto" height="360" width="520" poster="../../uploads/thumb/{{ dare.id }}.jpg" class="video-js vjs-default-skin vjs-big-play-centered" id="video" data-setup='{}' controls>
-                                            <source src="../../uploads/{{ dare.video }}" type='video/mp4'/>
-                                            <p class="vjs-no-js">
-                                                To view this video please enable JavaScript, and consider upgrading to a web browser
-                                                that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                                            </p>
-                                        </video>
-                                        {% if (user and (dare.owner.id == user.id) and (dare.status == 3)) or (user and dare.status == 4 and is_granted('ROLE_ADMIN')) %}
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+            </div>
+            {% if dare.status != 5 %}
+                <div class="col-sm-12"><br>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div>
+                                <div class="col-sm-6 dividers-left">
+                                    <p class="lead">Challenge acceptance</p>
+                                    {% if dare.status == 4 %}
+                                        <div class="alert alert-warning" role="alert">Someone has uploaded video for this dare. Owner rejected video, waiting for admin review</div>
+                                    {% elseif user and dare.owner.id == user.id %}
+                                        <div class="alert alert-warning" role="alert">You can't accept this challenge</div>
+                                    {% elseif (dare.status == 2) and (is_granted("IS_AUTHENTICATED_FULLY")) and (dare.participant != user) %}
+                                        <div class="alert alert-info" role="alert">Someone reserved this challenge</div>
+                                    {% elseif ((dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY"))) or ((is_granted("IS_AUTHENTICATED_FULLY")) and (dare.status == 2) and (dare.participant.id == user.id)) %}
+                                        <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
+                                        {% if dare.status == 1 %}
                                             <form method="post">
-                                                <br>
-                                                <div class="row">
-                                                <div class="col-sm-6">
-                                                    <input type="submit" class="btn btn-success proof-btn" name="accept" value="Accept video">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="submit" class="btn btn-danger proof-btn" name="decline" value="Decline video">
-                                                </div>
-                                                </div>
+                                                <input type="submit" name="reservation" value="I'll do it" class="btn btn-primary i-will-do-it"/>
                                             </form>
                                         {% endif %}
-                                        </div>
-                                    {% endif %}
 
-                                </div>
-                                {% if dare.status != 5 %}
-                                    <div class="col-sm-12"><br>
-                                        <div class="panel panel-default">
-                                            <div class="panel-body">
-                                                <div>
-                                                    <div class="col-sm-6 dividers-left">
-                                                        <p class="lead">Challenge acceptance</p>
-                                                        {% if dare.status == 4 %}
-                                                            <div class="alert alert-warning" role="alert">Someone has uploaded video for this dare. Owner rejected video, waiting for admin review</div>
-                                                        {% elseif user and dare.owner.id == user.id %}
-                                                            <div class="alert alert-warning" role="alert">You can't accept this challenge</div>
-                                                        {% elseif (dare.status == 2) and (is_granted("IS_AUTHENTICATED_FULLY")) and (dare.participant != user) %}
-                                                            <div class="alert alert-info" role="alert">Someone reserved this challenge</div>
-                                                        {% elseif ((dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY"))) or ((is_granted("IS_AUTHENTICATED_FULLY")) and (dare.status == 2) and (dare.participant.id == user.id)) %}
-                                                            <button type="button" class="btn btn-success i-did-it" data-toggle="modal" data-target="#uploadModal">I did it</button>
-                                                            {% if dare.status == 1 %}
-                                                                <form method="post">
-                                                                    <input type="submit" name="reservation" value="I'll do it" class="btn btn-primary i-will-do-it"/>
-                                                                </form>
-                                                            {% endif %}
-
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                                            <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <form id="upload_form" method="post" enctype="multipart/form-data">
-                                                                                <div id="form">
-                                                                                    <label for="form_video" class="required">Video</label>
-                                                                                    <input type="file" name="file1" id="file1" required="required" />
-                                                                                    <input name="id" type="hidden" value="{{ dare.id }}"/>
-                                                                                    <input name="userid" type="hidden" value="{{ user.id }}"/>
-                                                                                    <br>
-                                                                                    <div class="progress">
-                                                                                        <div data-percentage="0%" id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                                    </div>
-                                                                                    <h3 id="status"></h3> <p id="loaded_n_total"></p>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-success" value="Upload" />
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
-                                                            <div class="alert alert-info" role="alert">You must be registered user in order to accept the challange!</div>
-                                                        {% elseif dare.status == 3 %}
-                                                            <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
-                                                        {% endif %}
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">{{ dare.title }}</h4>
                                                     </div>
-                                                    <div class="col-sm-6 dividers-right">
-                                                        <p class="lead">Challenge info</p>
-                                                        <b>Reward: <span class="text-info">{{ reward }}</span> points</b>
-                                                        <br><br>
-                                                        {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
-                                                            <form method="post">
-                                                                <label for="add_points">Add reward:</label>
-                                                                <div class="row">
-                                                                    <div class="col-md-9 col-without-padding">
-                                                                        <div class="input-group number-spinner">
+                                                    <div class="modal-body">
+                                                        <form id="upload_form" method="post" enctype="multipart/form-data">
+                                                            <div id="form">
+                                                                <label for="form_video" class="required">Video</label>
+                                                                <input type="file" name="file1" id="file1" required="required" />
+                                                                <input name="id" type="hidden" value="{{ dare.id }}"/>
+                                                                <input name="userid" type="hidden" value="{{ user.id }}"/>
+                                                                <br>
+                                                                <div class="progress">
+                                                                    <div data-percentage="0%" id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <h3 id="status"></h3> <p id="loaded_n_total"></p>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="button" id="upload-submit" onclick="uploadFile('{{ path('zdrw_index') }}upload')" class="btn btn-success" value="Upload" />
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                        <div class="alert alert-info" role="alert">You must be registered user in order to accept the challange!</div>
+                                    {% elseif dare.status == 3 %}
+                                        <div class="alert alert-warning" role="alert">Someone uploaded video, waiting for approval</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-6 dividers-right">
+                                    <p class="lead">Challenge info</p>
+                                    <b>Reward: <span class="text-info">{{ reward }}</span> points</b>
+                                    <br><br>
+                                    {% if (dare.status == 1) and (is_granted("IS_AUTHENTICATED_FULLY")) %}
+                                        <form method="post">
+                                            <label for="add_points">Add reward:</label>
+                                            <div class="row">
+                                                <div class="col-md-9 col-without-padding">
+                                                    <div class="input-group number-spinner">
                                                                             <span class="input-group-btn">
                                                                                 <button  type="button" class="btn btn-default minus"><span class="glyphicon glyphicon-minus"></span></button>
                                                                             </span>
-                                                                            <input type="text" class="form-control text-center" id="points" pattern="\d*" name="points" size="4" value="0">
+                                                        <input type="text" class="form-control text-center" id="points" pattern="\d*" name="points" size="4" value="0">
                                                                             <span class="input-group-btn">
                                                                                 <button type="button" class="btn btn-default plus"><span class="glyphicon glyphicon-plus"></span></button>
                                                                             </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3 col-without-padding">
-                                                                        <button name="add" class="btn btn-default spinnerBtn" type="submit">Add</button>
-                                                                    </div>
-                                                                </div>
-
-                                                            </form>
-                                                            {% if points == 1 %}
-                                                                <br>
-                                                                <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
-                                                            {% elseif points == 2 %}
-                                                                <br>
-                                                                <div class="alert alert-danger" role="alert">You don't have enough points</div>
-                                                            {% endif %}
-                                                        {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
-                                                            <div class="alert alert-info" role="alert">You must be registered user in order to add some points!</div>
-                                                        {% endif %}
                                                     </div>
                                                 </div>
+                                                <div class="col-md-3 col-without-padding">
+                                                    <button name="add" class="btn btn-default spinnerBtn" type="submit">Add</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                                <div class="col-sm-12 col-without-padding">
-                                    <br>
-                                    <div class="pull-right">
-                                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                                            <button class="btn btn-success btn-xs like" data-path='{{ path('zdrw_like', { id: dare.id }) }}'>{{ render(controller('ZdrwUserBundle:Social:checkLike', {id: dare.id})) }}</button>
+
+                                        </form>
+                                        {% if points == 1 %}
+                                            <br>
+                                            <div class="alert alert-success" role="alert">You have successfully added points to this challenge</div>
+                                        {% elseif points == 2 %}
+                                            <br>
+                                            <div class="alert alert-danger" role="alert">You don't have enough points</div>
                                         {% endif %}
-                                        <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
-                                        <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
-                                    </div>
+                                    {% elseif not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                        <div class="alert alert-info" role="alert">You must be registered user in order to add some points!</div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="st st5"></div>
-                            <div class="st st2"></div>
-                            <div class="st st3"></div>
-                            <div class="st st4"></div>
-                            <div class="st st1"></div>
-                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-sm-12 col-without-padding">
+                <br>
+                <div class="pull-right">
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <button class="btn btn-success btn-xs like" data-path='{{ path('zdrw_like', { id: dare.id }) }}'>{{ render(controller('ZdrwUserBundle:Social:checkLike', {id: dare.id})) }}</button>
+                    {% endif %}
+                    <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
+                    <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="st st5"></div>
+        <div class="st st2"></div>
+        <div class="st st3"></div>
+        <div class="st st4"></div>
+        <div class="st st1"></div>
+    </div>
+    <br>
+    <div class="certain-dare-article">
+        <div class="row" id="comments">
+            <div class="col-sm-12">
+                <span class="comments font-2">Comments</span>
+            </div>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <form id="commentForm">
+                    <div class="col-sm-12">
+                        <textarea class="form-control" maxlength="300" name="commentText"></textarea>
+                    </div>
+                    <input type="hidden" value="{{ dare.id }}" name="dare-id">
+                    <div class="col-sm-offset-8 col-sm-4">
                         <br>
-                        <div class="certain-dare-article">
-                            <div class="row" id="comments">
-                                <div class="col-sm-12">
-                                    <span class="comments font-2">Comments</span>
-                                </div>
-                                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                                    <form id="commentForm">
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control" maxlength="300" name="commentText"></textarea>
-                                        </div>
-                                        <input type="hidden" value="{{ dare.id }}" name="dare-id">
-                                        <div class="col-sm-offset-8 col-sm-4">
-                                            <br>
-                                            <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success btn-block pull-right" value="Comment" />
-                                        </div>
-                                    </form><br><br>
-                                    <div class="spinner hidden-msg" id="loading-bar">
-                                        <div class="rect1"></div>
-                                        <div class="rect2"></div>
-                                        <div class="rect3"></div>
-                                        <div class="rect4"></div>
-                                        <div class="rect5"></div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <br>
-                                        <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
-                                    </div>
-                                {% endif %}
-                                    <span id="into"></span>
-                                {% for comment in comments %}
-                                    <article class="comment">
-                                        <div class="col-sm-12"><br></div>
-                                        {% if dare.Owner.id != comment.User.id %}
-                                            <div class="col-sm-2 thumb-keeper hidden-xs">
-                                                <div class="thumb-container">
-                                                    <a href="{{ path('zdrw_user', {name: comment.User.username}) }}" class="thumbnail comment-thumbnail">
-                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                                    </a>
-                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User.username}) }}">{{ comment.User.nickname }}</a></b></div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                        <div class="col-sm-10">
-                                            <div class="bubble-{{ dare.Owner.id == comment.User.id ? 'right' : 'left' }}">
-                                                <div class="pointer">
-                                                </div>
+                        <input type="button" id="comment-submit" onclick="commentDare('{{ path('zdrw_comment') }}')" class="btn btn-success btn-block pull-right" value="Comment" />
+                    </div>
+                </form><br><br>
+                <div class="spinner hidden-msg" id="loading-bar">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <div class="alert alert-success hidden-msg" id="successBox" role="alert">You have successfully commented this post</div>
+                </div>
+            {% endif %}
+            <span id="into"></span>
+            {% for comment in comments %}
+                <article class="comment">
+                    <div class="col-sm-12"><br></div>
+                    {% if dare.Owner.id != comment.User.id %}
+                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                            <div class="thumb-container">
+                                <a href="{{ path('zdrw_user', {name: comment.User.username}) }}" class="thumbnail comment-thumbnail">
+                                    <img class="img-responsive" src='{{ 'http' in comment.User.avatar ? comment.User.avatar : asset('uploads/avatars/'~comment.User.avatar) }}' alt="" />
+                                </a>
+                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User.username}) }}">{{ comment.User.nickname }}</a></b></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="col-sm-10">
+                        <div class="bubble-{{ dare.Owner.id == comment.User.id ? 'right' : 'left' }}">
+                            <div class="pointer">
+                            </div>
                                                 <span class="visible-xs">
                                                     <b><a href="{{ path('zdrw_user', {name: comment.User.username}) }}">{{ comment.User.nickname }}</a></b>
                                                 </span>
-                                                <p>
-                                                    {{ comment.comment }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        {% if dare.Owner.id == comment.User.id %}
-                                            <div class="col-sm-2 thumb-keeper hidden-xs">
-                                                <div class="thumb-container">
-                                                    <a href="{{ path('zdrw_user', {name: comment.User.username}) }}" class="thumbnail comment-thumbnail">
-                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                                    </a>
-                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User.username}) }}">{{ comment.User.nickname }}</a></b></div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    </article>
-                                {% endfor %}
-                                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                                    <article class="comment hidden-msg" id="comment-template">
-                                        <div class="col-sm-12"><br></div>
-                                        {% if dare.Owner != user %}
-                                            <div class="col-sm-2 thumb-keeper hidden-xs">
-                                                <div class="thumb-container">
-                                                    <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
-                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                                    </a>
-                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                        <div class="col-sm-10">
-                                            <div class="bubble-{{ dare.Owner == user ? 'right' : 'left' }}">
-                                                <div class="pointer">
-                                                </div>
+                            <p>
+                                {{ comment.comment }}
+                            </p>
+                        </div>
+                    </div>
+                    {% if dare.Owner.id == comment.User.id %}
+                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                            <div class="thumb-container">
+                                <a href="{{ path('zdrw_user', {name: comment.User.username}) }}" class="thumbnail comment-thumbnail">
+                                    <img class="img-responsive" src='{{ 'http' in comment.User.avatar ? comment.User.avatar : asset('uploads/avatars/'~comment.User.avatar) }}' alt="" />
+                                </a>
+                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: comment.User.username}) }}">{{ comment.User.nickname }}</a></b></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </article>
+            {% endfor %}
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <article class="comment hidden-msg" id="comment-template">
+                    <div class="col-sm-12"><br></div>
+                    {% if dare.Owner != user %}
+                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                            <div class="thumb-container">
+                                <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
+                                    <img class="img-responsive" src='{{ 'http' in user.avatar ? user.avatar : asset('uploads/avatars/'~user.avatar) }}' alt="" />
+                                </a>
+                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="col-sm-10">
+                        <div class="bubble-{{ dare.Owner == user ? 'right' : 'left' }}">
+                            <div class="pointer">
+                            </div>
                                                     <span class="visible-xs">
                                                         <b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b>
                                                     </span>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        {% if dare.Owner == user %}
-                                            <div class="col-sm-2 thumb-keeper hidden-xs">
-                                                <div class="thumb-container">
-                                                    <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
-                                                        <img class="img-responsive" src="http://placehold.it/100x100" alt="" />
-                                                    </a>
-                                                    <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    </article>
-                                {% endif %}
+                            <p></p>
+                        </div>
+                    </div>
+                    {% if dare.Owner == user %}
+                        <div class="col-sm-2 thumb-keeper hidden-xs">
+                            <div class="thumb-container">
+                                <a href="{{ path('zdrw_user', {name: user}) }}" class="thumbnail comment-thumbnail">
+                                    <img class="img-responsive" src='{{ 'http' in user.avatar ? user.avatar : asset('uploads/avatars/'~user.avatar) }}' alt="" />
+                                </a>
+                                <div class="text-center"><b><a href="{{ path('zdrw_user', {name: user}) }}">{{ user.nickname }}</a></b></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </article>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <div class="st st5"></div>
+        <div class="st st2"></div>
+        <div class="st st3"></div>
+        <div class="st st4"></div>
+        <div class="st st1"></div>
+    </div>
+    </article>
+    </div>
+    </div>
+    </section>
+    <section class="col-md-4 secondary-section">
+        <h1>Stares</h1>
+        <div class="secondary-content">
+            <div class="row">
+                {% for stare in stares %}
+                    <article class="col-md-12 articles">
+                        <div class="dare-article" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-12 col-lg-6 thumb-keeper col-without-padding">
+                                    <div class="thumb-container">
+                                        <a href="#" class="thumbnail stare-thumbnail">
+                                            <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-12 col-lg-6 col-without-padding">
+                                    <h4>
+                                        <small class="pull-right">
+                                            {{ stare.startDate | date("Y-d-m H:i") }}
+                                        </small><br>
+                                        <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
+                                    </h4>
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-without-padding">
+                                    <p class="shortDesc hidden-xs">{{ stare.description|length > 70 ? stare.description|slice(0, 70) ~ '...' : stare.description  }}</p>
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <div class="st st5"></div>
+                            <div class="st st1"></div>
                             <div class="st st2"></div>
                             <div class="st st3"></div>
                             <div class="st st4"></div>
-                            <div class="st st1"></div>
+                            <div class="st st5"></div>
                         </div>
                     </article>
-                </div>
+                {% endfor %}
             </div>
-        </section>
-        <section class="col-md-4 secondary-section">
-            <h1>Stares</h1>
-            <div class="secondary-content">
-                <div class="row">
-                    {% for stare in stares %}
-                        <article class="col-md-12 articles">
-                            <div class="dare-article" onclick="location.href='{{ path('zdrw_dare', { id: stare.id }) }}';">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-12 col-lg-6 thumb-keeper col-without-padding">
-                                        <div class="thumb-container">
-                                            <a href="#" class="thumbnail stare-thumbnail">
-                                                <img src="../uploads/thumb/{{ stare.id }}.jpg" width="350" height="260" class="img-responsive" alt="" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-12 col-lg-6 col-without-padding">
-                                        <h4>
-                                            <small class="pull-right">
-                                                {{ stare.startDate | date("Y-d-m H:i") }}
-                                            </small><br>
-                                            <a href="{{ path('zdrw_dare', { id: stare.id }) }}">{{ stare.title|length > 50 ? stare.title|slice(0, 50) ~ '...' : stare.title  }}</a>
-                                        </h4>
-                                    </div>
-                                    <div class="col-md-12 col-sm-6 col-without-padding">
-                                        <p class="shortDesc hidden-xs">{{ stare.description|length > 70 ? stare.description|slice(0, 70) ~ '...' : stare.description  }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="st st1"></div>
-                                <div class="st st2"></div>
-                                <div class="st st3"></div>
-                                <div class="st st4"></div>
-                                <div class="st st5"></div>
-                            </div>
-                        </article>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
     </div>
 {% endblock %}
