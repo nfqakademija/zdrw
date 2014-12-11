@@ -172,11 +172,21 @@ class DefaultController extends Controller
         $not1 = new Notification();
         $not1->setUser($user);
         $not1->setNotification("You have reserved offer. Do not forget to upload video to prove offer completion!");
+        $url = $this->container->get('router')->generate(
+            'zdrw_dare',
+            array('id' => $dare->getId())
+        );
+        $not1->setLink($url);
         $manager->persist($not1);
 
         $not2 = new Notification();
         $not2->setUser($dare->getOwner());
         $not2->setNotification("Your offer reserved user ".$user->getNickname());
+        $url = $this->container->get('router')->generate(
+            'zdrw_dare',
+            array('id' => $dare->getId())
+        );
+        $not2->setLink($url);
         $manager->persist($not2);
 
         $manager->flush();
