@@ -3,8 +3,10 @@ application:
         php:
             version: 5.5
 filter:
-  paths:
-    - src/*
+  excluded_paths:
+  - app/*
+  - src/**/DataFixtures/**/*
+
 before_commands:
     - "composer update --prefer-source"
 tools:
