@@ -13,39 +13,20 @@ use Doctrine\ORM\EntityRepository;
 class OfferRepository extends EntityRepository
 {
     /**
-     * Method to search for dares in more than 1 case
-     *
-     * @param $in
-     * @param $keyword
-     * @param $maxRes
-     * @return mixed
-     */
-    private function customSearch($in, $keyword, $maxRes)
-    {
-        $data = $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
-                AND p.status '.$in
-            )->setParameter('keyword', '%'.$keyword.'%')
-            ->setMaxResults($maxRes)
-            ->getResult();
-
-        return $data;
-    }
-
-    /**
      * Method to search for dares
      *
      * @return Offer
      */
     public function searchForDares($keyword)
     {
-        $in = 'IN(1,2)';
-        $maxRes = 12;
-        $dares = $this->customSearch($in, $keyword, $maxRes);
+        $dares = $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword) AND p.status IN(1,2)'
+            )->setParameter('keyword', '%'.$keyword.'%')
+            ->setMaxResults(12)
+            ->getResult();
         return $dares;
     }
-
     /**
      * Method to search for stares
      *
@@ -53,9 +34,12 @@ class OfferRepository extends EntityRepository
      */
     public function searchForStares($keyword)
     {
-        $in = '= 5';
-        $maxRes = 16;
-        $dares = $this->customSearch($in, $keyword, $maxRes);
+        $dares = $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword) AND p.status = 5'
+            )->setParameter('keyword', '%'.$keyword.'%')
+            ->setMaxResults(16)
+            ->getResult();
         return $dares;
     }
 
