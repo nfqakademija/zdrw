@@ -34,7 +34,7 @@ class Comment
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="comment", type="text")
      */

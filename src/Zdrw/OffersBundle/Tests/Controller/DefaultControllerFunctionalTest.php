@@ -19,33 +19,54 @@ class DefaultControllerFunctionalTest extends setup
         return $setup;
     }
 
+    private function customAssert($setup, $route, $assert)
+    {
+        $crawler = $setup->client->request('GET', $route);
+        $this->assertGreaterThan(0, $crawler->filter($assert)->count());
+    }
+
+    private function customDataTests($setup, $route, $selectLink, $button, $formData, $result)
+    {
+        $setup->client->followRedirects(true);
+        $crawler = $setup->client->request('GET', $route);
+        $link = $crawler->selectLink($selectLink)->link();
+        $crawler = $setup->client->click($link);
+
+        $buttonCrawlerNode = $crawler->selectButton($button);
+        $form = $buttonCrawlerNode->form($formData);
+        $crawler = $setup->client->submit($form);
+        $this->assertGreaterThan(0, $crawler->filter($result)->count());
+    }
+
     public function testLogin()
     {
-        $setup = new setup();
-        $setup->logIn();
-        $crawler = $setup->client->request('GET', '/');
+        $setup = $this->loginForTest();
+        $route = '/';
+        $assert = 'html:contains("admin")';
         $this->assertTrue($setup->client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("admin")')->count());
+        $this->customAssert($setup, $route, $assert);
     }
 
 
     public function testDares()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/dares');
-        $this->assertGreaterThan(0, $crawler->filter('.dare-article h4 a:contains("With status 1")')->count());
+        $route = '/dares';
+        $assert = '.dare-article h4 a:contains("With status 1")';
+        $this->customAssert($setup, $route, $assert);
     }
 
     public function testSearch()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/');
-        $button = $crawler->selectButton('search');
-        $form = $button->form(array(
+        $route = '/';
+        $selectLink= null;
+        $button = "search";
+        $formData = array(
             'keyword' => 'status'
-        ));
-        $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('.dare-article h4 a:contains("With status 1")')->count());
+        );
+        $result = '.dare-article h4 a:contains("With status 1")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testReservation()
@@ -65,85 +86,67 @@ class DefaultControllerFunctionalTest extends setup
     public function testAddPoints1()
     {
         $setup = $this->loginForTest();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 49')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Add");
-        $form = $buttonCrawlerNode->form(array('points' => 1));
-        $crawler = $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('.alert-success:contains("You have successfully added points to this challenge")')->count());
+        $route = '/dares';
+        $selectLink= 'With status 1. Number - 49';
+        $button = "Add";
+        $formData = array('points' => 1);
+        $result = '.alert-success:contains("You have successfully added points to this challenge")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testAddPoints2()
     {
         $setup = $this->loginForTest();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/dares');
-        $link = $crawler->selectLink('With status 1. Number - 49')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Add");
-        $form = $buttonCrawlerNode->form(array('points' => 1000000));
-        $crawler = $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('.alert-danger:contains("You don\'t have enough points")')->count());
+        $route = '/dares';
+        $selectLink= 'With status 1. Number - 49';
+        $button = "Add";
+        $formData = array('points' => 1000000);
+        $result = '.alert-danger:contains("You don\'t have enough points")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testAcceptVideo()
     {
         $setup = $this->loginForTest();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/admin');
-        $link = $crawler->selectLink('With status 4. Number - 1')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Accept video");
-        $form = $buttonCrawlerNode->form();
-        $crawler = $setup->client->submit($form);
-        $this->assertCount(1, $crawler->filter('html:contains("Challenge fulfilment proof")'));
+        $route = '/admin';
+        $selectLink= 'With status 4. Number - 1';
+        $button = "Accept video";
+        $formData = null;
+        $result = 'html:contains("Challenge fulfilment proof")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testDeclineVideo()
     {
         $setup = $this->loginForTest();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/admin');
-        $link = $crawler->selectLink('With status 4. Number - 2')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Decline video");
-        $form = $buttonCrawlerNode->form();
-        $crawler = $setup->client->submit($form);
-        $this->assertCount(1, $crawler->filter('html:contains("Add reward")'));
+        $route = '/admin';
+        $selectLink= 'With status 4. Number - 2';
+        $button = "Decline video";
+        $formData = null;
+        $result = 'html:contains("Add reward")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testOwnerAcceptVideo()
     {
         $setup = $this->loginForTest2();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/profile');
-        $link = $crawler->selectLink('With status 3. Number - 1')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Accept video");
-        $form = $buttonCrawlerNode->form();
-        $crawler = $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Challenge fulfilment proof")')->count());
+        $route = '/profile';
+        $selectLink= 'With status 3. Number - 1';
+        $button = "Accept video";
+        $formData = null;
+        $result = 'html:contains("Challenge fulfilment proof")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testOwnerDeclineVideo()
     {
         $setup = $this->loginForTest2();
-        $setup->client->followRedirects(true);
-        $crawler = $setup->client->request('GET', '/profile');
-        $link = $crawler->selectLink('With status 3. Number - 2')->link();
-        $crawler = $setup->client->click($link);
-
-        $buttonCrawlerNode = $crawler->selectButton("Decline video");
-        $form = $buttonCrawlerNode->form();
-        $crawler = $setup->client->submit($form);
-        $this->assertGreaterThan(0, $crawler->filter('.alert-warning:contains("Someone has uploaded video for this dare. Owner rejected video, waiting for admin review")')->count());
+        $route = '/profile';
+        $selectLink= 'With status 3. Number - 2';
+        $button = "Decline video";
+        $formData = null;
+        $result = '.alert-warning:contains("Someone has uploaded video for this dare. Owner rejected video, waiting for admin review")';
+        $this->customDataTests($setup, $route, $selectLink, $button, $formData, $result);
     }
 
     public function testNewDare1()
@@ -192,11 +195,12 @@ class DefaultControllerFunctionalTest extends setup
     public function testStares()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/stares');
-        $this->assertGreaterThan(0, $crawler->filter('.stare-article h4 a:contains("With status 5")')->count());
+        $route = '/stares';
+        $assert = '.stare-article h4 a:contains("With status 5")';
+        $this->customAssert($setup, $route, $assert);
     }
 
-    public function testProfile()
+    public function testProfile1()
     {
         $setup = $this->loginForTest();
         $crawler = $setup->client->request('GET', '/profile/');
@@ -208,13 +212,15 @@ class DefaultControllerFunctionalTest extends setup
     public function testUser()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/user/TestUser1');
-        $this->assertGreaterThan(0, $crawler->filter('.profile p:contains("TestUser1")')->count());
+        $route = '/user/TestUser1';
+        $assert = '.profile p:contains("TestUser1")';
+        $this->customAssert($setup, $route, $assert);
     }
     public function testAdminIndex()
     {
         $setup = $this->loginForTest();
-        $crawler = $setup->client->request('GET', '/admin');
-        $this->assertGreaterThan(0, $crawler->filter('h4 a:contains("With status 4")')->count());
+        $route = '/admin';
+        $assert = 'h4 a:contains("With status 4")';
+        $this->customAssert($setup, $route, $assert);
     }
 }

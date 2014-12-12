@@ -193,6 +193,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * Method to get specific data, like comments data
+     *
+     * @param $repo
+     * @param $findBy
+     * @param $id
+     * @return array
+     */
+    private function getData($repo, $findBy, $id)
+    {
+        $data = $this
+            ->getDoctrine()
+            ->getRepository($repo)
+            ->findBy(array($findBy => $id), array('id' => 'desc'));
+        return $data;
+    }
+
+    /**
      * Method to get offer comments
      *
      * @param $id
@@ -200,10 +217,9 @@ class DefaultController extends Controller
      */
     private function getComments($id)
     {
-        $comments = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwUserBundle:Comment')
-            ->findBy(array('offer' => $id), array('id' => 'desc'));
+        $repo = 'ZdrwUserBundle:Comment';
+        $findBy = 'offer';
+        $comments = $this->getData($repo, $findBy, $id);
         return $comments;
     }
 
@@ -215,10 +231,9 @@ class DefaultController extends Controller
      */
     public function getUserDares($id)
     {
-        $dares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('owner' => $id), array('id' => 'desc'));
+        $repo = 'ZdrwOffersBundle:Offer';
+        $findBy = 'owner';
+        $dares = $this->getData($repo, $findBy, $id);
         return $dares;
     }
 
@@ -230,11 +245,27 @@ class DefaultController extends Controller
      */
     public function getUserPerformedDares($id)
     {
-        $stares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('participant' => $id), array('id' => 'desc'));
+        $repo = 'ZdrwOffersBundle:Offer';
+        $findBy = 'participant';
+        $stares = $this->getData($repo, $findBy, $id);
         return $stares;
+    }
+
+    /**
+     * Method to get specific data, like comments data, with limit
+     *
+     * @param $repo
+     * @param $findBy
+     * @param $id
+     * @return array
+     */
+    private function getDataWithLimit($repo, $findBy, $id, $limit, $offset)
+    {
+        $data = $this
+            ->getDoctrine()
+            ->getRepository($repo)
+            ->findBy(array($findBy => $id), array('id' => 'desc'), $limit, $offset);
+        return $data;
     }
 
     /**
@@ -246,10 +277,10 @@ class DefaultController extends Controller
      */
     private function getDares($limit = null, $offset = 0)
     {
-        $dares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => array(1, 2)), array('id' => 'desc'), $limit, $offset);
+        $repo = 'ZdrwOffersBundle:Offer';
+        $findBy = 'status';
+        $id = array(1, 2);
+        $dares = $this->getDataWithLimit($repo, $findBy, $id, $limit, $offset);
         return $dares;
     }
 
@@ -262,10 +293,10 @@ class DefaultController extends Controller
      */
     private function getStares($limit = null, $offset = 0)
     {
-        $stares = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Offer')
-            ->findBy(array('status' => 5), array('id' => 'desc'), $limit, $offset);
+        $repo = 'ZdrwOffersBundle:Offer';
+        $findBy = 'status';
+        $id = 5;
+        $stares = $this->getDataWithLimit($repo, $findBy, $id, $limit, $offset);
         return $stares;
     }
 
@@ -402,6 +433,7 @@ class DefaultController extends Controller
             $stares = $this->getStares(5);
             $user = $this->getUser();
             $errorMsg = 0;
+            $form = null;
             if ($user != null) {
                 $offer = new Offer();
                 $reward = new Reward();
@@ -438,8 +470,8 @@ class DefaultController extends Controller
                     $errorMsg = 1;
                 }
 
-                $nId = $this->unreadNotifications();
             }
+            $nId = $this->unreadNotifications();
             return $this->render(
                 "ZdrwOffersBundle:Default:newDare.html.twig",
                 array(
@@ -491,10 +523,9 @@ class DefaultController extends Controller
      */
     public function getNotifications($id)
     {
-        $notifications = $this
-            ->getDoctrine()
-            ->getRepository('ZdrwOffersBundle:Notification')
-            ->findBy(array("user" => $id), array('id' => 'desc'));
+        $repo = 'ZdrwOffersBundle:Notification';
+        $findBy = 'user';
+        $notifications = $this->getData($repo, $findBy, $id);
         return $notifications;
     }
 

@@ -13,19 +13,36 @@ use Doctrine\ORM\EntityRepository;
 class OfferRepository extends EntityRepository
 {
     /**
+     * Method to search for dares in more than 1 case
+     *
+     * @param $in
+     * @param $keyword
+     * @param $maxRes
+     * @return mixed
+     */
+    private function customSearch($in, $keyword, $maxRes)
+    {
+        $data = $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
+                AND p.status '.$in
+            )->setParameter('keyword', '%'.$keyword.'%')
+            ->setMaxResults($maxRes)
+            ->getResult();
+
+        return $data;
+    }
+
+    /**
      * Method to search for dares
      *
      * @return Offer
      */
     public function searchForDares($keyword)
     {
-        $dares = $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
-                AND p.status IN(1,2)'
-            )->setParameter('keyword', '%'.$keyword.'%')
-            ->setMaxResults(12)
-            ->getResult();
+        $in = 'IN(1,2)';
+        $maxRes = 12;
+        $dares = $this->customSearch($in, $keyword, $maxRes);
         return $dares;
     }
 
@@ -36,33 +53,51 @@ class OfferRepository extends EntityRepository
      */
     public function searchForStares($keyword)
     {
-        $dares = $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM ZdrwOffersBundle:Offer p WHERE (p.title LIKE :keyword OR p.description LIKE :keyword)
-                AND p.status = 5'
-            )->setParameter('keyword', '%'.$keyword.'%')
-            ->setMaxResults(16)
-            ->getResult();
+        $in = '= 5';
+        $maxRes = 16;
+        $dares = $this->customSearch($in, $keyword, $maxRes);
         return $dares;
     }
 
-    public function countDares()
+    /**
+     * Method to count from query
+     *
+     * @param $where
+     * @return mixed
+     */
+    private function customCount($where)
     {
         return $this->createQueryBuilder('a')
             ->select('COUNT(a)')
-            ->where('a.status = 1 OR a.status = 2')
+            ->where($where)
             ->getQuery()
             ->getSingleScalarResult()
             ;
     }
 
+    /**
+     * Method to count dares
+     *
+     * @return mixed
+     */
+    public function countDares()
+    {
+        $where = 'a.status = 1 OR a.status = 2';
+        $this-> customCount($where);
+
+        return $this-> customCount($where);
+    }
+
+    /**
+     * Method to count dares
+     *
+     * @return mixed
+     */
     public function countStares()
     {
-        return $this->createQueryBuilder('a')
-            ->select('COUNT(a)')
-            ->where('a.status = 5')
-            ->getQuery()
-            ->getSingleScalarResult()
-            ;
+        $where = 'a.status = 5';
+        $this-> customCount($where);
+
+        return $this-> customCount($where);
     }
 }
