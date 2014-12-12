@@ -13,6 +13,10 @@ before_commands:
 tools:
     external_code_coverage:
         timeout: 3600
+    php_analyzer:
+        config:
+            metrics_lack_of_cohesion_methods:
+                enabled:  true
 checks:
     php:
         code_rating: true
