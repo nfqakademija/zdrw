@@ -157,8 +157,8 @@
                     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                         <button class="btn btn-success btn-xs like" data-path='{{ path('zdrw_like', { id: dare.id }) }}'>{{ render(controller('ZdrwUserBundle:Social:checkLike', {id: dare.id})) }}</button>
                     {% endif %}
-                    <small><i class="glyphicon glyphicon-thumbs-up"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</small>
-                    <small><i class="glyphicon glyphicon-comment"></i> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</small>
+                    <small><i class="glyphicon glyphicon-thumbs-up"></i><span id="likes-num"> {{ render(controller('ZdrwOffersBundle:Default:getOfferLikes', {'id': dare.id})) }}</span></small>
+                    <small><i class="glyphicon glyphicon-comment"></i><span id="comments-num"> {{ render(controller('ZdrwOffersBundle:Default:getOfferComments', {'id': dare.id})) }}</span></small>
                 </div>
             </div>
         </div>

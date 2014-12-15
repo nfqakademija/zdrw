@@ -13,6 +13,9 @@
                 {
                     var text = like.text();
                     like.text(text === 'Like' ? 'Unlike' : 'Like');
+                    var likesNumHolder =  $('.pull-right').find('#likes-num');
+                    var likesNum = parseInt(likesNumHolder.text());
+                    likesNumHolder.text(text === 'Like' ? likesNum + 1 : likesNum - 1);
                 }
             }
         });
@@ -38,6 +41,9 @@ function commentDare(ajaxlink){
                     $('#comment-template').clone().removeAttr('id').show().prependTo('#into').find('p').text(text);
                     $('#loading-bar').hide();
                     form.show();
+                    var commentsNumHolder =  $('.pull-right').find('#comments-num');
+                    var commentsNum = parseInt(commentsNumHolder.text());
+                    commentsNumHolder.text(commentsNum + 1);
                 }
             }
         });
