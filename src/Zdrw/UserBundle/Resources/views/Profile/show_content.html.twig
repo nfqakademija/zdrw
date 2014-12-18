@@ -8,7 +8,7 @@
                 <article class="profile">
                     <img class="thumbnail profile-thumbnail image-profile" alt="Profile picture" src='{{ 'http' in user.avatar ? user.avatar : asset('uploads/avatars/'~user.avatar) }}' />
                     <p class="panel panel-body articles">
-                        <b class="font-3">{{ userInfo.nick }}</b><br>
+                        <b class="nick-name font-3">{{ userInfo.nick }}</b><br>
                         <span class="font-1">Points: <b>{{ userInfo.points }}</b></span><br>
                         <span class="font-1">{{ userInfo.email }}</span>
                         <br>

@@ -6,7 +6,7 @@
             <article class="profile">
                 <span class="thumbnail profile-thumbnail"><img alt="Profile picture" src='{{ 'http' in currentUser.avatar ? currentUser.avatar : asset('uploads/avatars/'~currentUser.avatar) }}' /></span>
                 <p class="panel panel-body articles">
-                    <b class="font-1">{{ currentUser.nickname }}</b><br>
+                    <b class="nick-name font-1">{{ currentUser.nickname }}</b><br>
                 </p>
             </article>
         </section>

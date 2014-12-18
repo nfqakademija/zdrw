@@ -15,7 +15,7 @@
                     like.text(text === 'Like' ? 'Unlike' : 'Like');
                     var likesNumHolder =  $('.pull-right').find('#likes-num');
                     var likesNum = parseInt(likesNumHolder.text());
-                    likesNumHolder.text(text === 'Like' ? likesNum + 1 : likesNum - 1);
+                    likesNumHolder.text(' ' + (text === 'Like' ? likesNum + 1 : likesNum - 1));
                 }
             }
         });
@@ -43,7 +43,7 @@ function commentDare(ajaxlink){
                     form.show();
                     var commentsNumHolder =  $('.pull-right').find('#comments-num');
                     var commentsNum = parseInt(commentsNumHolder.text());
-                    commentsNumHolder.text(commentsNum + 1);
+                    commentsNumHolder.text(' ' + (commentsNum + 1));
                 }
             }
         });
