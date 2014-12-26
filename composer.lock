@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ff86b9338d6084804f516752b6c14ccb",
+    "hash": "97599669b12acc61d85a2a8164464e2b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2152,16 +2152,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.2",
+            "version": "v1.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
                 "shasum": ""
             },
             "require": {
@@ -2196,7 +2196,7 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
                     "role": "Contributors"
                 }
             ],
@@ -2205,74 +2205,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-17 12:53:44"
-        },
-        {
-            "name": "webtopay/libwebtopay",
-            "version": "1.6.x-dev",
-            "source": {
-                "type": "hg",
-                "url": "https://bitbucket.org/paysera/libwebtopay",
-                "reference": "64fdfad73b0cd3593228143946f223062d5994a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://bitbucket.org/paysera/libwebtopay/get/64fdfad73b0cd3593228143946f223062d5994a4.zip",
-                "reference": "64fdfad73b0cd3593228143946f223062d5994a4",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "EVP International",
-                    "homepage": "http://www.webtopay.com/"
-                }
-            ],
-            "description": "PHP Library for WebToPay provided services",
-            "time": "2013-09-24 11:03:04"
-        },
-        {
-            "name": "webtopay/webtopay-bundle",
-            "version": "dev-master",
-            "target-dir": "Evp/Bundle/WebToPayBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/evp/WebToPayBundle.git",
-                "reference": "4be0ca3872f29e353250a63d142f8bcdc27ec89b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/evp/WebToPayBundle/zipball/4be0ca3872f29e353250a63d142f8bcdc27ec89b",
-                "reference": "4be0ca3872f29e353250a63d142f8bcdc27ec89b",
-                "shasum": ""
-            },
-            "require": {
-                "webtopay/libwebtopay": "1.6.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Evp\\Bundle\\WebToPayBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "EVP International",
-                    "homepage": "https://www.paysera.com/"
-                }
-            ],
-            "description": "Symfony2 bundle for WebToPay provided services",
-            "time": "2014-12-10 11:43:47"
+            "time": "2014-12-25 19:58:19"
         }
     ],
     "packages-dev": [
@@ -2332,16 +2265,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.13",
+            "version": "2.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5"
+                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5",
-                "reference": "0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ca158276c1200cc27f5409a5e338486bc0b4fc94",
+                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94",
                 "shasum": ""
             },
             "require": {
@@ -2393,7 +2326,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-03 06:41:44"
+            "time": "2014-12-26 13:28:33"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3029,9 +2962,7 @@
         "symfony/framework-standard-edition": 20,
         "hwi/oauth-bundle": 20,
         "doctrine/migrations": 20,
-        "doctrine/doctrine-migrations-bundle": 20,
-        "webtopay/libwebtopay": 20,
-        "webtopay/webtopay-bundle": 20
+        "doctrine/doctrine-migrations-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

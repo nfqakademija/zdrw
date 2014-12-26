@@ -29,6 +29,3 @@ parameters:
     mailer_host: changeme
     mailer_user: dareorstare
     mailer_password: changeme
-
-    paysera_id: 60404
-    paysera_password: changeme

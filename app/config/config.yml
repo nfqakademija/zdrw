@@ -118,8 +118,3 @@ doctrine_migrations:
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
-
-evp_web_to_pay:
-    credentials:
-        project_id: "%paysera_id%"
-        sign_password: "%paysera_password%"

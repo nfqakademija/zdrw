@@ -57,17 +57,3 @@ google_url:
     pattern: /login/google
 fb_url:
     pattern: /login/facebook
-
-#Paysera routes
-paysera_pay:
-    path:     /payments/paysera/pay
-    defaults: { _controller: ZdrwUserBundle:PayseraPayments:redirectToPayment }
-paysera_accept:
-    path:     /payments/paysera/accept
-    defaults: { _controller: ZdrwUserBundle:PayseraPayments:accept }
-paysera_cancel:
-    path:     /payments/paysera/cancel
-    defaults: { _controller: ZdrwUserBundle:PayseraPayments:cancel }
-paysera_callback:
-    path:     /payments/paysera/callback
-    defaults: { _controller: ZdrwUserBundle:PayseraPayments:callback }
