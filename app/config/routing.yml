@@ -1,3 +1,7 @@
+zdrw_payment:
+    resource: "@ZdrwPaymentBundle/Resources/config/routing.yml"
+    prefix:   /
+
 zdrw_offers:
     resource: "@ZdrwOffersBundle/Resources/config/routing.yml"
     prefix:   /
@@ -7,3 +11,12 @@ zdrw_user:
 
 homepage:
     pattern: /
+
+payum_capture:
+    resource: "@PayumBundle/Resources/config/routing/capture.xml"
+
+payum_authorize:
+    resource: "@PayumBundle/Resources/config/routing/authorize.xml"
+
+payum_notify:
+    resource: "@PayumBundle/Resources/config/routing/notify.xml"

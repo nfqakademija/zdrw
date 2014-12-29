@@ -1,0 +1,22 @@
+<?php
+
+namespace Zdrw\PaymentBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Payum\Core\Model\Token;
+
+/**
+ * PaymentToken
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="payment_token")
+ */
+class PaymentToken extends Token
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+}

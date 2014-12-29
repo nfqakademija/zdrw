@@ -1,0 +1,6 @@
+zdrw_payment_homepage:
+    path:     /pay/
+    defaults: { _controller: ZdrwPaymentBundle:Payment:prepare }
+zdrw_payment_done:
+    path:    /capture/
+    defaults: { _controller: ZdrwPaymentBundle:Payment:done}

@@ -30,6 +30,9 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         user_info_provider: "@user_info_provider"
+    paths:
+        %kernel.root_dir%/../vendor/payum/core/Payum/Core/Resources/views: PayumCore
+        %kernel.root_dir%/../vendor/payum/core/Payum/Core/Bridge/Symfony/Resources/views: PayumSymfonyBridge
 
 # Assetic Configuration
 assetic:
@@ -63,7 +66,16 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    payum:
+                        is_bundle: false
+                        type: xml
+                        dir: %kernel.root_dir%/../vendor/payum/core/Payum/Core/Bridge/Doctrine/Resources/mapping
+                        prefix: Payum\Core\Model
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -113,8 +125,21 @@ hwi_oauth:
     # here you will add one (or more) configurations for resource owners
     http_client:
         verify_peer: false
+
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
+
+payum:
+    security:
+        token_storage:
+            Zdrw\PaymentBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        Zdrw\PaymentBundle\Entity\PaymentOrder: { doctrine: orm }
+
+    contexts:
+        offline:
+            offline: ~

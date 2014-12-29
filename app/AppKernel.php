@@ -21,7 +21,9 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Zdrw\UserBundle\ZdrwUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Zdrw\PaymentBundle\ZdrwPaymentBundle(),
+            new Payum\Bundle\PayumBundle\PayumBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
