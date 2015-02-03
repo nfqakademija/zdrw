@@ -4,3 +4,9 @@ zdrw_payment_homepage:
 zdrw_payment_done:
     path:    /capture/
     defaults: { _controller: ZdrwPaymentBundle:Payment:done}
+zdrw_payment_homepage_2:
+    path:     /pay2/
+    defaults: { _controller: ZdrwPaymentBundle:Payment:preparePaypalExpressCheckoutPayment }
+zdrw_payment_done_2:
+    path:    /capture2/
+    defaults: { _controller: ZdrwPaymentBundle:Payment:done2}

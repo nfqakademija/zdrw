@@ -25,7 +25,8 @@
         "payum/payum-bundle": "*@stable",
         "payum/offline": "*@stable",
         "payum/paypal-express-checkout-nvp": "*@stable",
-        "payum/omnipay-bridge": "*@stable"
+        "payum/omnipay-bridge": "*@stable",
+        "payum/stripe": "*@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.3"

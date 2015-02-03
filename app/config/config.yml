@@ -33,6 +33,7 @@ twig:
     paths:
         %kernel.root_dir%/../vendor/payum/core/Payum/Core/Resources/views: PayumCore
         %kernel.root_dir%/../vendor/payum/core/Payum/Core/Bridge/Symfony/Resources/views: PayumSymfonyBridge
+        %kernel.root_dir%/../vendor/payum/stripe/Payum/Stripe/Resources/views: PayumStripe
 
 # Assetic Configuration
 assetic:
@@ -141,5 +142,13 @@ payum:
         Zdrw\PaymentBundle\Entity\PaymentOrder: { doctrine: orm }
 
     contexts:
-        offline:
-            offline: ~
+        stripe:
+            stripe_js:
+                publishable_key: 'pk_test_6aAkXCBe26Z4xMHEGyqoWfeb'
+                secret_key: 'sk_test_fo0uzWNSfRtkyxaUGdahA5xw'
+        paypal:
+            paypal_express_checkout_nvp:
+                username: 'daresandbox@gmail.com'
+                password: 'zdrwacademy23'
+                signature: 'https://api-3t.sandbox.paypal.com/nvp'
+                sandbox: true
